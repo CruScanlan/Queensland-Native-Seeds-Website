@@ -6,7 +6,7 @@ import Layout from '../components/layout'
 const SecondPage = () => (
   <Layout>
     <h1>Hi from the second page</h1>
-    <p>Welcome to page 2 Test</p>
+    <p>Welcome to page 2 This is a test</p>
     <Link to="/">Go back to the homepage</Link>
   </Layout>
 )
