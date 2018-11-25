@@ -1,7 +1,12 @@
-/**
- * Implement Gatsby's Browser APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/browser-apis/
- */
+/* eslint-disable react/prop-types, import/prefer-default-export */
 
-// You can delete this file if you're not using it
+// It's not ready yet: https://github.com/gatsbyjs/gatsby/issues/8237.
+//
+// import React from 'react';
+// import withRoot from './src/withRoot';
+
+// const WithRoot = withRoot(props => props.children);
+
+// export const wrapRootElement = ({ element }) => {
+//   return <WithRoot key={Math.random()}>{element}</WithRoot>;
+// };
