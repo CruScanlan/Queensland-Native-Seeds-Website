@@ -5,7 +5,8 @@ import { StaticQuery, graphql } from 'gatsby'
 
 import Header from './Header/Header'
 import HeaderLinks from './Header/HeaderLinks'
-import withRoot from "../withRoot";
+import withRoot from '../withRoot'
+import Parallax from './Parallax/Parallax'
 
 
 const Layout = ({ children }) => (
@@ -39,6 +40,11 @@ const Layout = ({ children }) => (
                         height: 100,
                         color: "white"
                     }}/>
+                <Parallax image={require("../../src/images/banner1.jpg")}>
+                    <div>
+                        Test
+                    </div>
+                </Parallax>
                 <div
                     style={{
                         margin: '0 auto',
