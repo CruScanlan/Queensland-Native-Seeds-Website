@@ -17,6 +17,3 @@ yarn-error.log*
 # Gatsby.js
 /public
 /.cache
-
-#Hide Creds
-/config.js

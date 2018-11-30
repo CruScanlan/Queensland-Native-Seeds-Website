@@ -1,5 +1,3 @@
-const { prismicToken } = require('./config.js');
-
 module.exports = {
     siteMetadata: {
       title: 'Queensland Native Seeds',
@@ -17,7 +15,7 @@ module.exports = {
                 // You can generate an access token in the "API & Security" section of
                 // your repository settings. Setting a "Callback URL" is not necessary.
                 // The token will be listed under "Permanent access tokens".
-                accessToken: prismicToken,
+                accessToken: "MC5XX05uMXhFQUFGUVBSMEVB.77-977-977-9LlDvv73vv70777-977-9BQ8i77-977-9WRnvv71i77-9JGzvv706LO-_ve-_vVzvv73vv73vv73vv70",
 
                 // Set a link resolver function used to process links in your content.
                 // Fields with rich text formatting or links to internal content use this
