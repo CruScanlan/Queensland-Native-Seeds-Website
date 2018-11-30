@@ -7,7 +7,7 @@ import Header from './Header/Header'
 import HeaderLinks from './Header/HeaderLinks'
 import withRoot from '../withRoot'
 import Parallax from './Parallax/Parallax'
-
+import '../assets/material-kit-react.css?v=1.2.0'
 
 const Layout = ({ children }) => (
     <StaticQuery
