@@ -2,7 +2,6 @@
 
 import React from 'react';
 // nodejs library that concatenates classes
-
 import classNames from "classnames";
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -15,8 +14,8 @@ import Button from "components/CustomButtons/Button.jsx";
 import Parallax from "components/Parallax/Parallax.jsx";
 // sections for this page
 import landingPageStyle from "assets/views/landingPage.jsx";
-
 import ProductSection from "../sections/ProductSection.jsx";
+import withRoot from "withRoot";
 
 class LandingPage extends React.Component {
     render() {
@@ -62,4 +61,4 @@ LandingPage.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(landingPageStyle)(LandingPage);
+export default withRoot(withStyles(landingPageStyle)(LandingPage));
