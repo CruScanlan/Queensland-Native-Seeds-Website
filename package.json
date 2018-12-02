@@ -1,6 +1,6 @@
 {
-  "name": "gatsby",
-  "version": "3.0.0",
+  "name": "Queensland-Native-Seeds-Website",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@material-ui/core": "latest",
@@ -9,6 +9,7 @@
     "gatsby": "latest",
     "gatsby-plugin-manifest": "^2.0.10",
     "gatsby-plugin-react-helmet": "^3.0.2",
+    "gatsby-plugin-resolve-src": "next",
     "gatsby-plugin-sharp": "^2.0.13",
     "gatsby-source-filesystem": "^2.0.9",
     "gatsby-source-prismic": "^2.1.0",
@@ -18,11 +19,15 @@
     "react": "latest",
     "react-dom": "latest",
     "react-helmet": "^5.2.0",
-    "react-jss": "latest"
+    "react-jss": "latest",
+    "react-router-dom": "^4.3.1",
+    "react-slick": "0.23.1",
+    "react-swipeable-views": "0.13.0"
   },
   "scripts": {
     "develop": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve"
-  }
+  },
+  "devDependencies": {}
 }
