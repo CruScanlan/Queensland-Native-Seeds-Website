@@ -15,6 +15,8 @@ import Drawer from "@material-ui/core/Drawer";
 import Menu from "@material-ui/icons/Menu";
 // core components
 import headerStyle from "assets/components/headerStyle.jsx";
+import { Link } from 'gatsby';
+import Img from 'gatsby-image'
 
 class Header extends React.Component {
     constructor(props) {
@@ -74,9 +76,9 @@ class Header extends React.Component {
             [classes.fixed]: fixed
         });
         const brandComponent = (
-            <Button className={classes.title}>
-                {brand}
-            </Button>
+            <Link to="/">
+                <Img fluid={brand} className={classes.brandImage}/>
+            </Link>
         );
         return (
             <AppBar className={appBarClasses}>
@@ -144,7 +146,7 @@ Header.propTypes = {
     ]),
     rightLinks: PropTypes.node,
     leftLinks: PropTypes.node,
-    brand: PropTypes.string,
+    brand: PropTypes.object,
     fixed: PropTypes.bool,
     absolute: PropTypes.bool,
     // this will cause the sidebar to change the color from

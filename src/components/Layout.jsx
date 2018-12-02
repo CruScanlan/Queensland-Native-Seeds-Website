@@ -12,10 +12,17 @@ import "assets/scss/material-kit-react.css?v=1.3.0";
 const Layout = ({ children }) => (
     <StaticQuery
         query={graphql`
-            query SiteTitleQuery {
+            query {
                 site {
                     siteMetadata {
                         title
+                    }
+                },
+                logoImage: file(relativePath: { eq: "logo.png" }) {
+                    childImageSharp {
+                        fluid(maxWidth: 250) {
+                            ...GatsbyImageSharpFluid
+                        }
                     }
                 }
             }
@@ -33,7 +40,7 @@ const Layout = ({ children }) => (
                 </Helmet>
                 <Header
                     color="transparent"
-                    brand={data.site.siteMetadata.title}
+                    brand={data.logoImage.childImageSharp.fluid}
                     fixed
                     rightLinks={<HeaderLinks />}
                     changeColorOnScroll={{
