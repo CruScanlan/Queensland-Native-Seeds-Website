@@ -16,7 +16,7 @@ import withRoot from 'withRoot'
 
 class AboutPage extends React.Component {
     render() {
-        const { classes, ...rest } = this.props;
+        const { classes } = this.props;
         return (
             <Layout>
                 <Parallax small filter image="assets/img/bg1.jpg" />

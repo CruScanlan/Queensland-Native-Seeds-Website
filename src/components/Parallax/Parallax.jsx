@@ -91,7 +91,7 @@ Parallax.propTypes = {
     filter: PropTypes.bool,
     children: PropTypes.node,
     style: PropTypes.string,
-    image: PropTypes.string
+    image: PropTypes.object
 };
 
 export default withStyles(parallaxStyle)(Parallax);

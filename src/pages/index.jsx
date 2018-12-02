@@ -19,14 +19,14 @@ import { StaticQuery, graphql } from 'gatsby'
 
 class LandingPage extends React.Component {
     render() {
-        const { classes, ...rest } = this.props;
+        const { classes } = this.props;
         return (
             <StaticQuery
                 query={graphql`
                     query {
                         image: file(relativePath: { eq: "bg1.jpg" }) {
                             childImageSharp {
-                                fluid(maxWidth: 1920) {
+                                fluid(maxWidth: 1920, quality: 45) {
                                     ...GatsbyImageSharpFluid
                                 }
                             }
