@@ -19,7 +19,7 @@ class AboutPage extends React.Component {
         const { classes, ...rest } = this.props;
         return (
             <Layout>
-                <Parallax small filter image={require("assets/img/landing-bg.jpg")} />
+                <Parallax small filter image="assets/img/bg1.jpg" />
                 <div className={classNames(classes.main, classes.mainRaised)}>
                     <div className={classes.container}>
                         <ProductSection />
