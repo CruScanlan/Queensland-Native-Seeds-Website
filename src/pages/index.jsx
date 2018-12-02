@@ -5,46 +5,24 @@ import React from 'react';
 
 import classNames from "classnames";
 import PropTypes from 'prop-types';
-import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
-import { Link } from "gatsby"
-import withRoot from 'withRoot';
-import "assets/scss/material-kit-react.css?v=1.3.0";
+import Layout from 'components/Layout.jsx';
 
 // core components
-import Header from "components/Header/Header.jsx";
-import Footer from "components/Footer/Footer.jsx";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import Parallax from "components/Parallax/Parallax.jsx";
-import Hidden from '@material-ui/core/Hidden';
 // sections for this page
-import HeaderLinks from "components/Header/HeaderLinks.jsx";
-import landingPageStyle from "assets/jss/material-kit-react/views/landingPage.jsx";
+import landingPageStyle from "assets/views/landingPage.jsx";
 
 import ProductSection from "../sections/ProductSection.jsx";
-import TeamSection from "../sections/TeamSection.jsx";
-import WorkSection from "../sections/WorkSection.jsx";
-const dashboardRoutes = [];
 
 class LandingPage extends React.Component {
     render() {
         const { classes, ...rest } = this.props;
         return (
-            <div>
-                <Header
-                    color="transparent"
-                    routes={dashboardRoutes}
-                    brand="Material Kit React"
-                    rightLinks={<HeaderLinks />}
-                    fixed
-                    changeColorOnScroll={{
-                        height: 200,
-                        color: "dark"
-                    }}
-                    {...rest}
-                />
+            <Layout>
                 <Parallax filter image={require("assets/img/landing-bg.jpg")}>
                     <div className={classes.container}>
                         <GridContainer>
@@ -73,18 +51,15 @@ class LandingPage extends React.Component {
                 <div className={classNames(classes.main, classes.mainRaised)}>
                     <div className={classes.container}>
                         <ProductSection />
-                        <TeamSection />
-                        <WorkSection />
                     </div>
                 </div>
-                <Footer />
-            </div>
+            </Layout>
         );
     }
 }
 
 LandingPage.propTypes = {
-  classes: PropTypes.object.isRequired,
+    classes: PropTypes.object.isRequired,
 };
 
-export default withRoot(withStyles(landingPageStyle)(LandingPage));
+export default withStyles(landingPageStyle)(LandingPage);

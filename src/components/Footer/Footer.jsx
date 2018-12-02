@@ -9,7 +9,7 @@ import { List, ListItem, withStyles } from "@material-ui/core";
 // @material-ui/icons
 import Favorite from "@material-ui/icons/Favorite";
 
-import footerStyle from "assets/jss/material-kit-react/components/footerStyle.jsx";
+import footerStyle from "assets/components/footerStyle.jsx";
 
 function Footer({ ...props }) {
   const { classes, whiteFont } = props;
@@ -31,11 +31,11 @@ function Footer({ ...props }) {
         <div className={classes.right}>
           &copy; {1900 + new Date().getYear()} , {" "}
           <a
-            href="https://www.letslingo.co.uk"
+            href="https://qldnativeseeds.com.au/"
             className={aClasses}
             target="_blank"
           >
-            Let's Lingo
+            Queensland Native Seeds
           </a>
         </div>
       </div>
