@@ -13,19 +13,37 @@ import Parallax from "components/Parallax/Parallax.jsx";
 import landingPageStyle from "assets/views/landingPage.jsx";
 import ProductSection from "../sections/ProductSection.jsx";
 import withRoot from 'withRoot'
+import { StaticQuery, graphql } from 'gatsby'
 
 class AboutPage extends React.Component {
     render() {
         const { classes } = this.props;
         return (
-            <Layout>
-                <Parallax small filter image="assets/img/bg1.jpg" />
-                <div className={classNames(classes.main, classes.mainRaised)}>
-                    <div className={classes.container}>
-                        <ProductSection />
-                    </div>
-                </div>
-            </Layout>
+            <StaticQuery
+                query={graphql`
+                    query {
+                        image: file(relativePath: { eq: "bg1.jpg" }) {
+                            childImageSharp {
+                                fluid(maxWidth: 1920, quality: 45) {
+                                    ...GatsbyImageSharpFluid
+                                }
+                            }
+                        }
+                    }
+                `}
+                render={data => (
+                    <>
+                        <Layout>
+                            <Parallax filter small image={data.image.childImageSharp.fluid} />
+                            <div className={classNames(classes.main, classes.mainRaised)}>
+                                <div className={classes.container}>
+                                    <ProductSection />
+                                </div>
+                            </div>
+                        </Layout>
+                    </>
+                )}
+            />
         );
     }
 }

@@ -61,7 +61,7 @@ class Parallax extends React.Component {
             className={parallaxClasses}
             style={{
               ...style,
-              backgroundImage: "url(" + image + ")",
+              backgroundImage: "url(" + require('/assets/img/bg1.jpg') + ")",
               ...this.state
             }}
             ref="parallax"
@@ -70,7 +70,7 @@ class Parallax extends React.Component {
           </div>
         );*/
         return (
-            <div className={parallaxClasses} style={{...style, ...this.state}}>
+            <div className={parallaxClasses} style={{...style, ...this.state}}  ref="parallax">
                 <Img fluid={image}
                      style={{
                          position: "absolute",
