@@ -76,7 +76,7 @@ class Header extends React.Component {
         });
         const brandComponent = (
             <Link to="/">
-                <Img fluid={brand} critical={true} fadeIn={false} className={classes.brandImage}/>
+                <Img fluid={brand} className={classes.brandImage}/>
             </Link>
         );
         return (
