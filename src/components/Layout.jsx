@@ -4,7 +4,7 @@ import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 
 import "assets/scss/material-kit-react.css?v=1.3.0";
-import "otherCss/otherCss";
+import "vendorCss/googlefont.css";
 import Header from './Header/Header'
 import HeaderLinks from './Header/HeaderLinks'
 import Footer from './Footer/Footer'
