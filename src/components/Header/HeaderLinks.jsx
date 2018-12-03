@@ -19,11 +19,20 @@ function HeaderLinks({ ...props }) {
     return (
         <List className={classes.list}>
             <ListItem className={classes.listItem}>
-                <Link to="/about">
+                <Link  to="/" className={classes.navLink} activeClassName={classes.navLinkActive}>
                     <Button
                         color="transparent"
                         target="_blank"
-                        className={classes.navLink}
+                    >
+                        Home
+                    </Button>
+                </Link>
+            </ListItem>
+            <ListItem className={classes.listItem}>
+                <Link  to="/about" className={classes.navLink} activeClassName={classes.navLinkActive}>
+                    <Button
+                        color="transparent"
+                        target="_blank"
                     >
                         About Us
                     </Button>

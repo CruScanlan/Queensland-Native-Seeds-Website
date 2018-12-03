@@ -11,7 +11,7 @@ import Img from 'gatsby-image'
 // core components
 import parallaxStyle from "assets/components/parallaxStyle.jsx";
 
-class Parallax extends React.Component {
+class ParallaxHeader extends React.Component {
     constructor(props) {
         super(props);
         var windowScrollTop = typeof window !== 'undefined' && window.pageYOffset / 3;
@@ -48,12 +48,14 @@ class Parallax extends React.Component {
             children,
             style,
             image,
-            small
+            small,
+            medium
         } = this.props;
         const parallaxClasses = classNames({
             [classes.parallax]: true,
             [classes.filter]: filter,
             [classes.small]: small,
+            [classes.medium]: medium,
             [className]: className !== undefined
         });
         /*return (
@@ -85,7 +87,7 @@ class Parallax extends React.Component {
     }
 }
 
-Parallax.propTypes = {
+ParallaxHeader.propTypes = {
     classes: PropTypes.object.isRequired,
     className: PropTypes.string,
     filter: PropTypes.bool,
@@ -94,4 +96,4 @@ Parallax.propTypes = {
     image: PropTypes.object
 };
 
-export default withStyles(parallaxStyle)(Parallax);
+export default withStyles(parallaxStyle)(ParallaxHeader);

@@ -8,10 +8,10 @@ import { withStyles } from '@material-ui/core/styles';
 import Layout from 'components/Layout.jsx';
 
 // core components
-import Parallax from "components/Parallax/Parallax.jsx";
+import Parallax from "components/Parallax/ParallaxHeader.jsx";
 // sections for this page
+import AboutSection1 from 'sections/about/AboutSection1';
 import landingPageStyle from "assets/views/landingPage.jsx";
-import ProductSection from "../sections/ProductSection.jsx";
 import withRoot from 'withRoot'
 import { StaticQuery, graphql } from 'gatsby'
 
@@ -22,7 +22,7 @@ class AboutPage extends React.Component {
             <StaticQuery
                 query={graphql`
                     query {
-                        image: file(relativePath: { eq: "bg1.jpg" }) {
+                        backgroundImage: file(relativePath: { eq: "bg1.jpg" }) {
                             childImageSharp {
                                 fluid(maxWidth: 1920, quality: 45) {
                                     ...GatsbyImageSharpFluid
@@ -34,10 +34,10 @@ class AboutPage extends React.Component {
                 render={data => (
                     <>
                         <Layout>
-                            <Parallax filter small image={data.image.childImageSharp.fluid} />
+                            <Parallax filter medium image={data.backgroundImage.childImageSharp.fluid} />
                             <div className={classNames(classes.main, classes.mainRaised)}>
                                 <div className={classes.container}>
-                                    <ProductSection />
+                                    <AboutSection1 />
                                 </div>
                             </div>
                         </Layout>
