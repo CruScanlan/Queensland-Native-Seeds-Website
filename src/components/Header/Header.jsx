@@ -97,7 +97,7 @@ class Header extends React.Component {
                     </Hidden>
                     <Hidden mdUp>
                         <IconButton
-                            color="inherit"
+                            color="black"
                             aria-label="open drawer"
                             onClick={this.handleDrawerToggle}
                         >
