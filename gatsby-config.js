@@ -55,6 +55,16 @@ module.exports = {
                 lang: '*',
             }
         },
+        {
+            resolve: `gatsby-plugin-google-fonts`,
+            options: {
+                fonts: [
+                    `Roboto:300,400,500,700`,
+                    `Roboto+Slab:400,700`,
+                    `Material+Icons`
+                ]
+            }
+        },
         'gatsby-plugin-react-helmet',
         {
             resolve: `gatsby-source-filesystem`,
