@@ -55,16 +55,6 @@ module.exports = {
                 lang: '*',
             }
         },
-        {
-            resolve: `gatsby-plugin-google-fonts`,
-            options: {
-                fonts: [
-                    `Roboto:300,400,500,700`,
-                    `Roboto+Slab:400,700`,
-                    `Material+Icons`
-                ]
-            }
-        },
         'gatsby-plugin-react-helmet',
         {
             resolve: `gatsby-source-filesystem`,
@@ -86,6 +76,7 @@ module.exports = {
                 display: 'minimal-ui',
                 icon: 'src/assets/img/gatsby-icon.png', // This path is relative to the root of the site.
             },
-        }
+        },
+        `gatsby-plugin-netlify`
     ]
 };

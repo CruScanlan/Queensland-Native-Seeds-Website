@@ -15,12 +15,12 @@ function replaceRenderer({ bodyComponent, replaceBodyHTMLString, setHeadComponen
 
   replaceBodyHTMLString(bodyHTML);
   setHeadComponents([
-    <style
-      type="text/css"
-      id="jss-server-side"
-      key="jss-server-side"
-      dangerouslySetInnerHTML={{ __html: muiPageContext.sheetsRegistry.toString() }}
-    />,
+      <style
+          type="text/css"
+          id="jss-server-side"
+          key="jss-server-side"
+          dangerouslySetInnerHTML={{ __html: muiPageContext.sheetsRegistry.toString() }}
+      />
   ]);
 }
 
