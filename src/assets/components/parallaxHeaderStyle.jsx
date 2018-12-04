@@ -1,4 +1,4 @@
-const parallaxStyle = {
+const parallaxHeaderStyle = {
     parallax: {
         height: "90vh",
         maxHeight: "1000px",
@@ -36,4 +36,4 @@ const parallaxStyle = {
     }
 };
 
-export default parallaxStyle;
+export default parallaxHeaderStyle;

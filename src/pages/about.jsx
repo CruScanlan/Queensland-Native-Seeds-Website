@@ -8,12 +8,14 @@ import { withStyles } from '@material-ui/core/styles';
 import Layout from 'components/Layout.jsx';
 
 // core components
-import Parallax from "components/Parallax/ParallaxHeader.jsx";
+import ParallaxHeader from "components/Parallax/ParallaxHeader.jsx";
+import ParallaxDivider from "components/Parallax/ParallaxDivider.jsx";
 // sections for this page
 import AboutSection1 from 'sections/about/AboutSection1';
 import landingPageStyle from "assets/views/landingPage.jsx";
 import withRoot from 'withRoot'
 import { StaticQuery, graphql } from 'gatsby'
+
 
 class AboutPage extends React.Component {
     render() {
@@ -34,9 +36,15 @@ class AboutPage extends React.Component {
                 render={data => (
                     <>
                         <Layout>
-                            <Parallax filter medium image={data.backgroundImage.childImageSharp.fluid} />
+                            <ParallaxHeader filter medium image={data.backgroundImage.childImageSharp.fluid} />
                             <div className={classNames(classes.main, classes.mainRaised)}>
                                 <div className={classes.container}>
+                                    <AboutSection1 />
+                                </div>
+                                <ParallaxDivider height={400} image={data.backgroundImage.childImageSharp.fluid}/>
+                                <div className={classes.container}>
+                                    <AboutSection1 />
+                                    <AboutSection1 />
                                     <AboutSection1 />
                                 </div>
                             </div>

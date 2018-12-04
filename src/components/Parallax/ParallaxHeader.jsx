@@ -9,7 +9,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import Img from 'gatsby-image'
 
 // core components
-import parallaxStyle from "assets/components/parallaxStyle.jsx";
+import parallaxHeaderStyle from "assets/components/parallaxHeaderStyle.jsx";
 
 class ParallaxHeader extends React.Component {
     constructor(props) {
@@ -96,4 +96,4 @@ ParallaxHeader.propTypes = {
     image: PropTypes.object
 };
 
-export default withStyles(parallaxStyle)(ParallaxHeader);
+export default withStyles(parallaxHeaderStyle)(ParallaxHeader);
