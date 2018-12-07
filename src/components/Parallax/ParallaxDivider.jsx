@@ -32,7 +32,7 @@ class ParallaxDivider extends React.Component {
     }
 
     setParallax() {
-        var windowScrollTop = typeof window !== 'undefined' && -300 + (window.scrollY * 0.5);
+        var windowScrollTop = typeof window !== 'undefined' && -this.props.offset + (window.scrollY * (this.speed || 0.5));
         this.setState({
             top: windowScrollTop+"px"
         });
@@ -56,7 +56,9 @@ class ParallaxDivider extends React.Component {
 ParallaxDivider.propTypes = {
     classes: PropTypes.object.isRequired,
     image: PropTypes.object.isRequired,
-    height: PropTypes.number.isRequired
+    height: PropTypes.number.isRequired,
+    offset: PropTypes.number.isRequired,
+    speed: PropTypes.number
 };
 
 export default withStyles(parallaxDividerStyle)(ParallaxDivider);
