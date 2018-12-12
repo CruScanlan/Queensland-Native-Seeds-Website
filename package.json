@@ -18,7 +18,7 @@
     "gatsby-transformer-sharp": "^2.1.8",
     "jss": "latest",
     "prop-types": "latest",
-    "react": "latest",
+    "react": "^16.6.3",
     "react-dom": "latest",
     "react-helmet": "^5.2.0",
     "react-jss": "latest",
