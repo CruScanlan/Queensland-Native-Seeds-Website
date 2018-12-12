@@ -2,7 +2,6 @@ import React from 'react';
 import {MuiThemeProvider} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import JssProvider from 'react-jss/lib/JssProvider';
-import {ParallaxProvider} from 'react-scroll-parallax';
 import getPageContext from './getPageContext';
 
 function withRoot(Component) {
@@ -31,9 +30,7 @@ function withRoot(Component) {
                     >
                         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
                         <CssBaseline/>
-                        <ParallaxProvider>
-                            <Component {...this.props} />
-                        </ParallaxProvider>
+                        <Component {...this.props} />
                     </MuiThemeProvider>
                 </JssProvider>
             );

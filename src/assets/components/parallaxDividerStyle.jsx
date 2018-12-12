@@ -8,14 +8,17 @@ const ParallaxDividerStyle = {
         border: "4px black",
         display: "flex",
         alignItems: "center",
-        //borderStyle: "solid"
+        top: 0,
+        zIndex: 1,
+        left: "0",
+        boxShadow: "inset 0 0 10px #000"
     },
     image: {
-        height: "auto",
-        width: "100%",
-        position: "absolute",
-        left: 0,
-        zIndex: 1
+        display: "block",
+        width: "100vw",
+        height: "120vh",
+        objectFit: "cover",
+        zIndex: -1,
     }
 };
 
