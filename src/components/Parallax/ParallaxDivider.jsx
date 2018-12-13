@@ -26,8 +26,8 @@ class ParallaxDivider extends React.Component {
         return (
             <div className={classes.parallax} style={{height: height+"px"}}>
                 <Parallax
-                    offsetYMax={-100}
-                    offsetYMin={100}
+                    offsetYMax={-90}
+                    offsetYMin={90}
                     tag="div"
                     styleOuter={styles}
                     styleInner={styles}
@@ -43,9 +43,7 @@ class ParallaxDivider extends React.Component {
 ParallaxDivider.propTypes = {
     classes: PropTypes.object.isRequired,
     image: PropTypes.object.isRequired,
-    height: PropTypes.number.isRequired,
-    offset: PropTypes.number.isRequired,
-    speed: PropTypes.number
+    height: PropTypes.number.isRequired
 };
 
 export default withStyles(parallaxDividerStyle)(ParallaxDivider);
