@@ -13,6 +13,8 @@ import ParallaxDivider from "components/Parallax/ParallaxDivider.jsx";
 import {ParallaxProvider} from 'react-scroll-parallax';
 // sections for this page
 import AboutSection1 from 'sections/about/AboutSection1';
+import AboutSection2 from 'sections/about/AboutSection2';
+import AboutSection3 from 'sections/about/AboutSection3';
 import landingPageStyle from "assets/views/landingPage.jsx";
 import withRoot from 'withRoot'
 import {StaticQuery, graphql} from 'gatsby'
@@ -32,7 +34,7 @@ class AboutPage extends React.Component {
                                 }
                             }
                         },
-                        parallaxImage: file(relativePath: { eq: "bg.jpg" }) {
+                        parallaxImage: file(relativePath: { eq: "paddock.jpg" }) {
                             childImageSharp {
                                 fluid(maxWidth: 1920, quality: 70) {
                                     ...GatsbyImageSharpFluid
@@ -50,15 +52,13 @@ class AboutPage extends React.Component {
                                     <div className={classes.container}>
                                         <AboutSection1/>
                                     </div>
-                                    <ParallaxDivider height={400} offset={300}
-                                                     image={data.parallaxImage.childImageSharp.fluid}/>
+                                    <ParallaxDivider height={350} image={data.parallaxImage.childImageSharp.fluid}/>
                                     <div id="test" className={classes.container}>
-                                        <AboutSection1/>
+                                        <AboutSection2/>
                                     </div>
-                                    <ParallaxDivider height={400} offset={600}
-                                                     image={data.parallaxImage.childImageSharp.fluid}/>
+                                    <ParallaxDivider height={350} image={data.parallaxImage.childImageSharp.fluid}/>
                                     <div className={classes.container}>
-                                        <AboutSection1/>
+                                        <AboutSection3/>
                                     </div>
                                 </div>
                             </ParallaxProvider>
