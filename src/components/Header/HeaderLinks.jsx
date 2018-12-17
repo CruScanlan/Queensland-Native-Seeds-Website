@@ -38,6 +38,16 @@ function HeaderLinks({ ...props }) {
                     </Button>
                 </Link>
             </ListItem>
+            <ListItem className={classes.listItem}>
+                <Link  to="/contact" className={classes.navLink} activeClassName={classes.navLinkActive}>
+                    <Button
+                        color="transparent"
+                        target="_blank"
+                    >
+                        Contact Us
+                    </Button>
+                </Link>
+            </ListItem>
         </List>
     );
 }

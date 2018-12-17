@@ -5,7 +5,7 @@ import classNames from "classnames";
 import PropTypes from "prop-types";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
-
+import GoogleMap from 'google-map-react';
 import Img from 'gatsby-image'
 
 // core components
@@ -40,6 +40,20 @@ class ParallaxHeader extends React.Component {
         });
     }
 
+    createMapOptions(maps) {
+        return {
+            zoomControlOptions: {
+                position: maps.ControlPosition.RIGHT_CENTER,
+                style: maps.ZoomControlStyle.SMALL
+            },
+            mapTypeControlOptions: {
+                position: maps.ControlPosition.LEFT_CENTER
+            },
+            mapTypeControl: true,
+            fullscreenControl: false,
+            gestureHandling: 'cooperative'
+        };
+    }
     render() {
         const {
             classes,
@@ -49,8 +63,10 @@ class ParallaxHeader extends React.Component {
             style,
             image,
             small,
-            medium
+            medium,
+            map
         } = this.props;
+
         const parallaxClasses = classNames({
             [classes.parallax]: true,
             [classes.filter]: filter,
@@ -58,19 +74,19 @@ class ParallaxHeader extends React.Component {
             [classes.medium]: medium,
             [className]: className !== undefined
         });
-        /*return (
-          <div
-            className={parallaxClasses}
-            style={{
-              ...style,
-              backgroundImage: "url(" + require('/assets/img/bg1.jpg') + ")",
-              ...this.state
-            }}
-            ref="parallax"
-          >
-            {children}
-          </div>
-        );*/
+
+        if(map && !image) {
+            return (
+                <div className={parallaxClasses} style={{...style, ...this.state}}  ref="parallax">
+                    <GoogleMap
+                        apiKey="AIzaSyDvNBRiU65GQ7AuU7IgOlcZz73I87xERIM" // set if you need stats etc ...
+                        center={[-26.2684405,151.8112038]}
+                        zoom={9}
+                        options={this.createMapOptions}>
+                    </GoogleMap>
+                </div>
+            )
+        }
         return (
             <div className={parallaxClasses} style={{...style, ...this.state}}  ref="parallax">
                 <Img fluid={image}
