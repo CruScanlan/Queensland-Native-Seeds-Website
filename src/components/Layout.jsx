@@ -9,52 +9,57 @@ import Header from './Header/Header'
 import HeaderLinks from './Header/HeaderLinks'
 import Footer from './Footer/Footer'
 
-const Layout = ({ children }) => (
-    <StaticQuery
-        query={graphql`
-            query {
-                site {
-                    siteMetadata {
-                        title
-                    }
-                },
-                logoImage: file(relativePath: { eq: "logo.png" }) {
-                    childImageSharp {
-                        fluid(maxWidth: 250) {
-                            ...GatsbyImageSharpFluid
+class Layout extends React.Component {
+    render() {
+        const {whiteHeader, children} = this.props;
+        return (
+            <StaticQuery
+                query={graphql`
+                    query {
+                        site {
+                            siteMetadata {
+                                title
+                            }
+                        },
+                        logoImage: file(relativePath: { eq: "logo.png" }) {
+                            childImageSharp {
+                                fluid(maxWidth: 250) {
+                                    ...GatsbyImageSharpFluid
+                                }
+                            }
                         }
                     }
-                }
-            }
-    `}
-        render={data => (
-            <>
-                <Helmet
-                    title={data.site.siteMetadata.title}
-                    meta={[
-                        { name: 'description', content: 'Sample' },
-                        { name: 'keywords', content: 'sample, something' },
-                    ]}
-                >
-                    <html lang="en" />
-                </Helmet>
-                <Header
-                    color="transparent"
-                    brand={data.logoImage.childImageSharp.fluid}
-                    fixed
-                    rightLinks={<HeaderLinks />}
-                    changeColorOnScroll={{
-                        height: 200,
-                        color: "white"
-                    }}/>
-                <div>
-                    {children}
-                </div>
-                <Footer />
-            </>
-        )}
-    />
-);
+                `}
+                render={data => (
+                    <>
+                        <Helmet
+                            title={data.site.siteMetadata.title}
+                            meta={[
+                                { name: 'description', content: 'Sample' },
+                                { name: 'keywords', content: 'sample, something' },
+                            ]}
+                        >
+                            <html lang="en" />
+                        </Helmet>
+                        <Header
+                            color={(whiteHeader ? 'white' : 'transparent')}
+                            brand={data.logoImage.childImageSharp.fluid}
+                            fixed
+                            rightLinks={<HeaderLinks />}
+                            changeColorOnScroll={{
+                                height: 200,
+                                color: "white"
+                            }}/>
+                        <div>
+                            {children}
+                        </div>
+                        <Footer />
+                    </>
+                )}
+            />
+        )
+    }
+}
 
 Layout.propTypes = {
     children: PropTypes.node.isRequired,
