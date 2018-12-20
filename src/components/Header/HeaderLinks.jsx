@@ -48,6 +48,16 @@ function HeaderLinks({ ...props }) {
                     </Button>
                 </Link>
             </ListItem>
+            <ListItem className={classes.listItem}>
+                <a href="https://cloud.qldnativeseeds.com.au" target="_blank" className={classes.navLink}>
+                    <Button
+                        color="transparent"
+                        target="_blank"
+                    >
+                        QA Log In
+                    </Button>
+                </a>
+            </ListItem>
         </List>
     );
 }
