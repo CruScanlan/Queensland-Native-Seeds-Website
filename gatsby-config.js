@@ -1,6 +1,7 @@
 module.exports = {
     siteMetadata: {
         title: 'Queensland Native Seeds',
+        siteUrl: `https://qldnativeseeds.com.au`,
     },
     plugins: [
         'gatsby-plugin-resolve-src',
@@ -77,6 +78,7 @@ module.exports = {
                 icon: 'src/assets/img/gatsby-icon.png', // This path is relative to the root of the site.
             },
         },
-        `gatsby-plugin-netlify`
+        `gatsby-plugin-netlify`,
+        `gatsby-plugin-sitemap`
     ]
 };

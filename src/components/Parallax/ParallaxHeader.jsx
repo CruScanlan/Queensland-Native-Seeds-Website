@@ -79,7 +79,7 @@ class ParallaxHeader extends React.Component {
             return (
                 <div className={parallaxClasses} style={{...style, ...this.state}}  ref="parallax">
                     <GoogleMap
-                        apiKey="AIzaSyDvNBRiU65GQ7AuU7IgOlcZz73I87xERIM" // set if you need stats etc ...
+                        bootstrapURLKeys={{key:"AIzaSyDvNBRiU65GQ7AuU7IgOlcZz73I87xERIM"}} // set if you need stats etc ...
                         center={[-26.2684405,151.8112038]}
                         zoom={9}
                         options={this.createMapOptions}>
