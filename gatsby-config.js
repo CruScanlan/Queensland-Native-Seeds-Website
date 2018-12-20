@@ -79,6 +79,14 @@ module.exports = {
             },
         },
         `gatsby-plugin-netlify`,
-        `gatsby-plugin-sitemap`
+        `gatsby-plugin-sitemap`,
+        {
+            resolve: 'gatsby-plugin-robots-txt',
+            options: {
+                host: 'https://qldnativeseeds.com.au',
+                sitemap: 'https://qldnativeseeds.com.au/sitemap.xml',
+                policy: [{ userAgent: '*', allow: '/' }]
+            }
+        }
     ]
 };
