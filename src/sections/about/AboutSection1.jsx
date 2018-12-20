@@ -44,7 +44,10 @@ class AboutSection1 extends React.Component {
                                     </h5>
                                 </GridItem>
                                 <GridItem xs={12} sm={12} md={4}>
-                                    <Img fluid={data.image.childImageSharp.fluid} className={classes.inLineImage} />
+                                    <div className={classes.inLineImageContainer}>
+                                        <Img fluid={data.image.childImageSharp.fluid} className={classes.inLineImage} />
+                                        <Img fluid={data.image.childImageSharp.fluid} className={classes.inLineImageShadow} />
+                                    </div>
                                 </GridItem>
                             </GridContainer>
                         </div>
