@@ -4,7 +4,7 @@ import imageStyles from "assets/imagesStyles.jsx";
 const productStyle = {
     section: {
         padding: "70px 0",
-        textAlign: "center"
+        textAlign: "left"
     },
     title: {
         ...title,
