@@ -16,9 +16,21 @@ const productStyle = {
     text: {
         color: "#000"
     },
+    inLineImageContainer: {
+        position: "relative"
+    },
     inLineImage: {
         ...imageStyles.imgRounded,
         ...imageStyles.imgRaised
+    },
+    inLineImageShadow: {
+        position: "absolute !important",
+        transform: "scale(0.94)",
+        filter: "blur(12px)",
+        top: "10px",
+        width: "100%",
+        height: "100%",
+        zIndex: "-1"
     }
 };
 
