@@ -53,7 +53,7 @@ class AboutPage extends React.Component {
                                         <AboutSection1/>
                                     </div>
                                     <ParallaxDivider height={350} image={data.parallaxImage.childImageSharp.fluid}/>
-                                    <div id="test" className={classes.container}>
+                                    <div className={classes.container}>
                                         <AboutSection2/>
                                     </div>
                                     <ParallaxDivider height={350} image={data.parallaxImage.childImageSharp.fluid}/>

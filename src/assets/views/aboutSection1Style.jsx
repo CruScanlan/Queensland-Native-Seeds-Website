@@ -1,7 +1,7 @@
 import { title } from "assets/material-kit-react.jsx";
 import imageStyles from "assets/imagesStyles.jsx";
 
-const productStyle = {
+const aboutStyle = {
     section: {
         padding: "70px 0",
         textAlign: "left"
@@ -11,7 +11,8 @@ const productStyle = {
         marginBottom: "1rem",
         marginTop: "30px",
         minHeight: "32px",
-        textDecoration: "none"
+        textDecoration: "none",
+        textAlign: 'center'
     },
     text: {
         color: "#000"
@@ -34,4 +35,4 @@ const productStyle = {
     }
 };
 
-export default productStyle;
+export default aboutStyle;

@@ -146,13 +146,19 @@ const headerStyle = theme => ({
         ...transition
     },
     brandImage: {
-        width: '18%',
+        width: '16vmin',
         height: 'auto',
+        [theme.breakpoints.down('lg')]: {
+            width: '20vmin'
+        },
+        [theme.breakpoints.down('md')]: {
+            width: '24vmin'
+        },
         [theme.breakpoints.down('sm')]: {
-            width: '35%'
+            width: '35vmin'
         },
         [theme.breakpoints.down('xs')]: {
-            width: '60%'
+            width: '50vmin'
         },
     }
 });
