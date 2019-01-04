@@ -1,3 +1,7 @@
+require("dotenv").config({
+    path: '.env',
+})
+
 module.exports = {
     siteMetadata: {
         title: 'Queensland Native Seeds',
@@ -8,10 +12,10 @@ module.exports = {
         {
             resolve: `gatsby-source-contentful`,
             options: {
-              spaceId: `lm6r1erd61i7`,
+              spaceId: 'lm6r1erd61i7',
               accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
               host: process.env.CONTENTFUL_HOST_URL
-            },
+            }
         },
         'gatsby-plugin-react-helmet',
         {
