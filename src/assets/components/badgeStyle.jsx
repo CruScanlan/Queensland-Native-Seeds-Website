@@ -22,6 +22,10 @@ const badgeStyle = {
     verticalAlign: "baseline",
     display: "inline-block"
   },
+  small: {
+    fontSize: "10px",
+    padding: "3px 10px"
+  },
   primary: {
     backgroundColor: primaryColor
   },
