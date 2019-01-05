@@ -13,7 +13,7 @@ const badgeStyle = {
     borderRadius: "12px",
     padding: "5px 12px",
     textTransform: "uppercase",
-    fontSize: "10px",
+    fontSize: "11px",
     fontWeight: "500",
     lineHeight: "1",
     color: "#fff",

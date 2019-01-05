@@ -17,6 +17,7 @@ module.exports = {
               host: process.env.CONTENTFUL_HOST_URL
             }
         },
+        `@contentful/gatsby-transformer-contentful-richtext`,
         'gatsby-plugin-react-helmet',
         {
             resolve: `gatsby-source-filesystem`,
@@ -40,6 +41,7 @@ module.exports = {
             },
         },
         `gatsby-plugin-netlify`,
+        `gatsby-plugin-offline`,
         `gatsby-plugin-sitemap`,
         {
             resolve: 'gatsby-plugin-robots-txt',
@@ -48,6 +50,12 @@ module.exports = {
                 sitemap: 'https://qldnativeseeds.com.au/sitemap.xml',
                 policy: [{ userAgent: '*', allow: '/' }]
             }
-        }
+        },
+        {
+            resolve: `gatsby-plugin-canonical-urls`,
+            options: {
+              siteUrl: `https://qldnativeseeds.com.au`,
+            },
+        },
     ]
 };
