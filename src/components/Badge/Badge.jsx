@@ -27,7 +27,8 @@ Badge.propTypes = {
     "success",
     "info",
     "rose",
-    "gray"
+    "gray",
+    "green"
   ])
 };
 

@@ -158,7 +158,7 @@ class PlantProfile extends React.Component {
                                 <GridContainer justify="center">
                                     <GridItem xs={12} sm={12} md={12}>
                                         <h4 className={classes.textBold}>Categories</h4>
-                                        {this.createBadges(data.plantProfile.categories, 'gray')}
+                                        {this.createBadges(data.plantProfile.categories, 'green')}
                                     </GridItem>
                                     <GridItem xs={12} sm={12} md={12}>
                                         <h4 className={classes.textBold}>Common Name</h4>
@@ -170,7 +170,7 @@ class PlantProfile extends React.Component {
                                     </GridItem>
                                     <GridItem xs={12} sm={12} md={12}>
                                         <h4 className={classes.textBold}>Regions</h4>
-                                        {this.createBadges(data.plantProfile.regions, 'gray')}
+                                        {this.createBadges(data.plantProfile.regions, 'green')}
                                     </GridItem>
                                     <GridItem xs={12} sm={12} md={12}>
                                         <h4 className={classes.textBold}>Description</h4>

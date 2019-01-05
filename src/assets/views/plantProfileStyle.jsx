@@ -8,7 +8,7 @@ const plantProfileStyle = {
         width: "100%"
     },
     sideBar: {
-        boxShadow: "0 5px 8px 0 rgba(0, 0, 0, 0.16), 0 4px 1px -2px rgba(0, 0, 0, 0.2), 0 3px 5px 0 rgba(0, 0, 0, 0.12)"
+        boxShadow: "0 1px 5px 0 rgba(0, 0, 0, 0.16), 0 4px 1px -2px rgba(0, 0, 0, 0.2), 0 3px 5px 0 rgba(0, 0, 0, 0.12)"
     },
     section: {
         padding: "70px 0",

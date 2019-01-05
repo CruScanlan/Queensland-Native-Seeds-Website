@@ -42,6 +42,9 @@ const badgeStyle = {
   },
   gray: {
     backgroundColor: "#6c757d"
+  },
+  green: {
+    backgroundColor: "#7DA831"
   }
 };
 
