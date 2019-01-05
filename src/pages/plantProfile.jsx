@@ -24,9 +24,9 @@ import plantProfileStyle from "assets/views/plantProfileStyle.jsx";
 import withRoot from 'withRoot'
 
 const styles = {
+    cardTitle,
     ...landingPageStyle,
-    ...plantProfileStyle,
-    cardTitle
+    ...plantProfileStyle
 }
 
 /*
@@ -137,7 +137,7 @@ class PlantProfile extends React.Component {
                     <div className={classes.pageContainer}>
                         <div className={classes.section}>
                             <div className={classes.leftSection}>
-                                <Card>
+                                <Card className={classes.sideBar}>
                                     <CardBody>
                                         <h4 className={classes.cardTitle}>
                                             Plant Profiles

@@ -64,9 +64,10 @@ const collabsibleListStyle = theme => ({
         paddingLeft: "10px"
     },
     linkText: {
-        color: '#047DB8', 
+        color: '#799a42', 
         textDecoration: 'underline', 
-        fontSize: "15px"
+        fontSize: "15px",
+        fontWeight: 400
     }
 })
 

@@ -31,7 +31,6 @@ class CollabsibleLinkList extends React.Component {
             let maxHeight = 0;
             for(let i=0; i<this.props.links.length; i++) {
                 const elementHeight = this[`linkTextRef${i}`].getBoundingClientRect().height + 10;
-                console.log(elementHeight)
                 maxHeight += elementHeight;
                 if(i < minElementsCount) minHeight += elementHeight;
             }
