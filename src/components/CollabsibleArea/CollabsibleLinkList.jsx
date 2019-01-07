@@ -24,17 +24,18 @@ class CollabsibleLinkList extends React.Component {
         }
 
         this.onFooterClicked = this.onFooterClicked.bind(this);
+        this.updateMinMaxHeight = this.updateMinMaxHeight.bind(this);
     }
 
     componentDidMount() {
         if(this.state.minHeight === null) { 
             this.updateMinMaxHeight();
-            window.addEventListener("resize", this.updateMinMaxHeight.bind(this));
+            window.addEventListener("resize", this.updateMinMaxHeight);
         }
     }
 
     componentWillUnmount() {
-        window.removeEventListener("resize", this.updateMinMaxHeight.bind(this));
+        window.removeEventListener("resize", this.updateMinMaxHeight);
     }
 
     updateMinMaxHeight() {//Calculate the min and max height for the minumum number of links
@@ -104,7 +105,7 @@ class CollabsibleLinkList extends React.Component {
 CollabsibleLinkList.propTypes = {
     headerText: PropTypes.string.isRequired,
     minShown: PropTypes.number.isRequired,
-    links: PropTypes.object.isRequired
+    links: PropTypes.array.isRequired
 }
 
 export default withStyles(collabsibleLinkListStyle)(CollabsibleLinkList);
