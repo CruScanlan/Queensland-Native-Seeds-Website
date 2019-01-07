@@ -5,7 +5,8 @@ import React from 'react';
 import classNames from "classnames";
 import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
-import { Link, graphql } from "gatsby";
+import { graphql } from "gatsby";
+import Img from 'gatsby-image'
 import Layout from 'components/Layout.jsx';
 
 // core components
@@ -21,102 +22,13 @@ import Button from "components/CustomButtons/Button.jsx";
 // sections for this page
 import landingPageStyle from "assets/views/landingPage.jsx";
 import plantProfileStyle from "assets/views/plantProfileStyle.jsx";
-import withRoot from 'withRoot'
+import withRoot from 'withRoot';
 
 const styles = {
     cardTitle,
     ...landingPageStyle,
     ...plantProfileStyle
 }
-
-/*
-<Link to="/" >
-    <h5 style={{color: '#047DB8', textDecoration: 'underline'}}>
-        Another Acacia
-    </h5>
-</Link>
-<Link to="/" >
-    <h5 style={{color: '#047DB8', textDecoration: 'underline'}}>
-        Another Acacia
-    </h5>
-</Link>
-*/
-
-const links = [
-    {
-        name: 'Acacias dasdasdasdasdasdasdasdasdasdadad',
-        url: '/'
-    },
-    {
-        name: 'Acacia',
-        url: '/'
-    },
-    {
-        name: 'Acacia',
-        url: '/'
-    },
-    {
-        name: 'Acacia',
-        url: '/'
-    },
-    {
-        name: 'Acacia',
-        url: '/'
-    },
-    {
-        name: 'Acacia',
-        url: '/'
-    },
-    {
-        name: 'Acacia',
-        url: '/'
-    },
-    {
-        name: 'Acacia',
-        url: '/'
-    },
-    {
-        name: 'Acacia',
-        url: '/'
-    },
-    {
-        name: 'Acacia',
-        url: '/'
-    },
-    {
-        name: 'Acacia',
-        url: '/'
-    },
-    {
-        name: 'Acacia',
-        url: '/'
-    },
-    {
-        name: 'Acacia',
-        url: '/'
-    },
-    {
-        name: 'Acacia',
-        url: '/'
-    },
-    {
-        name: 'Acacia',
-        url: '/'
-    },
-    {
-        name: 'Acacia',
-        url: '/'
-    },
-    {
-        name: 'Acacia',
-        url: '/'
-    },
-    {
-        name: 'Acacia',
-        url: '/'
-    }
-]
-
 
 class PlantProfile extends React.Component {
 
@@ -130,6 +42,24 @@ class PlantProfile extends React.Component {
 
     render() {
         const {classes, data} = this.props;
+
+        const allPlantCategoryLinks = data.allPlantCategories.edges.map(category => {
+            return {
+                name: category.node.name,
+                url: "/"
+            }
+        });
+
+        const allPlantGenusLinks = data.allPlantProfileSciNames.edges.map(plantProfile => {
+            let name = plantProfile.node.scientificName;
+            return {
+                name: name.substring(0, name.indexOf(' ')), //Stop at first space
+                url: "/"
+            }
+        })
+
+        console.log(data.map)
+
         return (
             <Layout>
                 <ParallaxHeader filter medium image={data.backgroundImage.childImageSharp.fluid}/>
@@ -143,9 +73,9 @@ class PlantProfile extends React.Component {
                                             Plant Profiles
                                         </h4>
                                         <hr />
-                                        <CollabsibleLinkList headerText="Plant Categories" minShown={10} links={links}/>
+                                        <CollabsibleLinkList headerText="Plant Categories" minShown={10} links={allPlantCategoryLinks}/>
                                         <hr />
-                                        <CollabsibleLinkList headerText="Genuses" minShown={10} links={links}/>
+                                        <CollabsibleLinkList headerText="Genuses" minShown={10} links={allPlantGenusLinks}/>
                                         <hr />
                                         <div className={classes.alignCenter}>
                                             <Button color="info">View All</Button>
@@ -155,6 +85,7 @@ class PlantProfile extends React.Component {
                             </div>
                             <div className={classes.rightSection}>
                                 <h2 className={classes.pageTitle}>{data.plantProfile.scientificName}</h2>
+                                
                                 <GridContainer justify="center">
                                     <GridItem xs={12} sm={12} md={12}>
                                         <h4 className={classes.textBold}>Categories</h4>
@@ -188,6 +119,54 @@ class PlantProfile extends React.Component {
                                         <h4 className={classes.textBold}>Related Links</h4>
                                         <div className={classes.richTextContent} dangerouslySetInnerHTML={{ __html: data.plantProfile.relatedLinks.childContentfulRichText.html }} />
                                     </GridItem>
+                                    <GridItem xs={12} sm={12} md={12} style={{marginTop: "40px"}}>
+                                        <div style={{display: "flex", alignItems: "center", justifyContent: "flex-start", width: "100%"}} >
+                                            <div className={classes.inLineImageContainer} style={{width: "30%"}}>
+                                                <Img fluid={data.map.childImageSharp.fluid} className={classes.inLineImage}/>
+                                                <Img fluid={data.map.childImageSharp.fluid} className={classes.inLineImageShadow}/>
+                                            </div>
+                                        </div>
+                                    </GridItem>
+                                    <GridItem xs={12} sm={12} md={12} style={{marginTop: "40px"}}>
+                                        <GridContainer>
+                                            <GridItem xs={12} sm={6} md={4}>
+                                                <div className={classes.inLineImageContainer}>
+                                                    <Img fluid={data.plant1.childImageSharp.fluid} className={classes.inLineImage}/>
+                                                    <Img fluid={data.plant1.childImageSharp.fluid} className={classes.inLineImageShadow}/>
+                                                </div>
+                                            </GridItem>
+                                            <GridItem xs={12} sm={6} md={4}>
+                                                <div className={classes.inLineImageContainer}>
+                                                    <Img fluid={data.plant2.childImageSharp.fluid} className={classes.inLineImage}/>
+                                                    <Img fluid={data.plant2.childImageSharp.fluid} className={classes.inLineImageShadow}/>
+                                                </div>
+                                            </GridItem>
+                                            <GridItem xs={12} sm={6} md={4}>
+                                                <div className={classes.inLineImageContainer}>
+                                                    <Img fluid={data.plant3.childImageSharp.fluid} className={classes.inLineImage}/>
+                                                    <Img fluid={data.plant3.childImageSharp.fluid} className={classes.inLineImageShadow}/>
+                                                </div>
+                                            </GridItem>
+                                            <GridItem xs={12} sm={6} md={4}>
+                                                <div className={classes.inLineImageContainer} style={{marginTop: "40px"}}>
+                                                    <Img fluid={data.plant4.childImageSharp.fluid} className={classes.inLineImage}/>
+                                                    <Img fluid={data.plant4.childImageSharp.fluid} className={classes.inLineImageShadow}/>
+                                                </div>
+                                            </GridItem>
+                                            <GridItem xs={12} sm={6} md={4}>
+                                                <div className={classes.inLineImageContainer} style={{marginTop: "40px"}}>
+                                                    <Img fluid={data.plant5.childImageSharp.fluid} className={classes.inLineImage}/>
+                                                    <Img fluid={data.plant5.childImageSharp.fluid} className={classes.inLineImageShadow}/>
+                                                </div>
+                                            </GridItem>
+                                            <GridItem xs={12} sm={6} md={4}>
+                                                <div className={classes.inLineImageContainer} style={{marginTop: "40px"}}>
+                                                    <Img fluid={data.plant6.childImageSharp.fluid} className={classes.inLineImage}/>
+                                                    <Img fluid={data.plant6.childImageSharp.fluid} className={classes.inLineImageShadow}/>
+                                                </div>
+                                            </GridItem>
+                                        </GridContainer>
+                                    </GridItem>
                                 </GridContainer>
                             </div>
                         </div>
@@ -198,12 +177,83 @@ class PlantProfile extends React.Component {
     }
 }
 
+/*
+<div style={{display: "flex", alignItems: "center", height: "100%", width: "100%", position: "relative", justifyContent: "left"}}>
+                                            <div className={classes.inLineImageContainer} style={{width: "70%"}}>
+                                                <Img fluid={data.map.childImageSharp.fluid} className={classes.inLineImage}/>
+                                                <Img fluid={data.map.childImageSharp.fluid} className={classes.inLineImageShadow}/>
+                                            </div>
+                                        </div>*/
+
 export const query = graphql`
     query {
         backgroundImage: file(relativePath: { eq: "bg1.jpg" }) {
             childImageSharp {
                 fluid(maxWidth: 1920, quality: 45) {
                     ...GatsbyImageSharpFluid
+                }
+            }
+        },
+        map: file(relativePath: { eq: "map2.png" }) {
+            childImageSharp {
+                fluid(maxWidth: 1920) {
+                    ...GatsbyImageSharpFluid
+                }
+            }
+        },
+        plant1: file(relativePath: { eq: "plant.jpg" }) {
+            childImageSharp {
+                fluid(maxWidth: 1920) {
+                    ...GatsbyImageSharpFluid
+                }
+            }
+        },
+        plant2: file(relativePath: { eq: "plant2.jpg" }) {
+            childImageSharp {
+                fluid(maxWidth: 1920) {
+                    ...GatsbyImageSharpFluid
+                }
+            }
+        },
+        plant3: file(relativePath: { eq: "plant3.jpg" }) {
+            childImageSharp {
+                fluid(maxWidth: 1920) {
+                    ...GatsbyImageSharpFluid
+                }
+            }
+        },
+        plant4: file(relativePath: { eq: "plant4.jpg" }) {
+            childImageSharp {
+                fluid(maxWidth: 1920) {
+                    ...GatsbyImageSharpFluid
+                }
+            }
+        },
+        plant5: file(relativePath: { eq: "plant5.jpg" }) {
+            childImageSharp {
+                fluid(maxWidth: 1920) {
+                    ...GatsbyImageSharpFluid
+                }
+            }
+        },
+        plant6: file(relativePath: { eq: "plant6.jpg" }) {
+            childImageSharp {
+                fluid(maxWidth: 1920) {
+                    ...GatsbyImageSharpFluid
+                }
+            }
+        },
+        allPlantCategories: allContentfulPlantCategory {
+            edges {
+                node {
+                    name
+                }
+            }
+        },
+        allPlantProfileSciNames: allContentfulPlantProfile {
+            edges {
+                node {
+                    scientificName
                 }
             }
         },

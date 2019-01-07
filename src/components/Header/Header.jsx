@@ -15,7 +15,6 @@ import Menu from "@material-ui/icons/Menu";
 // core components
 import headerStyle from "assets/components/headerStyle.jsx";
 import { Link } from 'gatsby';
-import Img from 'gatsby-image'
 
 class Header extends React.Component {
     constructor(props) {

@@ -29,7 +29,7 @@ function HeaderLinks({ ...props }) {
                 </Link>
             </ListItem>
             <ListItem className={classes.listItem}>
-                <Link  to="/about" className={classes.navLink} activeClassName={classes.navLinkActive}>
+                <Link  to="/about-us" className={classes.navLink} activeClassName={classes.navLinkActive}>
                     <Button
                         color="transparent"
                         target="_blank"
@@ -49,7 +49,7 @@ function HeaderLinks({ ...props }) {
                 </Link>
             </ListItem>
             <ListItem className={classes.listItem}>
-                <Link  to="/contact" className={classes.navLink} activeClassName={classes.navLinkActive}>
+                <Link  to="/contact-us" className={classes.navLink} activeClassName={classes.navLinkActive}>
                     <Button
                         color="transparent"
                         target="_blank"
