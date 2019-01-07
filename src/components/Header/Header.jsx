@@ -76,7 +76,7 @@ class Header extends React.Component {
         });
         const brandComponent = (
             <Link to="/">
-                <Img fluid={brand} className={classes.brandImage}/>
+                <img src={brand} className={classes.brandImage}/>
             </Link>
         );
         return (
@@ -145,7 +145,7 @@ Header.propTypes = {
     ]),
     rightLinks: PropTypes.node,
     leftLinks: PropTypes.node,
-    brand: PropTypes.object,
+    brand: PropTypes.string,
     fixed: PropTypes.bool,
     absolute: PropTypes.bool,
     // this will cause the sidebar to change the color from

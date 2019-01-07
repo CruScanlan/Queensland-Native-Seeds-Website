@@ -1,13 +1,15 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import Helmet from 'react-helmet'
-import { StaticQuery, graphql } from 'gatsby'
+import React from 'react';
+import PropTypes from 'prop-types';
+import Helmet from 'react-helmet';
+import { StaticQuery, graphql } from 'gatsby';
 
 import "assets/scss/material-kit-react.css?v=1.3.0";
 import "vendorCss/googlefont.css";
-import Header from './Header/Header'
-import HeaderLinks from './Header/HeaderLinks'
-import Footer from './Footer/Footer'
+import Header from './Header/Header';
+import HeaderLinks from './Header/HeaderLinks';
+import Footer from './Footer/Footer';
+
+import logo from 'assets/img/logosvg.svg';
 
 class Layout extends React.Component {
     render() {
@@ -19,13 +21,6 @@ class Layout extends React.Component {
                         site {
                             siteMetadata {
                                 title
-                            }
-                        },
-                        logoImage: file(relativePath: { eq: "logo.png" }) {
-                            childImageSharp {
-                                fluid(maxWidth: 250) {
-                                    ...GatsbyImageSharpFluid
-                                }
                             }
                         }
                     }
@@ -43,7 +38,7 @@ class Layout extends React.Component {
                         </Helmet>
                         <Header
                             color={(whiteHeader ? 'white' : 'transparent')}
-                            brand={data.logoImage.childImageSharp.fluid}
+                            brand={logo}
                             fixed
                             rightLinks={<HeaderLinks />}
                             changeColorOnScroll={{
