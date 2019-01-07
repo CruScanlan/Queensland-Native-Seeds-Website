@@ -41,7 +41,8 @@ module.exports = {
             },
         },
         `gatsby-plugin-netlify`,
-        `gatsby-plugin-offline`,
+        `gatsby-plugin-netlify-cache`,
+        `gatsby-plugin-remove-serviceworker`,
         `gatsby-plugin-sitemap`,
         {
             resolve: 'gatsby-plugin-robots-txt',
