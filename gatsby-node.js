@@ -4,7 +4,8 @@ exports.onCreatePage = ({page, actions}) => {
     return replacePagePaths(page, actions)
 }
 
-const { resolve, basename } = require(`path`)
+const { resolve, basename } = require(`path`);
+const fs = require('fs');
 
 const { ensureDir, readdir, copy } = require(`fs-extra`)
 
@@ -17,6 +18,13 @@ async function calculateDirs(store) {
   ]
 
   console.log(program.directory);
+  fs.readdir('/', function(err, items) {
+    console.log(items);
+
+    for (var i=0; i<items.length; i++) {
+        console.log(items[i]);
+    }
+});
 
   for (const dir of dirsToCache) {
     await ensureDir(dir)
