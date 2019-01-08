@@ -7,13 +7,7 @@ exports.onCreatePage = ({page, actions}) => {
 const { resolve, basename } = require(`path`);
 const fs = require('fs');
 
-fs.readdir('./', function(err, items) {
-    console.log(items);
-
-    for (var i=0; i<items.length; i++) {
-        console.log(items[i]);
-    }
-});
+console.log(__dirname)
 
 const { ensureDir, readdir, copy } = require(`fs-extra`)
 
