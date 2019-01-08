@@ -39,10 +39,7 @@ exports.onPreInit = async function({ store }) {
     return
   }
 
-  const { dirsToCache, netlifyCacheDir } = await calculateDirs(store)
-
-  console.log(dirsToCache);
-  console.log(netlifyCacheDir);
+  const { dirsToCache, netlifyCacheDir } = await calculateDirs(store);
 
   for (const dirPath of dirsToCache) {
     const dirName = basename(dirPath)
@@ -59,7 +56,9 @@ exports.onPreInit = async function({ store }) {
       } files.`
     )
 
-    await copy(cachePath, dirPath)
+    await copy(cachePath, dirPath);
+    console.log(cachePath);
+    console.log(dirPath);
   }
 
   console.log(`Netlify cache restored`)
