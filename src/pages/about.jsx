@@ -30,14 +30,14 @@ class AboutPage extends React.Component {
                         backgroundImage: file(relativePath: { eq: "bg1.jpg" }) {
                             childImageSharp {
                                 fluid(maxWidth: 1920, quality: 45) {
-                                    ...GatsbyImageSharpFluid
+                                    ...GatsbyImageSharpFluid_withWebp
                                 }
                             }
                         },
                         parallaxImage: file(relativePath: { eq: "paddock.jpg" }) {
                             childImageSharp {
                                 fluid(maxWidth: 1920, quality: 70) {
-                                    ...GatsbyImageSharpFluid
+                                    ...GatsbyImageSharpFluid_withWebp
                                 }
                             }
                         }

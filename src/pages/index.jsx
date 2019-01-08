@@ -27,7 +27,7 @@ class LandingPage extends React.Component {
                         backgroundImage: file(relativePath: { eq: "bg1.jpg" }) {
                             childImageSharp {
                                 fluid(maxWidth: 1920, quality: 45) {
-                                    ...GatsbyImageSharpFluid
+                                    ...GatsbyImageSharpFluid_withWebp
                                 }
                             }
                         }

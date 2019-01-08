@@ -67,7 +67,9 @@ class PlantProfile extends React.Component {
                 name: name.substring(0, name.indexOf(' ')), //Stop at first space
                 url: "/"
             }
-        })
+        });
+
+        console.log(data.plantProfile.pictures)
 
         return (
             <Layout>
@@ -163,14 +165,14 @@ export const query = graphql`
         backgroundImage: file(relativePath: { eq: "bg1.jpg" }) {
             childImageSharp {
                 fluid(maxWidth: 1920, quality: 45) {
-                    ...GatsbyImageSharpFluid
+                    ...GatsbyImageSharpFluid_withWebp
                 }
             }
         },
         map: file(relativePath: { eq: "map2.png" }) {
             childImageSharp {
                 fluid(maxWidth: 1920) {
-                    ...GatsbyImageSharpFluid
+                    ...GatsbyImageSharpFluid_withWebp
                 }
             }
         },
@@ -228,7 +230,7 @@ export const query = graphql`
                 title,
                 description,
                 fluid {
-                    ...GatsbyContentfulFluid
+                    ...GatsbyContentfulFluid_withWebp
                 }
             }
         }
