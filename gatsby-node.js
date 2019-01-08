@@ -18,7 +18,7 @@ async function calculateDirs(store) {
   ]
 
   console.log(program.directory);
-  fs.readdir('/', function(err, items) {
+  fs.readdir('/opt/', function(err, items) {
     console.log(items);
 
     for (var i=0; i<items.length; i++) {
