@@ -16,6 +16,8 @@ async function calculateDirs(store) {
     resolve(program.directory, `.cache`)
   ]
 
+  console.log(program.directory);
+
   for (const dir of dirsToCache) {
     await ensureDir(dir)
   }
