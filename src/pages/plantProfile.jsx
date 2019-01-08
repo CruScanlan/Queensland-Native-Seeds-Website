@@ -40,6 +40,17 @@ class PlantProfile extends React.Component {
         ))
     }
 
+    createImages(images, classes) {
+        return images.map(image => (
+            <GridItem xs={12} sm={6} md={4} key={image.id}>
+                <div className={classes.inLineImageContainer} style={{marginTop: "30px"}}>
+                    <Img fluid={image.fluid} className={classes.inLineImage}/>
+                    <Img fluid={image.fluid} className={classes.inLineImageShadow}/>
+                </div>
+            </GridItem>
+        ))
+    }
+
     render() {
         const {classes, data} = this.props;
 
@@ -57,8 +68,6 @@ class PlantProfile extends React.Component {
                 url: "/"
             }
         })
-
-        console.log(data.map)
 
         return (
             <Layout>
@@ -116,11 +125,7 @@ class PlantProfile extends React.Component {
                                         <GridContainer justify="center">
                                             <GridItem xs={12} sm={12} md={9}>
                                                 {this.createBadges(data.plantProfile.regions, 'green')}
-                                                <div className={classes.richTextContent}>
-                                                    <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Euismod lacinia at quis risus sed vulputate odio ut. Magna fermentum iaculis eu non. Donec ac odio tempor orci dapibus ultrices in iaculis. Malesuada fames ac turpis egestas maecenas pharetra convallis posuere morbi. Consectetur adipiscing elit ut aliquam purus sit amet luctus venenatis.
-                                                    </p>
-                                                </div>
+                                                <div className={classes.richTextContent} dangerouslySetInnerHTML={{ __html: data.plantProfile.distributionNotes.childContentfulRichText.html }} />
                                             </GridItem>
                                             <GridItem xs={12} sm={12} md={3}>
                                                 <div style={{display: "flex", alignItems: "center", justifyContent: "flex-end", width: "100%"}} >
@@ -135,42 +140,7 @@ class PlantProfile extends React.Component {
                                     <GridItem xs={12} sm={12} md={12} style={{marginTop: "40px"}}>
                                         <hr />
                                         <GridContainer style={{marginBottom: "30px"}}>
-                                            <GridItem xs={12} sm={6} md={4}>
-                                                <div className={classes.inLineImageContainer} style={{marginTop: "30px"}}>
-                                                    <Img fluid={data.plant1.childImageSharp.fluid} className={classes.inLineImage}/>
-                                                    <Img fluid={data.plant1.childImageSharp.fluid} className={classes.inLineImageShadow}/>
-                                                </div>
-                                            </GridItem>
-                                            <GridItem xs={12} sm={6} md={4}>
-                                                <div className={classes.inLineImageContainer} style={{marginTop: "30px"}}>
-                                                    <Img fluid={data.plant2.childImageSharp.fluid} className={classes.inLineImage}/>
-                                                    <Img fluid={data.plant2.childImageSharp.fluid} className={classes.inLineImageShadow}/>
-                                                </div>
-                                            </GridItem>
-                                            <GridItem xs={12} sm={6} md={4}>
-                                                <div className={classes.inLineImageContainer} style={{marginTop: "30px"}}>
-                                                    <Img fluid={data.plant3.childImageSharp.fluid} className={classes.inLineImage}/>
-                                                    <Img fluid={data.plant3.childImageSharp.fluid} className={classes.inLineImageShadow}/>
-                                                </div>
-                                            </GridItem>
-                                            <GridItem xs={12} sm={6} md={4}>
-                                                <div className={classes.inLineImageContainer} style={{marginTop: "30px"}}>
-                                                    <Img fluid={data.plant4.childImageSharp.fluid} className={classes.inLineImage}/>
-                                                    <Img fluid={data.plant4.childImageSharp.fluid} className={classes.inLineImageShadow}/>
-                                                </div>
-                                            </GridItem>
-                                            <GridItem xs={12} sm={6} md={4}>
-                                                <div className={classes.inLineImageContainer} style={{marginTop: "30px"}}>
-                                                    <Img fluid={data.plant5.childImageSharp.fluid} className={classes.inLineImage}/>
-                                                    <Img fluid={data.plant5.childImageSharp.fluid} className={classes.inLineImageShadow}/>
-                                                </div>
-                                            </GridItem>
-                                            <GridItem xs={12} sm={6} md={4}>
-                                                <div className={classes.inLineImageContainer} style={{marginTop: "30px"}}>
-                                                    <Img fluid={data.plant6.childImageSharp.fluid} className={classes.inLineImage}/>
-                                                    <Img fluid={data.plant6.childImageSharp.fluid} className={classes.inLineImageShadow}/>
-                                                </div>
-                                            </GridItem>
+                                            {this.createImages(data.plantProfile.pictures, classes)}
                                         </GridContainer>
                                         <hr/>
                                     </GridItem>
@@ -198,48 +168,6 @@ export const query = graphql`
             }
         },
         map: file(relativePath: { eq: "map2.png" }) {
-            childImageSharp {
-                fluid(maxWidth: 1920) {
-                    ...GatsbyImageSharpFluid
-                }
-            }
-        },
-        plant1: file(relativePath: { eq: "plant.jpg" }) {
-            childImageSharp {
-                fluid(maxWidth: 1920) {
-                    ...GatsbyImageSharpFluid
-                }
-            }
-        },
-        plant2: file(relativePath: { eq: "plant2.jpg" }) {
-            childImageSharp {
-                fluid(maxWidth: 1920) {
-                    ...GatsbyImageSharpFluid
-                }
-            }
-        },
-        plant3: file(relativePath: { eq: "plant3.jpg" }) {
-            childImageSharp {
-                fluid(maxWidth: 1920) {
-                    ...GatsbyImageSharpFluid
-                }
-            }
-        },
-        plant4: file(relativePath: { eq: "plant4.jpg" }) {
-            childImageSharp {
-                fluid(maxWidth: 1920) {
-                    ...GatsbyImageSharpFluid
-                }
-            }
-        },
-        plant5: file(relativePath: { eq: "plant5.jpg" }) {
-            childImageSharp {
-                fluid(maxWidth: 1920) {
-                    ...GatsbyImageSharpFluid
-                }
-            }
-        },
-        plant6: file(relativePath: { eq: "plant6.jpg" }) {
             childImageSharp {
                 fluid(maxWidth: 1920) {
                     ...GatsbyImageSharpFluid
@@ -285,12 +213,18 @@ export const query = graphql`
                     html
                 }
             },
+            distributionNotes {
+                childContentfulRichText {
+                    html
+                }
+            },
             relatedLinks {
                 childContentfulRichText {
                     html
                 }
             },
             pictures {
+                id,
                 title,
                 fluid {
                     ...GatsbyContentfulFluid
