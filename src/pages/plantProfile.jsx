@@ -226,6 +226,7 @@ export const query = graphql`
             pictures {
                 id,
                 title,
+                description,
                 fluid {
                     ...GatsbyContentfulFluid
                 }
