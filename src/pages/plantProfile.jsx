@@ -6,7 +6,8 @@ import classNames from "classnames";
 import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
 import { graphql } from "gatsby";
-import Img from 'gatsby-image'
+import Img from 'gatsby-image';
+import Lightbox from 'react-images';
 import Layout from 'components/Layout.jsx';
 
 // core components
@@ -22,6 +23,7 @@ import Button from "components/CustomButtons/Button.jsx";
 // sections for this page
 import landingPageStyle from "assets/views/landingPage.jsx";
 import plantProfileStyle from "assets/views/plantProfileStyle.jsx";
+import lightboxStyle from "assets/components/lightboxStyle.jsx"
 import withRoot from 'withRoot';
 
 const styles = {
@@ -31,6 +33,48 @@ const styles = {
 }
 
 class PlantProfile extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            lightboxOpen: false,
+            currentPhotoIndex: 0,
+            lightboxPhotos: this.props.data.plantProfile.pictures.map(photo => Object.assign({ srcSet: photo.largeFluid.srcSet, thumbnail: photo.file.url+"?w=120&q=40"}))
+        }
+    }
+
+    openLightbox(photoIndex) {
+        this.setState({
+            lightboxOpen: true,
+            currentPhotoIndex: photoIndex
+        });
+    }
+
+    closeLightbox() {
+        this.setState({
+            lightboxOpen: false
+        })
+    }
+
+    gotoNextLightboxImage() {
+        const { currentPhotoIndex } = this.state;
+        this.setState({
+            currentPhotoIndex: currentPhotoIndex+1
+        });
+    }
+
+    gotoPrevLightboxImage() {
+        const { currentPhotoIndex } = this.state;
+        this.setState({
+            currentPhotoIndex: currentPhotoIndex-1
+        });
+    }
+
+    gotoImage(index) {
+        this.setState({
+            currentPhotoIndex: index
+        })
+    }
 
     createBadges(list, color) {
         return list.map(item => (
@@ -41,11 +85,11 @@ class PlantProfile extends React.Component {
     }
 
     createImages(images, classes) {
-        return images.map(image => (
+        return images.map((image, index) => (
             <GridItem xs={12} sm={6} md={4} key={image.id}>
-                <div className={classes.inLineImageContainer} style={{marginTop: "30px"}}>
-                    <Img fluid={image.fluid} className={classes.inLineImage}/>
-                    <Img fluid={image.fluid} className={classes.inLineImageShadow}/>
+                <div className={classes.inLineImageContainer} style={{marginTop: "30px"}} onClick={() => this.openLightbox(index)}>
+                    <Img fluid={image.smallFluid} className={classes.inLineImage}/>
+                    <Img fluid={image.smallFluid} className={classes.inLineImageShadow}/>
                 </div>
             </GridItem>
         ))
@@ -68,8 +112,6 @@ class PlantProfile extends React.Component {
                 url: "/"
             }
         });
-
-        console.log(data.plantProfile.pictures)
 
         return (
             <Layout>
@@ -143,6 +185,22 @@ class PlantProfile extends React.Component {
                                         <hr />
                                         <GridContainer style={{marginBottom: "30px"}}>
                                             {this.createImages(data.plantProfile.pictures, classes)}
+                                            <Lightbox
+                                                backdropClosesModal
+                                                enableKeyboardInput
+                                                showImageCount
+                                                showThumbnails
+                                                theme={lightboxStyle}
+                                                imageCountSeparator={'/'}
+                                                images={this.state.lightboxPhotos}
+                                                preloadNextImage
+                                                currentImage={this.state.currentPhotoIndex}
+                                                isOpen={this.state.lightboxOpen}
+                                                onClickThumbnail={(index) => this.gotoImage(index)}
+                                                onClickPrev={() => this.gotoPrevLightboxImage()}
+                                                onClickNext={() => this.gotoNextLightboxImage()}
+                                                onClose={() => this.closeLightbox()}
+                                            />
                                         </GridContainer>
                                         <hr/>
                                     </GridItem>
@@ -227,10 +285,15 @@ export const query = graphql`
             },
             pictures {
                 id,
-                title,
                 description,
-                fluid {
+                smallFluid: fluid {
                     ...GatsbyContentfulFluid_withWebp
+                },
+                largeFluid: fluid(quality: 70, maxWidth: 2000) {
+                    ...GatsbyContentfulFluid_withWebp
+                },
+                file {
+                    url
                 }
             }
         }
