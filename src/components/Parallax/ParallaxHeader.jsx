@@ -77,7 +77,7 @@ class ParallaxHeader extends React.Component {
 
         if(map && !image) {
             return (
-                <div className={parallaxClasses} style={{...style, ...this.state}}  ref="parallax">
+                <div className={parallaxClasses} style={{...style, ...this.state}}>
                     <GoogleMap
                         bootstrapURLKeys={{key:"AIzaSyDvNBRiU65GQ7AuU7IgOlcZz73I87xERIM"}} // set if you need stats etc ...
                         center={[-26.2684405,151.8112038]}
@@ -88,7 +88,7 @@ class ParallaxHeader extends React.Component {
             )
         }
         return (
-            <div className={parallaxClasses} style={{...style, ...this.state}}  ref="parallax">
+            <div className={parallaxClasses} style={{...style, ...this.state}}>
                 <Img fluid={image}
                      style={{
                          position: "absolute",

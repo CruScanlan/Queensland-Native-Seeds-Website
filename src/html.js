@@ -12,6 +12,7 @@ export default class HTML extends React.Component {
             name="viewport"
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
           />
+          <link rel="preconnect" href="https://images.ctfassets.net" />
           {this.props.headComponents}
         </head>
         <body {...this.props.bodyAttributes}>

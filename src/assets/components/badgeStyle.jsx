@@ -13,7 +13,7 @@ const badgeStyle = {
     borderRadius: "12px",
     padding: "5px 12px",
     textTransform: "uppercase",
-    fontSize: "10px",
+    fontSize: "11px",
     fontWeight: "500",
     lineHeight: "1",
     color: "#fff",
@@ -21,6 +21,10 @@ const badgeStyle = {
     whiteSpace: "nowrap",
     verticalAlign: "baseline",
     display: "inline-block"
+  },
+  small: {
+    fontSize: "10px",
+    padding: "3px 10px"
   },
   primary: {
     backgroundColor: primaryColor
@@ -42,6 +46,9 @@ const badgeStyle = {
   },
   gray: {
     backgroundColor: "#6c757d"
+  },
+  green: {
+    backgroundColor: "#7DA831"
   }
 };
 
