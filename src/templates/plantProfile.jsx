@@ -219,7 +219,7 @@ class PlantProfile extends React.Component {
 }
 
 export const query = graphql`
-    query {
+    query PlantProfileQuery($slug: String!) {
         backgroundImage: file(relativePath: { eq: "bg1.jpg" }) {
             childImageSharp {
                 fluid(maxWidth: 1920, quality: 45) {
@@ -248,7 +248,7 @@ export const query = graphql`
                 }
             }
         },
-        plantProfile: contentfulPlantProfile(scientificName: { eq: "Acacia amblygona"} ) {
+        plantProfile: contentfulPlantProfile(slug: { eq: $slug } ) {
             scientificName,
             commonName,
             family,
@@ -289,7 +289,7 @@ export const query = graphql`
                 smallFluid: fluid {
                     ...GatsbyContentfulFluid_withWebp
                 },
-                largeFluid: fluid(quality: 70, maxWidth: 2000) {
+                largeFluid: fluid(quality: 70) {
                     ...GatsbyContentfulFluid_withWebp
                 },
                 file {
