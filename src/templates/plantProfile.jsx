@@ -87,7 +87,7 @@ class PlantProfile extends React.Component {
     createImages(images, classes) {
         return images.map((image, index) => (
             <GridItem xs={12} sm={6} md={4} key={image.id}>
-                <div className={classes.inLineImageContainer} style={{marginTop: "30px"}} onClick={() => this.openLightbox(index)}>
+                <div className={classes.inLineImageContainer} style={{marginTop: "30px", cursor: "pointer"}} onClick={() => this.openLightbox(index)}>
                     <Img fluid={image.smallFluid} className={classes.inLineImage}/>
                     <Img fluid={image.smallFluid} className={classes.inLineImageShadow}/>
                 </div>
