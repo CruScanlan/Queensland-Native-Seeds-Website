@@ -1,6 +1,7 @@
 /* fallback */
 @font-face {
     font-family: 'Material Icons';
+    font-display: swap;
     font-style: normal;
     font-weight: 400;
     src: url(https://fonts.gstatic.com/s/materialicons/v41/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2) format('woff2');
@@ -8,14 +9,16 @@
 /* cyrillic-ext */
 @font-face {
     font-family: 'Roboto';
+    font-display: swap;
     font-style: normal;
     font-weight: 300;
     src: local('Roboto Light'), local('Roboto-Light'), url(https://fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmSU5fCRc4EsA.woff2) format('woff2');
-    unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+
 }
 /* cyrillic */
 @font-face {
     font-family: 'Roboto';
+    font-display: swap;
     font-style: normal;
     font-weight: 300;
     src: local('Roboto Light'), local('Roboto-Light'), url(https://fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmSU5fABc4EsA.woff2) format('woff2');
@@ -24,6 +27,7 @@
 /* greek-ext */
 @font-face {
     font-family: 'Roboto';
+    font-display: swap;
     font-style: normal;
     font-weight: 300;
     src: local('Roboto Light'), local('Roboto-Light'), url(https://fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmSU5fCBc4EsA.woff2) format('woff2');
@@ -32,6 +36,7 @@
 /* greek */
 @font-face {
     font-family: 'Roboto';
+    font-display: swap;
     font-style: normal;
     font-weight: 300;
     src: local('Roboto Light'), local('Roboto-Light'), url(https://fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmSU5fBxc4EsA.woff2) format('woff2');
@@ -40,6 +45,7 @@
 /* vietnamese */
 @font-face {
     font-family: 'Roboto';
+    font-display: swap;
     font-style: normal;
     font-weight: 300;
     src: local('Roboto Light'), local('Roboto-Light'), url(https://fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmSU5fCxc4EsA.woff2) format('woff2');
@@ -48,6 +54,7 @@
 /* latin-ext */
 @font-face {
     font-family: 'Roboto';
+    font-display: swap;
     font-style: normal;
     font-weight: 300;
     src: local('Roboto Light'), local('Roboto-Light'), url(https://fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmSU5fChc4EsA.woff2) format('woff2');
@@ -56,6 +63,7 @@
 /* latin */
 @font-face {
     font-family: 'Roboto';
+    font-display: swap;
     font-style: normal;
     font-weight: 300;
     src: local('Roboto Light'), local('Roboto-Light'), url(https://fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmSU5fBBc4.woff2) format('woff2');
@@ -64,6 +72,7 @@
 /* cyrillic-ext */
 @font-face {
     font-family: 'Roboto';
+    font-display: swap;
     font-style: normal;
     font-weight: 400;
     src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu72xKOzY.woff2) format('woff2');
@@ -72,6 +81,7 @@
 /* cyrillic */
 @font-face {
     font-family: 'Roboto';
+    font-display: swap;
     font-style: normal;
     font-weight: 400;
     src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu5mxKOzY.woff2) format('woff2');
@@ -80,6 +90,7 @@
 /* greek-ext */
 @font-face {
     font-family: 'Roboto';
+    font-display: swap;
     font-style: normal;
     font-weight: 400;
     src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu7mxKOzY.woff2) format('woff2');
@@ -88,6 +99,7 @@
 /* greek */
 @font-face {
     font-family: 'Roboto';
+    font-display: swap;
     font-style: normal;
     font-weight: 400;
     src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu4WxKOzY.woff2) format('woff2');
@@ -96,6 +108,7 @@
 /* vietnamese */
 @font-face {
     font-family: 'Roboto';
+    font-display: swap;
     font-style: normal;
     font-weight: 400;
     src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu7WxKOzY.woff2) format('woff2');
@@ -104,6 +117,7 @@
 /* latin-ext */
 @font-face {
     font-family: 'Roboto';
+    font-display: swap;
     font-style: normal;
     font-weight: 400;
     src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu7GxKOzY.woff2) format('woff2');
@@ -112,6 +126,7 @@
 /* latin */
 @font-face {
     font-family: 'Roboto';
+    font-display: swap;
     font-style: normal;
     font-weight: 400;
     src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu4mxK.woff2) format('woff2');
@@ -120,6 +135,7 @@
 /* cyrillic-ext */
 @font-face {
     font-family: 'Roboto';
+    font-display: swap;
     font-style: normal;
     font-weight: 500;
     src: local('Roboto Medium'), local('Roboto-Medium'), url(https://fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmEU9fCRc4EsA.woff2) format('woff2');
@@ -128,6 +144,7 @@
 /* cyrillic */
 @font-face {
     font-family: 'Roboto';
+    font-display: swap;
     font-style: normal;
     font-weight: 500;
     src: local('Roboto Medium'), local('Roboto-Medium'), url(https://fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmEU9fABc4EsA.woff2) format('woff2');
@@ -136,6 +153,7 @@
 /* greek-ext */
 @font-face {
     font-family: 'Roboto';
+    font-display: swap;
     font-style: normal;
     font-weight: 500;
     src: local('Roboto Medium'), local('Roboto-Medium'), url(https://fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmEU9fCBc4EsA.woff2) format('woff2');
@@ -144,6 +162,7 @@
 /* greek */
 @font-face {
     font-family: 'Roboto';
+    font-display: swap;
     font-style: normal;
     font-weight: 500;
     src: local('Roboto Medium'), local('Roboto-Medium'), url(https://fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmEU9fBxc4EsA.woff2) format('woff2');
@@ -152,6 +171,7 @@
 /* vietnamese */
 @font-face {
     font-family: 'Roboto';
+    font-display: swap;
     font-style: normal;
     font-weight: 500;
     src: local('Roboto Medium'), local('Roboto-Medium'), url(https://fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmEU9fCxc4EsA.woff2) format('woff2');
@@ -160,6 +180,7 @@
 /* latin-ext */
 @font-face {
     font-family: 'Roboto';
+    font-display: swap;
     font-style: normal;
     font-weight: 500;
     src: local('Roboto Medium'), local('Roboto-Medium'), url(https://fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmEU9fChc4EsA.woff2) format('woff2');
@@ -168,6 +189,7 @@
 /* latin */
 @font-face {
     font-family: 'Roboto';
+    font-display: swap;
     font-style: normal;
     font-weight: 500;
     src: local('Roboto Medium'), local('Roboto-Medium'), url(https://fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmEU9fBBc4.woff2) format('woff2');
@@ -176,6 +198,7 @@
 /* cyrillic-ext */
 @font-face {
     font-family: 'Roboto';
+    font-display: swap;
     font-style: normal;
     font-weight: 700;
     src: local('Roboto Bold'), local('Roboto-Bold'), url(https://fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmWUlfCRc4EsA.woff2) format('woff2');
@@ -184,6 +207,7 @@
 /* cyrillic */
 @font-face {
     font-family: 'Roboto';
+    font-display: swap;
     font-style: normal;
     font-weight: 700;
     src: local('Roboto Bold'), local('Roboto-Bold'), url(https://fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmWUlfABc4EsA.woff2) format('woff2');
@@ -192,6 +216,7 @@
 /* greek-ext */
 @font-face {
     font-family: 'Roboto';
+    font-display: swap;
     font-style: normal;
     font-weight: 700;
     src: local('Roboto Bold'), local('Roboto-Bold'), url(https://fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmWUlfCBc4EsA.woff2) format('woff2');
@@ -200,6 +225,7 @@
 /* greek */
 @font-face {
     font-family: 'Roboto';
+    font-display: swap;
     font-style: normal;
     font-weight: 700;
     src: local('Roboto Bold'), local('Roboto-Bold'), url(https://fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmWUlfBxc4EsA.woff2) format('woff2');
@@ -208,6 +234,7 @@
 /* vietnamese */
 @font-face {
     font-family: 'Roboto';
+    font-display: swap;
     font-style: normal;
     font-weight: 700;
     src: local('Roboto Bold'), local('Roboto-Bold'), url(https://fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmWUlfCxc4EsA.woff2) format('woff2');
@@ -216,6 +243,7 @@
 /* latin-ext */
 @font-face {
     font-family: 'Roboto';
+    font-display: swap;
     font-style: normal;
     font-weight: 700;
     src: local('Roboto Bold'), local('Roboto-Bold'), url(https://fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmWUlfChc4EsA.woff2) format('woff2');
@@ -224,6 +252,7 @@
 /* latin */
 @font-face {
     font-family: 'Roboto';
+    font-display: swap;
     font-style: normal;
     font-weight: 700;
     src: local('Roboto Bold'), local('Roboto-Bold'), url(https://fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmWUlfBBc4.woff2) format('woff2');
@@ -232,6 +261,7 @@
 /* cyrillic-ext */
 @font-face {
     font-family: 'Roboto Slab';
+    font-display: swap;
     font-style: normal;
     font-weight: 400;
     src: local('Roboto Slab Regular'), local('RobotoSlab-Regular'), url(https://fonts.gstatic.com/s/robotoslab/v7/BngMUXZYTXPIvIBgJJSb6ufA5qW54A.woff2) format('woff2');
@@ -240,6 +270,7 @@
 /* cyrillic */
 @font-face {
     font-family: 'Roboto Slab';
+    font-display: swap;
     font-style: normal;
     font-weight: 400;
     src: local('Roboto Slab Regular'), local('RobotoSlab-Regular'), url(https://fonts.gstatic.com/s/robotoslab/v7/BngMUXZYTXPIvIBgJJSb6ufJ5qW54A.woff2) format('woff2');
@@ -248,6 +279,7 @@
 /* greek-ext */
 @font-face {
     font-family: 'Roboto Slab';
+    font-display: swap;
     font-style: normal;
     font-weight: 400;
     src: local('Roboto Slab Regular'), local('RobotoSlab-Regular'), url(https://fonts.gstatic.com/s/robotoslab/v7/BngMUXZYTXPIvIBgJJSb6ufB5qW54A.woff2) format('woff2');
@@ -256,6 +288,7 @@
 /* greek */
 @font-face {
     font-family: 'Roboto Slab';
+    font-display: swap;
     font-style: normal;
     font-weight: 400;
     src: local('Roboto Slab Regular'), local('RobotoSlab-Regular'), url(https://fonts.gstatic.com/s/robotoslab/v7/BngMUXZYTXPIvIBgJJSb6ufO5qW54A.woff2) format('woff2');
@@ -264,6 +297,7 @@
 /* vietnamese */
 @font-face {
     font-family: 'Roboto Slab';
+    font-display: swap;
     font-style: normal;
     font-weight: 400;
     src: local('Roboto Slab Regular'), local('RobotoSlab-Regular'), url(https://fonts.gstatic.com/s/robotoslab/v7/BngMUXZYTXPIvIBgJJSb6ufC5qW54A.woff2) format('woff2');
@@ -272,6 +306,7 @@
 /* latin-ext */
 @font-face {
     font-family: 'Roboto Slab';
+    font-display: swap;
     font-style: normal;
     font-weight: 400;
     src: local('Roboto Slab Regular'), local('RobotoSlab-Regular'), url(https://fonts.gstatic.com/s/robotoslab/v7/BngMUXZYTXPIvIBgJJSb6ufD5qW54A.woff2) format('woff2');
@@ -280,6 +315,7 @@
 /* latin */
 @font-face {
     font-family: 'Roboto Slab';
+    font-display: swap;
     font-style: normal;
     font-weight: 400;
     src: local('Roboto Slab Regular'), local('RobotoSlab-Regular'), url(https://fonts.gstatic.com/s/robotoslab/v7/BngMUXZYTXPIvIBgJJSb6ufN5qU.woff2) format('woff2');
@@ -288,6 +324,7 @@
 /* cyrillic-ext */
 @font-face {
     font-family: 'Roboto Slab';
+    font-display: swap;
     font-style: normal;
     font-weight: 700;
     src: local('Roboto Slab Bold'), local('RobotoSlab-Bold'), url(https://fonts.gstatic.com/s/robotoslab/v7/BngRUXZYTXPIvIBgJJSb6u92w7CLwR26eg.woff2) format('woff2');
@@ -296,6 +333,7 @@
 /* cyrillic */
 @font-face {
     font-family: 'Roboto Slab';
+    font-display: swap;
     font-style: normal;
     font-weight: 700;
     src: local('Roboto Slab Bold'), local('RobotoSlab-Bold'), url(https://fonts.gstatic.com/s/robotoslab/v7/BngRUXZYTXPIvIBgJJSb6u92w7CCwR26eg.woff2) format('woff2');
@@ -304,6 +342,7 @@
 /* greek-ext */
 @font-face {
     font-family: 'Roboto Slab';
+    font-display: swap;
     font-style: normal;
     font-weight: 700;
     src: local('Roboto Slab Bold'), local('RobotoSlab-Bold'), url(https://fonts.gstatic.com/s/robotoslab/v7/BngRUXZYTXPIvIBgJJSb6u92w7CKwR26eg.woff2) format('woff2');
@@ -312,6 +351,7 @@
 /* greek */
 @font-face {
     font-family: 'Roboto Slab';
+    font-display: swap;
     font-style: normal;
     font-weight: 700;
     src: local('Roboto Slab Bold'), local('RobotoSlab-Bold'), url(https://fonts.gstatic.com/s/robotoslab/v7/BngRUXZYTXPIvIBgJJSb6u92w7CFwR26eg.woff2) format('woff2');
@@ -320,6 +360,7 @@
 /* vietnamese */
 @font-face {
     font-family: 'Roboto Slab';
+    font-display: swap;
     font-style: normal;
     font-weight: 700;
     src: local('Roboto Slab Bold'), local('RobotoSlab-Bold'), url(https://fonts.gstatic.com/s/robotoslab/v7/BngRUXZYTXPIvIBgJJSb6u92w7CJwR26eg.woff2) format('woff2');
@@ -328,6 +369,7 @@
 /* latin-ext */
 @font-face {
     font-family: 'Roboto Slab';
+    font-display: swap;
     font-style: normal;
     font-weight: 700;
     src: local('Roboto Slab Bold'), local('RobotoSlab-Bold'), url(https://fonts.gstatic.com/s/robotoslab/v7/BngRUXZYTXPIvIBgJJSb6u92w7CIwR26eg.woff2) format('woff2');
@@ -336,6 +378,7 @@
 /* latin */
 @font-face {
     font-family: 'Roboto Slab';
+    font-display: swap;
     font-style: normal;
     font-weight: 700;
     src: local('Roboto Slab Bold'), local('RobotoSlab-Bold'), url(https://fonts.gstatic.com/s/robotoslab/v7/BngRUXZYTXPIvIBgJJSb6u92w7CGwR0.woff2) format('woff2');
@@ -344,6 +387,7 @@
 
 .material-icons {
     font-family: 'Material Icons';
+    font-display: swap;
     font-weight: normal;
     font-style: normal;
     font-size: 24px;
