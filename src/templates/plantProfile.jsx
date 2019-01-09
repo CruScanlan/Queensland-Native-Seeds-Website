@@ -35,11 +35,14 @@ const styles = {
 class PlantProfile extends React.Component {
     constructor(props) {
         super(props);
+        
+        const { pictures } = this.props;
+        const lightboxPhotos = pictures ? pictures.map(photo => Object.assign({ srcSet: photo.largeFluid.srcSet, thumbnail: photo.file.url+"?w=120&q=40"})) : [];
 
         this.state = {
             lightboxOpen: false,
             currentPhotoIndex: 0,
-            lightboxPhotos: this.props.data.plantProfile.pictures.map(photo => Object.assign({ srcSet: photo.largeFluid.srcSet, thumbnail: photo.file.url+"?w=120&q=40"}))
+            lightboxPhotos
         }
     }
 
@@ -77,6 +80,7 @@ class PlantProfile extends React.Component {
     }
 
     createBadges(list, color) {
+        if(!list) return <div></div>
         return list.map(item => (
             <Badge color={color} key={item.name}>
                 {item.name}
@@ -85,6 +89,7 @@ class PlantProfile extends React.Component {
     }
 
     createImages(images, classes) {
+        if(!images) return <div />;
         return images.map((image, index) => (
             <GridItem xs={12} sm={6} md={4} key={image.id}>
                 <div className={classes.inLineImageContainer} style={{marginTop: "30px", cursor: "pointer"}} onClick={() => this.openLightbox(index)}>
@@ -93,6 +98,35 @@ class PlantProfile extends React.Component {
                 </div>
             </GridItem>
         ))
+    }
+
+    renderImageArea(data, classes) {
+        if(!data.plantProfile.pictures) return <div />;
+        return (
+            <div>
+                <hr />
+                <GridContainer style={{marginBottom: "30px"}}>
+                    {this.createImages(data.plantProfile.pictures, classes)}
+                    <Lightbox
+                        backdropClosesModal
+                        enableKeyboardInput
+                        showImageCount
+                        showThumbnails
+                        theme={lightboxStyle}
+                        imageCountSeparator={'/'}
+                        images={this.state.lightboxPhotos}
+                        preloadNextImage
+                        currentImage={this.state.currentPhotoIndex}
+                        isOpen={this.state.lightboxOpen}
+                        onClickThumbnail={(index) => this.gotoImage(index)}
+                        onClickPrev={() => this.gotoPrevLightboxImage()}
+                        onClickNext={() => this.gotoNextLightboxImage()}
+                        onClose={() => this.closeLightbox()}
+                    />
+                </GridContainer>
+                <hr/>
+            </div>
+        )
     }
 
     render() {
@@ -113,6 +147,12 @@ class PlantProfile extends React.Component {
                 url: "/"
             }
         });
+
+        const descriptionData = data.plantProfile.description ? data.plantProfile.description.childContentfulRichText.html : '';
+        const notesData = data.plantProfile.notes ? data.plantProfile.notes.childContentfulRichText.html : '';
+        const historicalNotesData = data.plantProfile.historicalNotes ? data.plantProfile.historicalNotes.childContentfulRichText.html : '';
+        const distributionNotesData = data.plantProfile.distributionNotes ? data.plantProfile.distributionNotes.childContentfulRichText.html : '';
+        const relatedLinksData = data.plantProfile.relatedLinks ? data.plantProfile.relatedLinks.childContentfulRichText.html : '';
 
         return (
             <Layout>
@@ -147,7 +187,7 @@ class PlantProfile extends React.Component {
                                     </GridItem>
                                     <GridItem xs={12} sm={12} md={12}>
                                         <h4 className={classes.textBold}>Common Names</h4>
-                                        <h5>{data.plantProfile.commonName.join(', ')}</h5>
+                                        <h5>{data.plantProfile.commonName ? data.plantProfile.commonName.join(', ') : ''}</h5>
                                     </GridItem>
                                     <GridItem xs={12} sm={12} md={12}>
                                         <h4 className={classes.textBold}>Family</h4>
@@ -155,22 +195,22 @@ class PlantProfile extends React.Component {
                                     </GridItem>
                                     <GridItem xs={12} sm={12} md={12}>
                                         <h4 className={classes.textBold}>Description</h4>
-                                        <div className={classes.richTextContent} dangerouslySetInnerHTML={{ __html: data.plantProfile.description.childContentfulRichText.html }} />
+                                        <div className={classes.richTextContent} dangerouslySetInnerHTML={{ __html: descriptionData }} />
                                     </GridItem>
                                     <GridItem xs={12} sm={12} md={12}>
                                         <h4 className={classes.textBold}>Notes</h4>
-                                        <div className={classes.richTextContent} dangerouslySetInnerHTML={{ __html: data.plantProfile.notes.childContentfulRichText.html }} />
+                                        <div className={classes.richTextContent} dangerouslySetInnerHTML={{ __html: notesData }} />
                                     </GridItem>
                                     <GridItem xs={12} sm={12} md={12}>
                                         <h4 className={classes.textBold}>Historical Notes</h4>
-                                        <div className={classes.richTextContent} dangerouslySetInnerHTML={{ __html: data.plantProfile.historicalNotes.childContentfulRichText.html }} />
+                                        <div className={classes.richTextContent} dangerouslySetInnerHTML={{ __html: historicalNotesData }} />
                                     </GridItem>
                                     <GridItem xs={12} sm={12} md={12}>
                                         <h4 className={classes.textBold}>Distribution</h4>
                                         <GridContainer justify="center">
                                             <GridItem xs={12} sm={12} md={9}>
                                                 {this.createBadges(data.plantProfile.regions, 'green')}
-                                                <div className={classes.richTextContent} dangerouslySetInnerHTML={{ __html: data.plantProfile.distributionNotes.childContentfulRichText.html }} />
+                                                <div className={classes.richTextContent} dangerouslySetInnerHTML={{ __html: distributionNotesData }} />
                                             </GridItem>
                                             <GridItem xs={12} sm={12} md={3}>
                                                 <div style={{display: "flex", alignItems: "center", justifyContent: "flex-end", width: "100%"}} >
@@ -183,31 +223,11 @@ class PlantProfile extends React.Component {
                                         </GridContainer>
                                     </GridItem>
                                     <GridItem xs={12} sm={12} md={12} style={{marginTop: "40px"}}>
-                                        <hr />
-                                        <GridContainer style={{marginBottom: "30px"}}>
-                                            {this.createImages(data.plantProfile.pictures, classes)}
-                                            <Lightbox
-                                                backdropClosesModal
-                                                enableKeyboardInput
-                                                showImageCount
-                                                showThumbnails
-                                                theme={lightboxStyle}
-                                                imageCountSeparator={'/'}
-                                                images={this.state.lightboxPhotos}
-                                                preloadNextImage
-                                                currentImage={this.state.currentPhotoIndex}
-                                                isOpen={this.state.lightboxOpen}
-                                                onClickThumbnail={(index) => this.gotoImage(index)}
-                                                onClickPrev={() => this.gotoPrevLightboxImage()}
-                                                onClickNext={() => this.gotoNextLightboxImage()}
-                                                onClose={() => this.closeLightbox()}
-                                            />
-                                        </GridContainer>
-                                        <hr/>
+                                        {this.renderImageArea(data, classes)}
                                     </GridItem>
                                     <GridItem xs={12} sm={12} md={12}>
                                         <h4 className={classes.textBold}>Related Links</h4>
-                                        <div className={classes.richTextContent} dangerouslySetInnerHTML={{ __html: data.plantProfile.relatedLinks.childContentfulRichText.html }} />
+                                        <div className={classes.richTextContent} dangerouslySetInnerHTML={{ __html: relatedLinksData }} />
                                     </GridItem>
                                 </GridContainer>
                             </div>
