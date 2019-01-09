@@ -5,7 +5,11 @@ const plantProfileStyle = {
     pageContainer: {
         paddingRight: "30px",
         paddingLeft: "30px",
-        width: "100%"
+        width: "100%",
+        "@media (max-width: 576px)" : {
+            paddingRight: "5px",
+            paddingLeft: "5px"
+        }
     },
     sideBar: {
         boxShadow: "0 1px 5px 0 rgba(0, 0, 0, 0.16), 0 4px 1px -2px rgba(0, 0, 0, 0.2), 0 3px 5px 0 rgba(0, 0, 0, 0.12)"
@@ -30,11 +34,15 @@ const plantProfileStyle = {
     rightSection: {
         width: "70%",
         order: 2,
+        paddingRight: "30px",
+        paddingLeft: "30px",
         "@media (max-width: 768px)": {
             width: "100%"
         },
-        paddingRight: "30px",
-        paddingLeft: "30px",
+        "@media (max-width: 576px)" : {
+            paddingRight: 0,
+            paddingLeft: 0
+        }
     },
     pageTitle: {
         ...title,
