@@ -36,14 +36,16 @@ class PlantProfile extends React.Component {
     constructor(props) {
         super(props);
         
-        const { pictures } = this.props;
-        const lightboxPhotos = pictures ? pictures.map(photo => Object.assign({ srcSet: photo.largeFluid.srcSet, thumbnail: photo.file.url+"?w=120&q=40"})) : [];
+        const { data } = this.props;
+        const lightboxPhotos = data.plantProfile.pictures ? data.plantProfile.pictures.map(photo => Object.assign({ src: photo.largeFluid.src, srcSet: photo.largeFluid.srcSet, thumbnail: photo.file.url+"?w=120&q=40"})) : [];
 
         this.state = {
             lightboxOpen: false,
             currentPhotoIndex: 0,
             lightboxPhotos
         }
+
+        console.log(this.state)
     }
 
     openLightbox(photoIndex) {
@@ -307,10 +309,10 @@ export const query = graphql`
             pictures {
                 id,
                 description,
-                smallFluid: fluid {
+                smallFluid: fluid(quality: 50, maxWidth: 1000) {
                     ...GatsbyContentfulFluid_withWebp
                 },
-                largeFluid: fluid(quality: 70) {
+                largeFluid: fluid(quality: 70, maxWidth: 2200) {
                     ...GatsbyContentfulFluid_withWebp
                 },
                 file {
