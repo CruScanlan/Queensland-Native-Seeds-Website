@@ -107,8 +107,9 @@ class PlantProfile extends React.Component {
 
         const allPlantGenusLinks = data.allPlantProfileSciNames.edges.map(plantProfile => {
             let name = plantProfile.node.scientificName;
+            let genusName = name.indexOf(' ') !== -1 ? name.substring(0, name.indexOf(' ')) : name;
             return {
-                name: name.substring(0, name.indexOf(' ')), //Stop at first space
+                name: genusName, //Stop at first space
                 url: "/"
             }
         });
