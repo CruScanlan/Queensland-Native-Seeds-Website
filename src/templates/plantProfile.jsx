@@ -145,8 +145,8 @@ class PlantProfile extends React.Component {
                                         {this.createBadges(data.plantProfile.categories, 'green')}
                                     </GridItem>
                                     <GridItem xs={12} sm={12} md={12}>
-                                        <h4 className={classes.textBold}>Common Name</h4>
-                                        <h5>{data.plantProfile.commonName}</h5>
+                                        <h4 className={classes.textBold}>Common Names</h4>
+                                        <h5>{data.plantProfile.commonName.join(', ')}</h5>
                                     </GridItem>
                                     <GridItem xs={12} sm={12} md={12}>
                                         <h4 className={classes.textBold}>Family</h4>
