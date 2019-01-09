@@ -44,8 +44,6 @@ class PlantProfile extends React.Component {
             currentPhotoIndex: 0,
             lightboxPhotos
         }
-
-        console.log(this.state)
     }
 
     openLightbox(photoIndex) {
