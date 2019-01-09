@@ -31,13 +31,13 @@ module.exports = {
         {
             resolve: `gatsby-plugin-manifest`,
             options: {
-                name: 'gatsby-starter-default',
-                short_name: 'starter',
+                name: 'Queensland Native Seeds',
+                short_name: 'QNS',
                 start_url: '/',
-                background_color: '#663399',
-                theme_color: '#663399',
+                background_color: '#7DA831',
+                theme_color: '#7DA831',
                 display: 'minimal-ui',
-                icon: 'src/assets/img/gatsby-icon.png', // This path is relative to the root of the site.
+                icon: 'src/assets/img/logosvg.svg', // This path is relative to the root of the site.
             },
         },
         `gatsby-plugin-netlify`,
