@@ -90,6 +90,7 @@ class ParallaxHeader extends React.Component {
         return (
             <div className={parallaxClasses} style={{...style, ...this.state}}>
                 <Img fluid={image}
+                     critical
                      style={{
                          position: "absolute",
                          left: 0,
