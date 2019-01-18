@@ -1,41 +1,41 @@
 const path = require(`path`);
 const replacePagePaths = require('./replacePagePaths');
 
-exports.onCreatePage = ({page, actions}) => {
-    return replacePagePaths(page, actions)
-}
-
-exports.createPages = ({graphql, actions}) => {
-    const {createPage} = actions;
-    return new Promise((resolve, reject) => {
-      const plantProfileTemplate = path.resolve('src/templates/plantProfile.jsx')
-      resolve(
-        graphql(`
-          {
-            allContentfulPlantProfile {
-              edges {
-                node {
-                    slug
-                }
+exports.createPages = ({actions, graphql}) => {
+  const {createPage} = actions;
+  return new Promise((resolve) => {
+    graphql(`
+        {
+          allContentfulPlantProfile {
+            edges {
+              node {
+                scientificName,
+                slug
               }
             }
           }
-        `).then((result) => {
-          if (result.errors) {
-            reject(result.errors)
-          }
-          result.data.allContentfulPlantProfile.edges.forEach((edge) => {
-            createPage ({
-              path: `plant-profiles/${edge.node.slug}`,
-              component: plantProfileTemplate,
-              context: {
-                slug: edge.node.slug
-              }
-            })
+        }
+      `).then(async (result) => {
+        if (result.errors) {
+          console.error(result.errors);
+          return resolve();
+        }
+        const plantProfileTemplate = path.resolve('src/templates/plantProfile.jsx')
+        result.data.allContentfulPlantProfile.edges.forEach((edge) => {
+          createPage ({
+            path: `plant-profiles/${edge.node.slug}`,
+            component: plantProfileTemplate,
+            context: {
+              scientificName: edge.node.scientificName,
+              slug: edge.node.slug
+            }
           })
-          return
         })
-      )
-    })
-  }
+        resolve();
+      })
+  })
+}
 
+exports.onCreatePage = (args) => {
+  return replacePagePaths(args);
+}

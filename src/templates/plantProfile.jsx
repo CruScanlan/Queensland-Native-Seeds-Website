@@ -132,6 +132,8 @@ class PlantProfile extends React.Component {
     render() {
         const {classes, data} = this.props;
 
+        console.log(data)
+
         const allPlantCategoryLinks = data.allPlantCategories.edges.map(category => {
             return {
                 name: category.node.name,
@@ -240,7 +242,7 @@ class PlantProfile extends React.Component {
 }
 
 export const query = graphql`
-    query PlantProfileQuery($slug: String!) {
+    query PlantProfileQuery($slug: String!, $scientificName: String!) {
         backgroundImage: file(relativePath: { eq: "bg1.jpg" }) {
             childImageSharp {
                 fluid(maxWidth: 1920, quality: 45) {
@@ -248,7 +250,7 @@ export const query = graphql`
                 }
             }
         },
-        map: file(relativePath: { eq: "map2.png" }) {
+        map: distMap(name: { eq: $scientificName }) {
             childImageSharp {
                 fluid(maxWidth: 1920) {
                     ...GatsbyImageSharpFluid_withWebp

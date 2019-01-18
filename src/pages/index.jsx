@@ -24,9 +24,9 @@ class LandingPage extends React.Component {
             <StaticQuery
                 query={graphql`
                     query {
-                        backgroundImage: file(relativePath: { eq: "bg1.jpg" }) {
+                        backgroundImage: file(relativePath: { eq: "bg10.jpg" }) {
                             childImageSharp {
-                                fluid(maxWidth: 1920, quality: 45) {
+                                fluid(maxWidth: 1920, quality: 95) {
                                     ...GatsbyImageSharpFluid_withWebp
                                 }
                             }

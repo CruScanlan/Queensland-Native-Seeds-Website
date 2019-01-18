@@ -15,7 +15,7 @@ const parallaxHeaderStyle = {
     filter: {
         "&:before": {
             backgroundImage: "linear-gradient(to bottom,#efefef,transparent)",
-            opacity: 0.6
+            opacity: 0.2
         },
         "&:after,&:before": {
             position: "absolute",

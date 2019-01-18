@@ -1,6 +1,6 @@
 require("dotenv").config({
     path: '.env',
-})
+});
 
 module.exports = {
     siteMetadata: {
@@ -18,11 +18,12 @@ module.exports = {
             }
         },
         `@contentful/gatsby-transformer-contentful-richtext`,
+        `gatsby-source-avh-distribution-map`,
         'gatsby-plugin-react-helmet',
         {
             resolve: `gatsby-source-filesystem`,
             options: {
-                name: `images`,
+                name: `imageAssets`,
                 path: `${__dirname}/src/assets/img`,
             },
         },
@@ -60,3 +61,5 @@ module.exports = {
         },
     ]
 };
+
+//https://github.com/SirPole/google-fonts-plugin
