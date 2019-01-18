@@ -32,7 +32,7 @@ exports.onCreateNode = async ({node, actions, store, createNodeId }) => {
             const scientificName = node.scientificName;
             try {
                 let writeDir = path.join(program.directory, '.cache/distributionMaps/');
-                if(process.env.NETLIFY_BUILD_BASE) writeDir = path.join(process.env.NETLIFY_BUILD_BASE, 'cache/distributionMaps');
+                if(process.env.NETLIFY_BUILD_BASE) writeDir = path.join(process.env.NETLIFY_BUILD_BASE, 'cache/gatsby/distributionMaps');
                 const writePath = `${writeDir}/${scientificName}.jpg`;
                 if(!fs.existsSync(writeDir)) await createDir(writeDir);
                 if(!fs.existsSync(writePath)) {
