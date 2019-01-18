@@ -34,6 +34,7 @@ exports.onCreateNode = async ({node, actions, store, createNodeId }) => {
                 const writeDir = path.join(program.directory, '.cache/distributionMaps/');
                 const writePath = `${writeDir}/${scientificName}.jpg`;
                 if(!fs.existsSync(writeDir)) await createDir(writeDir);
+                console.log(writeDir);
                 fs.readdirSync(writeDir).forEach(file => {
                     console.log(file);
                 })
