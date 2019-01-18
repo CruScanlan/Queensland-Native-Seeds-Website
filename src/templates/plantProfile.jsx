@@ -250,7 +250,7 @@ export const query = graphql`
         },
         map: distMap(name: { eq: $scientificName }) {
             childImageSharp {
-                fluid(maxWidth: 1920) {
+                fluid(maxWidth: 1200) {
                     ...GatsbyImageSharpFluid_withWebp
                 }
             }
