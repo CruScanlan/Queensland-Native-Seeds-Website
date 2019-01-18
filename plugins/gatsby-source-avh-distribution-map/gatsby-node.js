@@ -24,13 +24,14 @@ const createDir = (dir) => {
     })
 }
 
-exports.onCreateNode = async ({node, actions, createNodeId }) => {
+exports.onCreateNode = async ({node, actions, store, createNodeId }) => {
     const {createNode} = actions;
+    const program = store.getState().program
     if (node.internal.owner === 'gatsby-source-contentful' && node.internal.type === 'ContentfulPlantProfile') {
         return new Promise(async (resolve) => {
             const scientificName = node.scientificName;
             try {
-                const writeDir = path.join(__dirname, '../../.cache/distributionMaps/');
+                const writeDir = path.join(program.directory, '.cache/distributionMaps/');
                 const writePath = `${writeDir}/${scientificName}.jpg`;
                 if(!fs.existsSync(writeDir)) await createDir(writeDir);
                 if(!fs.existsSync(writePath)) {
