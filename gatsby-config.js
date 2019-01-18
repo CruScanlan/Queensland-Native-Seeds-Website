@@ -8,6 +8,8 @@ module.exports = {
         siteUrl: `https://qldnativeseeds.com.au`,
     },
     plugins: [
+        `gatsby-plugin-netlify-cache`,
+        `gatsby-plugin-netlify`,
         'gatsby-plugin-resolve-src',
         {
             resolve: `gatsby-source-contentful`,
@@ -41,8 +43,6 @@ module.exports = {
                 icon: 'src/assets/img/logosvg.svg', // This path is relative to the root of the site.
             },
         },
-        `gatsby-plugin-netlify`,
-        `gatsby-plugin-netlify-cache`,
         `gatsby-plugin-remove-serviceworker`,
         `gatsby-plugin-sitemap`,
         {
