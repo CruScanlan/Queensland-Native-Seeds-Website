@@ -31,13 +31,10 @@ exports.onCreateNode = async ({node, actions, store, createNodeId }) => {
         return new Promise(async (resolve) => {
             const scientificName = node.scientificName;
             try {
-                const writeDir = path.join(program.directory, '.cache/distributionMaps/');
+                let writeDir = path.join(program.directory, '.cache/distributionMaps/');
+                if(process.env.NETLIFY_BUILD_BASE) writeDir = path.join(process.env.NETLIFY_BUILD_BASE, 'cache/distributionMaps');
                 const writePath = `${writeDir}/${scientificName}.jpg`;
                 if(!fs.existsSync(writeDir)) await createDir(writeDir);
-                console.log(writeDir);
-                fs.readdirSync(writeDir).forEach(file => {
-                    console.log(file);
-                })
                 if(!fs.existsSync(writePath)) {
                     console.time(`Created AVH Dist Map for: ${scientificName}, in`);
                     let dotImage = await Jimp.read(`https://biocache-ws.ala.org.au/ws/webportal/wms/image?q=${scientificName}&extents=112,-44,155,-10&format=png&dpi=600&pradiusmm=0.7&popacity=1&pcolour=7DA831&widthmm=60&scale=off&outline=true&outlineColour=0x000000&baselayer=nobase&fileName=MyMap.png`);
