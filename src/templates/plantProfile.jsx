@@ -132,8 +132,6 @@ class PlantProfile extends React.Component {
     render() {
         const {classes, data} = this.props;
 
-        console.log(data)
-
         const allPlantCategoryLinks = data.allPlantCategories.edges.map(category => {
             return {
                 name: category.node.name,
