@@ -34,6 +34,9 @@ exports.onCreateNode = async ({node, actions, store, createNodeId }) => {
                 const writeDir = path.join(program.directory, '.cache/distributionMaps/');
                 const writePath = `${writeDir}/${scientificName}.jpg`;
                 if(!fs.existsSync(writeDir)) await createDir(writeDir);
+                fs.readdirSync(writeDir).forEach(file => {
+                    console.log(file);
+                })
                 if(!fs.existsSync(writePath)) {
                     console.time(`Created AVH Dist Map for: ${scientificName}, in`);
                     let dotImage = await Jimp.read(`https://biocache-ws.ala.org.au/ws/webportal/wms/image?q=${scientificName}&extents=112,-44,155,-10&format=png&dpi=600&pradiusmm=0.7&popacity=1&pcolour=7DA831&widthmm=60&scale=off&outline=true&outlineColour=0x000000&baselayer=nobase&fileName=MyMap.png`);
