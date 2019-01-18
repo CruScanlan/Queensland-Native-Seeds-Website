@@ -15,17 +15,16 @@ const replacePath = path => {
     return path;
 };
 
-module.exports = function(page, actions) {
+module.exports = ({page, actions}) => {
     const { createPage, deletePage } = actions;
-    return new Promise(resolve => {
-        const oldPage = Object.assign({}, page)
-
+    return new Promise((resolve) => {
+        const oldPage = Object.assign({}, page);
         page.path = replacePath(page.path);
         if (page.path !== oldPage.path) {
-          // Replace new page with old page
-          deletePage(oldPage)
-          createPage(page)
+            // Replace new page with old page
+            deletePage(oldPage)
+            createPage(page);
         }
-        resolve()
-      })
+        resolve();
+    })
 }
