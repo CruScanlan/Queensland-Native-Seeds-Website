@@ -129,6 +129,13 @@ class PlantProfile extends React.Component {
         )
     }
 
+    removeDuplicateGenuses(array) {
+        const namesArray = array.map(item => item.name);
+        return array.filter((item, index) => {
+            return namesArray.indexOf(item.name) >= index
+        })
+    }
+
     render() {
         const {classes, data} = this.props;
 
@@ -139,20 +146,24 @@ class PlantProfile extends React.Component {
             }
         });
 
-        const allPlantGenusLinks = data.allPlantProfileSciNames.edges.map(plantProfile => {
+        const allPlantGenusLinks = this.removeDuplicateGenuses(data.allPlantProfileSciNames.edges.map(plantProfile => {
             let name = plantProfile.node.scientificName;
             let genusName = name.indexOf(' ') !== -1 ? name.substring(0, name.indexOf(' ')) : name;
             return {
                 name: genusName, //Stop at first space
                 url: "/"
             }
-        });
+        })).sort((a, b) => {
+            const textA = a.name.toLowerCase();
+            const textB = b.name.toLowerCase();
+            return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+        })
 
         const descriptionData = data.plantProfile.description ? data.plantProfile.description.childContentfulRichText.html : '';
         const notesData = data.plantProfile.notes ? data.plantProfile.notes.childContentfulRichText.html : '';
         const historicalNotesData = data.plantProfile.historicalNotes ? data.plantProfile.historicalNotes.childContentfulRichText.html : '';
         const distributionNotesData = data.plantProfile.distributionNotes ? data.plantProfile.distributionNotes.childContentfulRichText.html : '';
-        const relatedLinksData = data.plantProfile.relatedLinks ? data.plantProfile.relatedLinks.childContentfulRichText.html : '';
+        const referancesRelatedLinksData = data.plantProfile.referancesRelatedLinks ? data.plantProfile.referancesRelatedLinks.childContentfulRichText.html : '';
 
         return (
             <Layout>
@@ -226,8 +237,8 @@ class PlantProfile extends React.Component {
                                         {this.renderImageArea(data, classes)}
                                     </GridItem>
                                     <GridItem xs={12} sm={12} md={12}>
-                                        <h4 className={classes.textBold}>Related Links</h4>
-                                        <div className={classes.richTextContent} dangerouslySetInnerHTML={{ __html: relatedLinksData }} />
+                                        <h4 className={classes.textBold}>Referances and Related Links</h4>
+                                        <div className={classes.richTextContent} dangerouslySetInnerHTML={{ __html: referancesRelatedLinksData }} />
                                     </GridItem>
                                 </GridContainer>
                             </div>
@@ -299,7 +310,7 @@ export const query = graphql`
                     html
                 }
             },
-            relatedLinks {
+            referancesRelatedLinks {
                 childContentfulRichText {
                     html
                 }

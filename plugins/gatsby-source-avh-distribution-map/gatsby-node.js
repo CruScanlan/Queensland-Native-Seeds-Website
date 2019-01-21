@@ -3,15 +3,13 @@ const Jimp = require('jimp');
 const path = require('path');
 const {createFileNode} = require('gatsby-source-filesystem/create-file-node')
 
-const cacheId = name => `create-avh-distribution-map-${name}`
-
 const compositeImages = (dotImage, baseImage, writePath) => {
     return new Promise((resolve) => {
         baseImage.composite(dotImage, 0, 0, {
             mode: Jimp.BLEND_SOURCE_OVER,
             opacitySource: 0.9,
             opacityDest: 1
-        }).quality(65).write(writePath, resolve)
+        }).quality(65).write(writePath, resolve) //write to cache directory. This will make a fine addition to my collection.
     })
 }
 
@@ -27,15 +25,15 @@ const createDir = (dir) => {
 exports.onCreateNode = async ({node, actions, store, createNodeId }) => {
     const {createNode} = actions;
     const program = store.getState().program
-    if (node.internal.owner === 'gatsby-source-contentful' && node.internal.type === 'ContentfulPlantProfile') {
+    if (node.internal.owner === 'gatsby-source-contentful' && node.internal.type === 'ContentfulPlantProfile') { //If node is contentful plant profile
         return new Promise(async (resolve) => {
             const scientificName = node.scientificName;
             try {
-                let writeDir = path.join(program.directory, '.cache/distributionMaps/');
-                if(process.env.NETLIFY_BUILD_BASE) writeDir = path.join(process.env.NETLIFY_BUILD_BASE, 'cache/gatsby/distributionMaps');
+                let writeDir = path.join(program.directory, '.cache/distributionMaps/'); //get write directory for maps
+                if(process.env.NETLIFY_BUILD_BASE) writeDir = path.join(process.env.NETLIFY_BUILD_BASE, 'cache/gatsby/distributionMaps'); //use netlify cache for write directory
                 const writePath = `${writeDir}/${scientificName}.jpg`;
-                if(!fs.existsSync(writeDir)) await createDir(writeDir);
-                if(!fs.existsSync(writePath)) {
+                if(!fs.existsSync(writeDir)) await createDir(writeDir); //create write dirtectory if not exists
+                if(!fs.existsSync(writePath)) { //map is does not cached
                     console.time(`Created AVH Dist Map for: ${scientificName}, in`);
                     let dotImage = await Jimp.read(`https://biocache-ws.ala.org.au/ws/webportal/wms/image?q=${scientificName}&extents=112,-44,155,-10&format=png&dpi=600&pradiusmm=0.7&popacity=1&pcolour=7DA831&widthmm=60&scale=off&outline=true&outlineColour=0x000000&baselayer=nobase&fileName=MyMap.png`);
                     let baseImage = await Jimp.read('./src/assets/img/basemap.png');
@@ -44,11 +42,11 @@ exports.onCreateNode = async ({node, actions, store, createNodeId }) => {
                 } else {
                     console.log(`Using Cached Dist Map for: ${scientificName}`);
                 }
-                let fileNode = await createFileNode(writePath, createNodeId, {})
+                let fileNode = await createFileNode(writePath, createNodeId, {}) //create file node for downloaded map
                 fileNode.internal.description = `distMap "${scientificName}"`;
-                fileNode.internal.type = 'distMap';
-                fileNode.parent = node.id;
-                createNode(fileNode, { name: `gatsby-source-avh-distribution-map`});
+                fileNode.internal.type = 'distMap'; //grapql schema name
+                fileNode.parent = node.id; //set as child of contentful plant profile node
+                createNode(fileNode, { name: `gatsby-source-avh-distribution-map`}); //create final image node
             } catch(err) {
                 console.error(err);
             }
