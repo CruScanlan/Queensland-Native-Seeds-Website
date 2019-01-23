@@ -16,6 +16,8 @@ function CustomInput({ ...props }) {
     classes,
     formControlProps,
     labelText,
+    value,
+    onChange,
     id,
     name,
     labelProps,
@@ -70,6 +72,8 @@ function CustomInput({ ...props }) {
           disabled: classes.disabled,
           underline: underlineClasses
         }}
+        value={value}
+        onChange={onChange}
         id={id}
         name={name}
         {...inputProps}

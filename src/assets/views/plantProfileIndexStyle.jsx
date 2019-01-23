@@ -84,7 +84,7 @@ const plantProfileStyle = {
     },
     tableBody: {
         display: 'table-row-group',
-        borderTop: '2px solid #bbb'
+        borderTop: '2px solid #7DA831'
     },
     tableRow: {
         height: 'auto',
@@ -109,6 +109,12 @@ const plantProfileStyle = {
         position: 'relative',
         borderTop: '1px solid #ddd',
         verticalAlign: 'middle'
+    },
+    searchCommonNameCheckbox: {
+        color: '#7DA831',
+        '&$checked': {
+            color: '#7DA831',
+        },
     }
 };
 

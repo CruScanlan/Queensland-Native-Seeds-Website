@@ -29,6 +29,7 @@
     "jimp": "^0.6.0",
     "jss": "latest",
     "prop-types": "latest",
+    "query-string": "^6.2.0",
     "react": "^16.6.3",
     "react-dom": "latest",
     "react-google-maps": "^9.4.5",
