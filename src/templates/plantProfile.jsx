@@ -37,13 +37,17 @@ class PlantProfile extends React.Component {
         super(props);
         
         const { data } = this.props;
-        const lightboxPhotos = data.plantProfile.pictures ? data.plantProfile.pictures.map(photo => Object.assign({ src: photo.largeFluid.src, srcSet: photo.largeFluid.srcSet, thumbnail: photo.file.url+"?w=120&q=40"})) : [];
+        const lightboxPhotos = data.plantProfile.pictures ? data.plantProfile.pictures.map(photo => Object.assign({ src: photo.largeFluid.src, srcSet: photo.largeFluid.srcSet, thumbnail: photo.file.url+"?w=120&q=40", caption: this.photoCreateCaption(photo)})) : [];
 
         this.state = {
             lightboxOpen: false,
             currentPhotoIndex: 0,
             lightboxPhotos
         }
+    }
+
+    photoCreateCaption(photo) {
+        return `${photo.description ? photo.description + ' | ': ''}${this.props.data.plantProfile.scientificName} | Queensland Native Seeds`;
     }
 
     openLightbox(photoIndex) {
@@ -93,7 +97,7 @@ class PlantProfile extends React.Component {
         return images.map((image, index) => (
             <GridItem xs={12} sm={6} md={4} key={image.id}>
                 <div className={classes.inLineImageContainer} style={{marginTop: "30px", cursor: "pointer"}} onClick={() => this.openLightbox(index)}>
-                    <Img fluid={image.smallFluid} className={classes.inLineImage}/>
+                    <Img fluid={image.smallFluid} className={classes.inLineImage} alt={this.photoCreateCaption(image)} title={this.photoCreateCaption(image)}/>
                     <Img fluid={image.smallFluid} className={classes.inLineImageShadow}/>
                 </div>
             </GridItem>
@@ -142,7 +146,7 @@ class PlantProfile extends React.Component {
         const allPlantCategoryLinks = data.allPlantCategories.edges.map(category => {
             return {
                 name: category.node.name,
-                url: "/"
+                url: `/plant-profiles?search=&categories=${category.node.name}&searchByCommonName=false`
             }
         });
 
@@ -151,7 +155,7 @@ class PlantProfile extends React.Component {
             let genusName = name.indexOf(' ') !== -1 ? name.substring(0, name.indexOf(' ')) : name;
             return {
                 name: genusName, //Stop at first space
-                url: "/"
+                url: `/plant-profiles?search=${genusName}&categories=&searchByCommonName=false`
             }
         })).sort((a, b) => {
             const textA = a.name.toLowerCase();
@@ -226,7 +230,7 @@ class PlantProfile extends React.Component {
                                             <GridItem xs={12} sm={12} md={3}>
                                                 <div style={{display: "flex", alignItems: "center", justifyContent: "flex-end", width: "100%"}} >
                                                     <div className={classes.inLineImageContainer} style={{width: "100%"}}>
-                                                        <Img fluid={data.map.childImageSharp.fluid} className={classes.inLineImage}/>
+                                                        <Img fluid={data.map.childImageSharp.fluid} className={classes.inLineImage} alt={`Distribution Map | ${data.plantProfile.scientificName} | Queensland Native Seeds`} title={`Distribution Map | ${data.plantProfile.scientificName} | Queensland Native Seeds`}/>
                                                         <Img fluid={data.map.childImageSharp.fluid} className={classes.inLineImageShadow}/>
                                                     </div>
                                                 </div>

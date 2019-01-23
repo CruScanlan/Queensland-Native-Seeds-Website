@@ -10,3 +10,12 @@
 // export const wrapRootElement = ({ element }) => {
 //   return <WithRoot key={Math.random()}>{element}</WithRoot>;
 // };
+
+exports.shouldUpdateScroll = ({prevRouterProps, routerProps, getSavedScrollPosition }) => {
+    if(!prevRouterProps) return true;
+    if(routerProps.location.pathname === "/plant-profiles") {
+        const savedPos = getSavedScrollPosition({ pathname: "/plant-profiles"});
+        return savedPos;
+    }
+    return [0, 0];
+}

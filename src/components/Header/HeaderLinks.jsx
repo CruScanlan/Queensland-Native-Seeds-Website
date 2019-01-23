@@ -39,6 +39,16 @@ function HeaderLinks({ ...props }) {
                 </Link>
             </ListItem>
             <ListItem className={classes.listItem}>
+                <Link  to="/plant-profiles?search=&categories=&searchByCommonName=false" className={classes.navLink} activeClassName={classes.navLinkActive}>
+                    <Button
+                        color="transparent"
+                        target="_blank"
+                    >
+                        Plant Profiles
+                    </Button>
+                </Link>
+            </ListItem>
+            <ListItem className={classes.listItem}>
                 <Link  to="/contact-us" className={classes.navLink} activeClassName={classes.navLinkActive}>
                     <Button
                         color="transparent"
