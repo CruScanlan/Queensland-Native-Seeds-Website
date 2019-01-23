@@ -47,7 +47,7 @@ class PlantProfile extends React.Component {
     }
 
     photoCreateCaption(photo) {
-        return `${photo.description ? photo.description + ' | ': ''}${this.props.data.plantProfile.scientificName} | Queensland Native Seeds`;
+        return `${this.props.data.plantProfile.scientificName}${photo.description ? ' | ' + photo.description : ''} | Queensland Native Seeds`;
     }
 
     openLightbox(photoIndex) {
