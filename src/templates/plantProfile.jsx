@@ -146,7 +146,7 @@ class PlantProfile extends React.Component {
         const allPlantCategoryLinks = data.allPlantCategories.edges.map(category => {
             return {
                 name: category.node.name,
-                url: "/"
+                url: `/plant-profiles?search=&categories=${category.node.name}&searchByCommonName=false`
             }
         });
 
@@ -155,7 +155,7 @@ class PlantProfile extends React.Component {
             let genusName = name.indexOf(' ') !== -1 ? name.substring(0, name.indexOf(' ')) : name;
             return {
                 name: genusName, //Stop at first space
-                url: "/"
+                url: `/plant-profiles?search=${genusName}&categories=&searchByCommonName=false`
             }
         })).sort((a, b) => {
             const textA = a.name.toLowerCase();

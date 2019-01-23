@@ -36,7 +36,7 @@ class PlantProfiles extends React.Component {
         const queryParams = queryString.parse(props.location.search);
 
         this.state = {
-            categoriesSelected: []
+            categoriesSelected: queryParams.categories ? queryParams.categories.split(',') : []
         }
 
         this.handleSearchCommonNameCheckbox = this.handleSearchCommonNameCheckbox.bind(this);
@@ -46,18 +46,18 @@ class PlantProfiles extends React.Component {
     handleSelectorChange = event => {
         this.setState({ categoriesSelected: event.target.value });
         const queryParams = queryString.parse(this.props.location.search);
-        navigate(`/plant-profiles?search=${queryParams.search}&categories=${event.target.value.join(',')}&searchByCommonName=${queryParams.searchByCommonName}`)
+        navigate(`/plant-profiles?search=${queryParams.search || ''}&categories=${event.target.value.join(',')}&searchByCommonName=${queryParams.searchByCommonName || 'false'}`)
     };
 
     handleSearchCommonNameCheckbox(event) {
         const queryParams = queryString.parse(this.props.location.search);
-        navigate(`/plant-profiles?search=${queryParams.search}&categories=${queryParams.categories}&searchByCommonName=${event.target.checked}`);
+        navigate(`/plant-profiles?search=${queryParams.search || ''}&categories=${queryParams.categories || ''}&searchByCommonName=${event.target.checked}`);
     }
 
     handleSearchChange(event) {
         const searchValue = event.target.value;
         const queryParams = queryString.parse(this.props.location.search);
-        navigate(`/plant-profiles?search=${searchValue}&categories=${queryParams.categories}&searchByCommonName=${queryParams.searchByCommonName}`)
+        navigate(`/plant-profiles?search=${searchValue}&categories=${queryParams.categories || ''}&searchByCommonName=${queryParams.searchByCommonName || 'false'}`)
     }
 
     createBadges(list, color) {
@@ -87,7 +87,8 @@ class PlantProfiles extends React.Component {
         }) //remove node object and join common names
         const plantProfilesNameFiltered = plantProfiles.filter(plantProfile => queryParams.searchByCommonName === "true" ? plantProfile.commonName.toLowerCase().includes(searchQuery) : plantProfile.scientificName.toLowerCase().includes(searchQuery)); //filter by right name type
         const plantProfilesCategoriesFiltered = plantProfilesNameFiltered.filter(plantProfile => {
-            if(queryParams.categories === '') return true; //no categories to search defined, return all
+            if(!queryParams.categories) return true; //no categories to search defined, return all
+            console.log(queryParams.categories)
             const searchCategoriesArray = queryParams.categories.split(',')  //make array
             if(!plantProfile.categories) return false; //not defined, do not include
             return plantProfile.categories.some(val => searchCategoriesArray.indexOf(val.name) >= 0); //return true if a value matches in both arrays
