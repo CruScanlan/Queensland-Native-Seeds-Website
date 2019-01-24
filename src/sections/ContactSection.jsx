@@ -35,7 +35,9 @@ class ContactSection extends React.Component {
     }
 
     handleRecaptcha(value) {
-        this.setState({ form: {"g-recaptcha-response": value} });
+        let form = Object.assign({}, this.state.form);
+        form["g-recaptcha-response"] = value;
+        this.setState({ form });
     }
 
     handleCloseErrorNotification() {
@@ -45,7 +47,6 @@ class ContactSection extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         const form = e.target;
-        console.log(this.state.form)
         if(!this.state.form['g-recaptcha-response']) return this.setState({errorNotification: true});
         fetch("/", {
           method: "POST",
