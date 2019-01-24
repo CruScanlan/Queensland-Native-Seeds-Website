@@ -45,6 +45,7 @@ class ContactSection extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         const form = e.target;
+        console.log(this.state.form)
         if(!this.state.form['g-recaptcha-response']) return this.setState({errorNotification: true});
         fetch("/", {
           method: "POST",
@@ -60,7 +61,7 @@ class ContactSection extends React.Component {
 
     encode(data) {
         return Object.keys(data)
-          .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+          .map(key => encodeURIComponent(key) + "=" + encodeURIComponen(data[key]))
           .join("&");
     }
 
