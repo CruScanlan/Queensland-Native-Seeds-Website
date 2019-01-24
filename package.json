@@ -33,6 +33,7 @@
     "react": "^16.6.3",
     "react-dom": "latest",
     "react-google-maps": "^9.4.5",
+    "react-google-recaptcha": "^1.0.5",
     "react-helmet": "^5.2.0",
     "react-images": "^0.5.19",
     "react-jss": "latest",

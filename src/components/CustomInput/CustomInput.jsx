@@ -18,6 +18,7 @@ function CustomInput({ ...props }) {
     labelText,
     value,
     onChange,
+    required,
     id,
     name,
     labelProps,
@@ -75,6 +76,7 @@ function CustomInput({ ...props }) {
         value={value}
         onChange={onChange}
         id={id}
+        required={required || false}
         name={name}
         {...inputProps}
       />
