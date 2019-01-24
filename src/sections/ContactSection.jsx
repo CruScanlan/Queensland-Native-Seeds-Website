@@ -13,10 +13,6 @@ import Recaptcha from "react-google-recaptcha";
 import productStyle from "assets/views/landingPageSections/productStyle.jsx";
 import { Snackbar } from "@material-ui/core";
 
-const RECAPTCHA_KEY = process.env.SITE_RECAPTCHA_KEY;
-
-console.log(process.env)
-
 class ContactSection extends React.Component {
     constructor(props) {
         super(props);
@@ -162,7 +158,7 @@ class ContactSection extends React.Component {
                                 >
                                     <Recaptcha
                                         ref={this.recaptchaRef}
-                                        sitekey={RECAPTCHA_KEY}
+                                        sitekey="6LdxUowUAAAAAP-uNbY7T7pGnOCq32rdnF7KazbL"
                                         onChange={this.handleRecaptcha}
                                     />
                                 </GridItem>
