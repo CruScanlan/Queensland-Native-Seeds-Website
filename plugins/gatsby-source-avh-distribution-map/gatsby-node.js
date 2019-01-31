@@ -40,7 +40,7 @@ exports.onCreateNode = async ({node, actions, store, createNodeId }) => {
                     let dotImage = await Jimp.read(`https://biocache-ws.ala.org.au/ws/webportal/wms/image?q=${avhSearchName}&extents=112,-44,155,-10&format=png&dpi=600&pradiusmm=0.7&popacity=1&pcolour=7DA831&widthmm=60&scale=off&outline=true&outlineColour=0x000000&baselayer=nobase&fileName=MyMap.png`);
                     let baseImage = await Jimp.read('./src/assets/img/basemap.png');
                     await compositeImages(dotImage, baseImage, writePath);
-                    console.time(`Created AVH Dist Map for: ${scientificName} ,Using Search Name: ${avhSearchName}, in`);
+                    console.timeEnd(`Created AVH Dist Map for: ${scientificName} ,Using Search Name: ${avhSearchName}, in`);
                 } else {
                     console.log(`Using Cached Dist Map for: ${scientificName} ,With Search Name: ${avhSearchName}`);
                 }
