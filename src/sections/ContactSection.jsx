@@ -11,7 +11,6 @@ import CustomInput from "components/CustomInput/CustomInput";
 import CustomSnackbar from "components/CustomSnackbar/CustomSnackbar";
 import Recaptcha from "react-google-recaptcha";
 import productStyle from "assets/views/landingPageSections/productStyle.jsx";
-import { Snackbar } from "@material-ui/core";
 
 class ContactSection extends React.Component {
     constructor(props) {
