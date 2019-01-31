@@ -83,8 +83,8 @@ class ContactSection extends React.Component {
                         <form
                             name="contact"
                             method="post"
-                            data-netlify="true"
                             data-netlify-recaptcha="true"
+                            data-netlify="true"
                             onSubmit={this.handleSubmit}
                         >
                         <noscript>
