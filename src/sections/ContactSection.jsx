@@ -47,7 +47,7 @@ class ContactSection extends React.Component {
         e.preventDefault();
         const form = e.target;
         if(!this.state.form['g-recaptcha-response']) return this.setState({errorNotification: true});
-        fetch("/contact-us?no-cache=1", {
+        fetch("/?no-cache=1", {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
           body: this.encode({
