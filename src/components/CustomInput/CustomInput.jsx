@@ -73,6 +73,7 @@ function CustomInput({ ...props }) {
           disabled: classes.disabled,
           underline: underlineClasses
         }}
+        type="text"
         value={value}
         onChange={onChange}
         id={id}

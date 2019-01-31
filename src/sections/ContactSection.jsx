@@ -11,7 +11,6 @@ import CustomInput from "components/CustomInput/CustomInput";
 import CustomSnackbar from "components/CustomSnackbar/CustomSnackbar";
 import Recaptcha from "react-google-recaptcha";
 import productStyle from "assets/views/landingPageSections/productStyle.jsx";
-import { Snackbar } from "@material-ui/core";
 
 class ContactSection extends React.Component {
     constructor(props) {
@@ -48,7 +47,7 @@ class ContactSection extends React.Component {
         e.preventDefault();
         const form = e.target;
         if(!this.state.form['g-recaptcha-response']) return this.setState({errorNotification: true});
-        fetch("/", {
+        fetch("/?no-cache=1", {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
           body: this.encode({
@@ -84,9 +83,8 @@ class ContactSection extends React.Component {
                         <form
                             name="contact"
                             method="post"
-                            action="/"
-                            data-netlify="true"
                             data-netlify-recaptcha="true"
+                            data-netlify="true"
                             onSubmit={this.handleSubmit}
                         >
                         <noscript>
