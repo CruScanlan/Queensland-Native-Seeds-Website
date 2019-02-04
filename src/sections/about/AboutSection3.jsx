@@ -1,14 +1,16 @@
 import React from "react";
+import classNames from "classnames";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 import Img from 'gatsby-image';
-import { StaticQuery, graphql } from 'gatsby'
+import { StaticQuery, graphql, Link } from 'gatsby'
 // @material-ui/icons
 
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
-import aboutSection1Style from "assets/views/aboutSection1Style.jsx";
+import Button from "components/CustomButtons/Button.jsx";
+import generalStyle from "assets/views/generalStyle.jsx";
 
 class AboutSection3 extends React.Component {
     render() {
@@ -41,6 +43,11 @@ class AboutSection3 extends React.Component {
                                         <Img fluid={data.image.childImageSharp.fluid} className={classes.inLineImageShadow} />
                                     </div>
                                 </GridItem>
+                                <GridItem xs={12} sm={12} md={12} className={classes.centerText}>
+                                    <Link to="/contact-us">
+                                        <Button color="primary" size="lg" round style={{marginTop: "40px"}}>Contact Us</Button>
+                                    </Link>
+                                </GridItem>
                             </GridContainer>
                         </div>
                     </>
@@ -50,4 +57,4 @@ class AboutSection3 extends React.Component {
     }
 }
 
-export default withStyles(aboutSection1Style)(AboutSection3);
+export default withStyles(generalStyle)(AboutSection3);

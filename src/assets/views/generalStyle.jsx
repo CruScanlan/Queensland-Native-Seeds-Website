@@ -1,21 +1,34 @@
-import { title } from "assets/material-kit-react.jsx";
+import { title as materialKitTitle } from "assets/material-kit-react.jsx";
 import imageStyles from "assets/imagesStyles.jsx";
 
-const aboutStyle = {
+const title = {
+    ...materialKitTitle,
+    marginBottom: "1rem",
+    marginTop: "30px",
+    minHeight: "32px",
+    textDecoration: "none",
+    textAlign: 'center'
+}
+
+const generalStyle = {
     section: {
         padding: "70px 0",
         textAlign: "left"
     },
-    title: {
-        ...title,
-        marginBottom: "1rem",
-        marginTop: "30px",
-        minHeight: "32px",
-        textDecoration: "none",
+    centerText: {
         textAlign: 'center'
+    },
+    title,
+    smallTitle: {
+        ...title,
+        marginTop: "12px"
     },
     text: {
         color: "#000"
+    },
+    heavyText: {
+        color: "#000",
+        fontWeight: 250
     },
     inLineImageContainer: {
         position: "relative"
@@ -35,4 +48,4 @@ const aboutStyle = {
     }
 };
 
-export default aboutStyle;
+export default generalStyle;
