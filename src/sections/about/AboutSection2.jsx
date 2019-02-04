@@ -8,7 +8,7 @@ import { StaticQuery, graphql } from 'gatsby'
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
-import aboutSection1Style from "assets/views/aboutSection1Style.jsx";
+import generalStyle from "assets/views/generalStyle.jsx";
 
 class AboutSection2 extends React.Component {
     render() {
@@ -54,4 +54,4 @@ class AboutSection2 extends React.Component {
     }
 }
 
-export default withStyles(aboutSection1Style)(AboutSection2);
+export default withStyles(generalStyle)(AboutSection2);
