@@ -85,6 +85,7 @@ class PlantProfile extends React.Component {
 
     createBadges(list, color) {
         if(!list) return <div></div>
+        list = this.sortAlphabetical(list, 'name');
         return list.map(item => (
             <Badge color={color} key={item.name}>
                 {item.name}
@@ -102,6 +103,14 @@ class PlantProfile extends React.Component {
                 </div>
             </GridItem>
         ))
+    }
+
+    sortAlphabetical(array, objectProperty) {
+        return array.sort((a, b) => {
+            const textA = objectProperty ? a[objectProperty].toLowerCase() : a.toLowerCase();
+            const textB = objectProperty ? b[objectProperty].toLowerCase() : b.toLowerCase();
+            return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+        })
     }
 
     renderImageArea(data, classes) {
@@ -150,19 +159,16 @@ class PlantProfile extends React.Component {
             }
         });
 
-        const allPlantGenusLinks = this.removeDuplicateGenuses(data.allPlantProfileSciNames.edges.map(plantProfile => {
-            let name = plantProfile.node.scientificName;
-            let genusName = name.indexOf(' ') !== -1 ? name.substring(0, name.indexOf(' ')) : name;
-            return {
-                name: genusName, //Stop at first space
-                url: `/plant-profiles?search=${genusName}&categories=&searchByCommonName=false`
-            }
-        })).sort((a, b) => {
-            const textA = a.name.toLowerCase();
-            const textB = b.name.toLowerCase();
-            return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
-        })
-
+        const allPlantGenusLinks = this.sortAlphabetical(
+            this.removeDuplicateGenuses(data.allPlantProfileSciNames.edges.map(plantProfile => {
+                let name = plantProfile.node.scientificName;
+                let genusName = name.indexOf(' ') !== -1 ? name.substring(0, name.indexOf(' ')) : name;
+                return {
+                    name: genusName, //Stop at first space
+                    url: `/plant-profiles?search=${genusName}&categories=&searchByCommonName=false`
+                }
+            })
+        ), 'name')
         const descriptionData = data.plantProfile.description ? data.plantProfile.description.childContentfulRichText.html : '';
         const notesData = data.plantProfile.notes ? data.plantProfile.notes.childContentfulRichText.html : '';
         const historicalNotesData = data.plantProfile.historicalNotes ? data.plantProfile.historicalNotes.childContentfulRichText.html : '';
