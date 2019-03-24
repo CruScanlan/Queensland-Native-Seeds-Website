@@ -83,6 +83,7 @@ class PlantProfiles extends React.Component {
             const newPlantProfile = plantProfile.node; //remove node wrapper
             if(Array.isArray(newPlantProfile.commonName)) newPlantProfile.commonName = newPlantProfile.commonName.join(', '); //if common name is an array, join
             else if(typeof newPlantProfile.commonName !== 'string') newPlantProfile.commonName = ''; //common name not defined
+            if(newPlantProfile.categories) newPlantProfile.categories = this.sortAlphabetical(newPlantProfile.categories, 'name')
             return newPlantProfile;
         }) //remove node object and join common names
         const plantProfilesNameFiltered = plantProfiles.filter(plantProfile => queryParams.searchByCommonName === "true" ? plantProfile.commonName.toLowerCase().includes(searchQuery) : plantProfile.scientificName.toLowerCase().includes(searchQuery)); //filter by right name type
