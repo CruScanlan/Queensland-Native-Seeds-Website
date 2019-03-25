@@ -50,9 +50,15 @@ const plantProfileStyle = {
         zIndex: "-1"
     },
     tableArrowIcon: {
+        display: 'block',
+        color: '#495057;', 
+        fontSize: 14,
+    },
+    tableArrowIconSelected: {
+        color: '#7DA831',
+    },
+    tableArrowArea: {
         float: 'right', 
-        color: '#7DA831', 
-        fontSize: 32,
         verticalAlign: 'middle'
     },
     table: {
@@ -115,6 +121,9 @@ const plantProfileStyle = {
         '&$checked': {
             color: '#7DA831',
         },
+    },
+    scientificName: {
+        fontWeight: 400
     }
 };
 
