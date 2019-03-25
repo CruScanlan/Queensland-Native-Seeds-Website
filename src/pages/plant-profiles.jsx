@@ -16,6 +16,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import CustomInput from "components/CustomInput/CustomInput.jsx";
 import CustomMultiSelect from "components/CustomSelect/CustomMultiSelect.jsx";
 import IconArrowDropDown from "@material-ui/icons/ArrowDropDown";
+import IconArrowDropUp from "@material-ui/icons/ArrowDropUp";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import IconSearch from "@material-ui/icons/Search";
 
@@ -41,23 +42,31 @@ class PlantProfiles extends React.Component {
 
         this.handleSearchCommonNameCheckbox = this.handleSearchCommonNameCheckbox.bind(this);
         this.handleSearchChange = this.handleSearchChange.bind(this);
+        this.handleSortChange = this.handleSortChange.bind(this);
     }
 
     handleSelectorChange = event => {
         this.setState({ categoriesSelected: event.target.value });
         const queryParams = queryString.parse(this.props.location.search);
-        navigate(`/plant-profiles?search=${queryParams.search || ''}&categories=${event.target.value.join(',')}&searchByCommonName=${queryParams.searchByCommonName || 'false'}`)
+        navigate(`/plant-profiles?search=${queryParams.search || ''}&categories=${event.target.value.join(',')}&searchByCommonName=${queryParams.searchByCommonName || 'false'}&sortingColumn=${queryParams.sortingColumn || 'scientificName'}&sortingAZ=${queryParams.sortingAZ || 'true'}`)
     };
 
     handleSearchCommonNameCheckbox(event) {
         const queryParams = queryString.parse(this.props.location.search);
-        navigate(`/plant-profiles?search=${queryParams.search || ''}&categories=${queryParams.categories || ''}&searchByCommonName=${event.target.checked}`);
+        navigate(`/plant-profiles?search=${queryParams.search || ''}&categories=${queryParams.categories || ''}&searchByCommonName=${event.target.checked}&sortingColumn=${queryParams.sortingColumn || 'scientificName'}&sortingAZ=${queryParams.sortingAZ || 'true'}`);
     }
 
     handleSearchChange(event) {
         const searchValue = event.target.value;
         const queryParams = queryString.parse(this.props.location.search);
-        navigate(`/plant-profiles?search=${searchValue}&categories=${queryParams.categories || ''}&searchByCommonName=${queryParams.searchByCommonName || 'false'}`)
+        navigate(`/plant-profiles?search=${searchValue}&categories=${queryParams.categories || ''}&searchByCommonName=${queryParams.searchByCommonName || 'false'}&sortingColumn=${queryParams.sortingColumn || 'scientificName'}&sortingAZ=${queryParams.sortingAZ || 'true'}`)
+    }
+
+    handleSortChange(columnName) {
+        const queryParams = queryString.parse(this.props.location.search);
+        if(queryParams.sortingAZ === undefined) queryParams.sortingAZ = 'true';
+        if(queryParams.sortingColumn && columnName === queryParams.sortingColumn) return navigate(`/plant-profiles?search=${queryParams.search || ''}&categories=${queryParams.categories || ''}&searchByCommonName=${queryParams.searchByCommonName || 'false'}&sortingColumn=${queryParams.sortingColumn || 'scientificName'}&sortingAZ=${!(queryParams.sortingAZ === 'true')}`);
+        navigate(`/plant-profiles?search=${queryParams.search || ''}&categories=${queryParams.categories || ''}&searchByCommonName=${queryParams.searchByCommonName || 'false'}&sortingColumn=${columnName}&sortingAZ=true`);
     }
 
     createBadges(list, color) {
@@ -77,6 +86,30 @@ class PlantProfiles extends React.Component {
         })
     }
 
+    sortPlantProfiles(plantProfiles, queryParams) {
+        const sortSettings = {
+            columnName: queryParams.sortingColumn ? queryParams.sortingColumn : 'scientificName',
+            directionAZ: queryParams.sortingAZ ? queryParams.sortingAZ : 'true'
+        }
+        if(sortSettings.columnName === "categories") {
+            plantProfiles.sort((a, b) => {
+                const textA = a.categories ? a.categories.map(category => category.name).join('').toLowerCase() : 'zzzzz';
+                const textB = b.categories ? b.categories.map(category => category.name).join('').toLowerCase() : 'zzzzz';
+                if(sortSettings.directionAZ === 'true') return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+                return (textA > textB) ? -1 : (textA < textB) ? 1 : 0;
+            })
+        } else {
+            plantProfiles.sort((a, b) => {
+                const textA = a[sortSettings.columnName].toLowerCase();
+                const textB = b[sortSettings.columnName].toLowerCase();
+                if(sortSettings.directionAZ == 'true') return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+                return (textA > textB) ? -1 : (textA < textB) ? 1 : 0;
+            })
+        }
+
+        return plantProfiles;
+    }
+
     filteredPlantProfiles(data, queryParams) {
         const searchQuery = queryParams.search ? queryParams.search.toLowerCase() : ''; //get lower case search query
         const plantProfiles = data.allContentfulPlantProfile.edges.map(plantProfile => {
@@ -89,7 +122,6 @@ class PlantProfiles extends React.Component {
         const plantProfilesNameFiltered = plantProfiles.filter(plantProfile => queryParams.searchByCommonName === "true" ? plantProfile.commonName.toLowerCase().includes(searchQuery) : plantProfile.scientificName.toLowerCase().includes(searchQuery)); //filter by right name type
         const plantProfilesCategoriesFiltered = plantProfilesNameFiltered.filter(plantProfile => {
             if(!queryParams.categories) return true; //no categories to search defined, return all
-            console.log(queryParams.categories)
             const searchCategoriesArray = queryParams.categories.split(',')  //make array
             if(!plantProfile.categories) return false; //not defined, do not include
             return plantProfile.categories.some(val => searchCategoriesArray.indexOf(val.name) >= 0); //return true if a value matches in both arrays
@@ -102,12 +134,12 @@ class PlantProfiles extends React.Component {
         const queryParams = queryString.parse(location.search);
         const searchQuery = queryParams.search ? queryParams.search.toLowerCase() : '';
         
-        const plantProfilesFiltered = this.sortAlphabetical(this.filteredPlantProfiles(data, queryParams), 'scientificName');
+        const plantProfilesFiltered = this.sortPlantProfiles(this.filteredPlantProfiles(data, queryParams), queryParams);
 
         const plantProfileRows = plantProfilesFiltered.map(plantProfile => {
             return (
                 <Link to={`/plant-profiles/${plantProfile.slug}`} style={{textDecoration: "inherit", color: 'inherit'}} className={classes.tableRow}>
-                    <td className={classes.tableCell}>
+                    <td className={classNames(classes.tableCell, classes.scientificName)}>
                         {plantProfile.scientificName}
                     </td>
                     <td className={classes.tableCell}>
@@ -178,14 +210,38 @@ class PlantProfiles extends React.Component {
                                     <table className={classes.table}>
                                         <thead className={classes.tableHeader}>
                                             <tr className={classes.tableHeaderRow}>
-                                                <th className={classes.tableHeaderColumn}>
-                                                   Scientific Name <IconArrowDropDown className={classes.tableArrowIcon}/>
+                                                <th className={classes.tableHeaderColumn} onClick={() => this.handleSortChange('scientificName')}>
+                                                   Scientific Name 
+                                                   <div className={classes.tableArrowArea}>
+                                                        <IconArrowDropUp className={classNames(classes.tableArrowIcon, {
+                                                            [classes.tableArrowIconSelected]: queryParams.sortingColumn === 'scientificName' && queryParams.sortingAZ === 'true'
+                                                        })} viewBox="6 6 12 12"/>
+                                                        <IconArrowDropDown className={classNames(classes.tableArrowIcon, {
+                                                            [classes.tableArrowIconSelected]: queryParams.sortingColumn === 'scientificName' && queryParams.sortingAZ === 'false'
+                                                        })} viewBox="6 6 12 12"/>
+                                                   </div>
                                                 </th>
-                                                <th className={classes.tableHeaderColumn}>
-                                                    Common Name <IconArrowDropDown className={classes.tableArrowIcon}/>
+                                                <th className={classes.tableHeaderColumn} onClick={() => this.handleSortChange('commonName')}>
+                                                    Common Name 
+                                                    <div className={classes.tableArrowArea}>
+                                                        <IconArrowDropUp className={classNames(classes.tableArrowIcon, {
+                                                            [classes.tableArrowIconSelected]: queryParams.sortingColumn === 'commonName' && queryParams.sortingAZ === 'true'
+                                                        })} viewBox="6 6 12 12"/>
+                                                        <IconArrowDropDown className={classNames(classes.tableArrowIcon, {
+                                                            [classes.tableArrowIconSelected]: queryParams.sortingColumn === 'commonName' && queryParams.sortingAZ === 'false'
+                                                        })} viewBox="6 6 12 12"/>
+                                                   </div>
                                                 </th>
-                                                <th className={classes.tableHeaderColumn}>
-                                                    Categories <IconArrowDropDown className={classes.tableArrowIcon}/>
+                                                <th className={classes.tableHeaderColumn} onClick={() => this.handleSortChange('categories')}>
+                                                    Categories
+                                                    <div className={classes.tableArrowArea}>
+                                                        <IconArrowDropUp className={classNames(classes.tableArrowIcon, {
+                                                            [classes.tableArrowIconSelected]: queryParams.sortingColumn === 'categories' && queryParams.sortingAZ === 'true'
+                                                        })} viewBox="6 6 12 12"/>
+                                                        <IconArrowDropDown className={classNames(classes.tableArrowIcon, {
+                                                            [classes.tableArrowIconSelected]: queryParams.sortingColumn === 'categories' && queryParams.sortingAZ === 'false'
+                                                        })} viewBox="6 6 12 12"/>
+                                                   </div>
                                                 </th>
                                             </tr>
                                         </thead>

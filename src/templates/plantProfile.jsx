@@ -5,7 +5,7 @@ import React from 'react';
 import classNames from "classnames";
 import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
-import { graphql } from "gatsby";
+import { graphql, Link } from "gatsby";
 import Img from 'gatsby-image';
 import Lightbox from 'react-images';
 import Layout from 'components/Layout.jsx';
@@ -193,7 +193,9 @@ class PlantProfile extends React.Component {
                                         <CollabsibleLinkList headerText="Genuses" minShown={10} links={allPlantGenusLinks}/>
                                         <hr />
                                         <div className={classes.alignCenter}>
-                                            <Button color="info">View All</Button>
+                                            <Link  to="/plant-profiles">
+                                                <Button color="info">View All</Button>
+                                            </ Link>
                                         </div>
                                     </CardBody>
                                 </Card>

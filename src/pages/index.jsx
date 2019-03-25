@@ -17,7 +17,7 @@ import HomeSection from "../sections/HomeSection.jsx";
 import withRoot from "withRoot";
 import { StaticQuery, graphql } from 'gatsby'
 
-class LandingPage extends React.Component {
+class Homepage extends React.Component {
     render() {
         const { classes } = this.props;
         return (
@@ -58,8 +58,8 @@ class LandingPage extends React.Component {
     }
 }
 
-LandingPage.propTypes = {
+Homepage.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withRoot(withStyles(landingPageStyle)(LandingPage));
+export default withRoot(withStyles(landingPageStyle)(Homepage));
