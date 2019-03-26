@@ -100,8 +100,8 @@ class PlantProfiles extends React.Component {
             })
         } else {
             plantProfiles.sort((a, b) => {
-                const textA = a[sortSettings.columnName].toLowerCase();
-                const textB = b[sortSettings.columnName].toLowerCase();
+                const textA = a[sortSettings.columnName] === "" ? 'zzzzz' : a[sortSettings.columnName].toLowerCase();
+                const textB = b[sortSettings.columnName] === "" ? 'zzzzz' : b[sortSettings.columnName].toLowerCase();
                 if(sortSettings.directionAZ == 'true') return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
                 return (textA > textB) ? -1 : (textA < textB) ? 1 : 0;
             })
