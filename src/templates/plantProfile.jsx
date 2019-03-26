@@ -155,7 +155,7 @@ class PlantProfile extends React.Component {
         const allPlantCategoryLinks = data.allPlantCategories.edges.map(category => {
             return {
                 name: category.node.name,
-                url: `/plant-profiles?search=&categories=${category.node.name}&searchByCommonName=false`
+                url: `/plant-profiles?search=&categories=${category.node.name}&searchByCommonName=false&sortingColumn=scientificName&sortingAZ=true`
             }
         });
 
@@ -165,7 +165,7 @@ class PlantProfile extends React.Component {
                 let genusName = name.indexOf(' ') !== -1 ? name.substring(0, name.indexOf(' ')) : name;
                 return {
                     name: genusName, //Stop at first space
-                    url: `/plant-profiles?search=${genusName}&categories=&searchByCommonName=false`
+                    url: `/plant-profiles?search=${genusName}&categories=&searchByCommonName=false&sortingColumn=scientificName&sortingAZ=true`
                 }
             })
         ), 'name')
@@ -193,7 +193,7 @@ class PlantProfile extends React.Component {
                                         <CollabsibleLinkList headerText="Genuses" minShown={10} links={allPlantGenusLinks}/>
                                         <hr />
                                         <div className={classes.alignCenter}>
-                                            <Link  to="/plant-profiles">
+                                            <Link  to="/plant-profiles?search=&categories=&searchByCommonName=false&sortingColumn=scientificName&sortingAZ=true">
                                                 <Button color="info">View All</Button>
                                             </ Link>
                                         </div>
