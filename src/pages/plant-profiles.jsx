@@ -135,6 +135,7 @@ class PlantProfiles extends React.Component {
         const searchQuery = queryParams.search ? queryParams.search.toLowerCase() : '';
         
         const plantProfilesFiltered = this.sortPlantProfiles(this.filteredPlantProfiles(data, queryParams), queryParams);
+        const plantProfileResultsCount = plantProfilesFiltered.length;
 
         const plantProfileRows = plantProfilesFiltered.map(plantProfile => {
             return (
@@ -205,6 +206,9 @@ class PlantProfiles extends React.Component {
                                             />
                                         </GridItem>
                                     </GridContainer>
+                                </GridItem>
+                                <GridItem xs={12} sm={12} md={12} style={{marginLeft: '20px', marginRight: '20px'}}>
+                                    <p className={classes.results}>{plantProfileResultsCount} Results</p>
                                 </GridItem>
                                 <GridItem xs={12} sm={12} md={12} style={{marginTop: 20, marginLeft: '20px', marginRight: '20px'}}>
                                     <table className={classes.table}>
