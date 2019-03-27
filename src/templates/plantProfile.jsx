@@ -231,11 +231,11 @@ class PlantProfile extends React.Component {
                                     <GridItem xs={12} sm={12} md={12}>
                                         <h4 className={classes.textBold}>Distribution</h4>
                                         <GridContainer justify="center">
-                                            <GridItem xs={12} sm={12} md={9}>
+                                            <GridItem xs={12} sm={12} md={7} lg={8} xl={9}>
                                                 {this.createBadges(data.plantProfile.regions, 'green')}
                                                 <div className={classes.richTextContent} dangerouslySetInnerHTML={{ __html: distributionNotesData }} />
                                             </GridItem>
-                                            <GridItem xs={12} sm={12} md={3}>
+                                            <GridItem xs={12} sm={12} md={5} lg={4} xl={3}>
                                                 <div style={{display: "flex", alignItems: "center", justifyContent: "flex-end", width: "100%"}} >
                                                     <div className={classes.inLineImageContainer} style={{width: "100%"}}>
                                                         <Img fluid={data.map.childImageSharp.fluid} className={classes.inLineImage} alt={`Distribution Map | ${data.plantProfile.scientificName} | Queensland Native Seeds`} title={`Distribution Map | ${data.plantProfile.scientificName} | Queensland Native Seeds`}/>
