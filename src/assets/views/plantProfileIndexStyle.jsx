@@ -124,6 +124,11 @@ const plantProfileStyle = {
     },
     scientificName: {
         fontWeight: 400
+    },
+    results: {
+        color: '#3C4858 !important',
+        fontWeight: 300,
+        fontSize: '0.8em'
     }
 };
 
