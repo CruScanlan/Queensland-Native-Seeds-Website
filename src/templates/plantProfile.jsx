@@ -97,7 +97,7 @@ class PlantProfile extends React.Component {
         if(!images) return <div />;
         return images.map((image, index) => (
             <GridItem xs={12} sm={6} md={4} key={image.id}>
-                <div className={classes.inLineImageContainer} style={{marginTop: "30px", cursor: "pointer"}} onClick={() => this.openLightbox(index)}>
+                <div className={classes.inLineImageContainer} style={{marginTop: "30px", cursor: "pointer"}} onClick={() => this.openLightbox(index)} onContextMenu={(e)=>  {e.preventDefault(); return false;}}>
                     <Img fluid={image.smallFluid} className={classes.inLineImage} alt={this.photoCreateCaption(image)} title={this.photoCreateCaption(image)}/>
                     <Img fluid={image.smallFluid} className={classes.inLineImageShadow}/>
                 </div>
@@ -300,7 +300,7 @@ export const query = graphql`
                 name
             },
             regions {
-                name
+                name    
             },
             description {
                 childContentfulRichText {
