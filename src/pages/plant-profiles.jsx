@@ -48,25 +48,25 @@ class PlantProfiles extends React.Component {
     handleSelectorChange = event => {
         this.setState({ categoriesSelected: event.target.value });
         const queryParams = queryString.parse(this.props.location.search);
-        navigate(`/plant-profiles?search=${queryParams.search || ''}&categories=${event.target.value.join(',')}&searchByCommonName=${queryParams.searchByCommonName || 'false'}&sortingColumn=${queryParams.sortingColumn || 'scientificName'}&sortingAZ=${queryParams.sortingAZ || 'true'}`)
+        navigate(`/plant-profiles?search=${queryParams.search || ''}&categories=${event.target.value.join(',')}&searchByCommonName=${queryParams.searchByCommonName || 'false'}&sortingColumn=${queryParams.sortingColumn || 'scientificName'}&sortingAZ=${queryParams.sortingAZ || 'true'}`, {replace: true})
     };
 
     handleSearchCommonNameCheckbox(event) {
         const queryParams = queryString.parse(this.props.location.search);
-        navigate(`/plant-profiles?search=${queryParams.search || ''}&categories=${queryParams.categories || ''}&searchByCommonName=${event.target.checked}&sortingColumn=${queryParams.sortingColumn || 'scientificName'}&sortingAZ=${queryParams.sortingAZ || 'true'}`);
+        navigate(`/plant-profiles?search=${queryParams.search || ''}&categories=${queryParams.categories || ''}&searchByCommonName=${event.target.checked}&sortingColumn=${queryParams.sortingColumn || 'scientificName'}&sortingAZ=${queryParams.sortingAZ || 'true'}`, {replace: true});
     }
 
     handleSearchChange(event) {
         const searchValue = event.target.value;
         const queryParams = queryString.parse(this.props.location.search);
-        navigate(`/plant-profiles?search=${searchValue}&categories=${queryParams.categories || ''}&searchByCommonName=${queryParams.searchByCommonName || 'false'}&sortingColumn=${queryParams.sortingColumn || 'scientificName'}&sortingAZ=${queryParams.sortingAZ || 'true'}`)
+        navigate(`/plant-profiles?search=${searchValue}&categories=${queryParams.categories || ''}&searchByCommonName=${queryParams.searchByCommonName || 'false'}&sortingColumn=${queryParams.sortingColumn || 'scientificName'}&sortingAZ=${queryParams.sortingAZ || 'true'}`, {replace: true})
     }
 
     handleSortChange(columnName) {
         const queryParams = queryString.parse(this.props.location.search);
         if(queryParams.sortingAZ === undefined) queryParams.sortingAZ = 'true';
-        if(queryParams.sortingColumn && columnName === queryParams.sortingColumn) return navigate(`/plant-profiles?search=${queryParams.search || ''}&categories=${queryParams.categories || ''}&searchByCommonName=${queryParams.searchByCommonName || 'false'}&sortingColumn=${queryParams.sortingColumn || 'scientificName'}&sortingAZ=${!(queryParams.sortingAZ === 'true')}`);
-        navigate(`/plant-profiles?search=${queryParams.search || ''}&categories=${queryParams.categories || ''}&searchByCommonName=${queryParams.searchByCommonName || 'false'}&sortingColumn=${columnName}&sortingAZ=true`);
+        if(queryParams.sortingColumn && columnName === queryParams.sortingColumn) return navigate(`/plant-profiles?search=${queryParams.search || ''}&categories=${queryParams.categories || ''}&searchByCommonName=${queryParams.searchByCommonName || 'false'}&sortingColumn=${queryParams.sortingColumn || 'scientificName'}&sortingAZ=${!(queryParams.sortingAZ === 'true')}`, {replace: true});
+        navigate(`/plant-profiles?search=${queryParams.search || ''}&categories=${queryParams.categories || ''}&searchByCommonName=${queryParams.searchByCommonName || 'false'}&sortingColumn=${columnName}&sortingAZ=true`, {replace: true});
     }
 
     createBadges(list, color) {
