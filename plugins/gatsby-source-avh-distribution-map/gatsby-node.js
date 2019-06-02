@@ -24,7 +24,7 @@ const createDir = (dir) => {
 
 exports.onCreateNode = async ({node, actions, store, createNodeId }) => {
     const {createNode} = actions;
-    const program = store.getState().program
+    const program = store.getState().program;
     if (node.internal.owner === 'gatsby-source-contentful' && node.internal.type === 'ContentfulPlantProfile') { //If node is contentful plant profile
         return new Promise(async (resolve) => {
             const scientificName = node.scientificName;
