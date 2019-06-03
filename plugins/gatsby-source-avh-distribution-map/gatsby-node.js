@@ -30,6 +30,7 @@ exports.onCreateNode = async (onCreateNode) => {
            if(!(await createDistMap(onCreateNode))) return resolve();
            await wait(6000);
            if(!(await createDistMap(onCreateNode))) return resolve();
+           return resolve();
         })
     }
     return
@@ -43,7 +44,7 @@ const createDistMap = async ({node, actions, store, createNodeId}) => {
     const avhSearchName = bracketPos !== -1 ? scientificName.substring(0, bracketPos).trim() : scientificName;
     try {
         let writeDir = path.join(program.directory, '.cache/distributionMaps/'); //get write directory for maps
-        if(process.env.NETLIFY_BUILD_BASE) writeDir = path.join(process.env.NETLIFY_BUILD_BASE, 'cache/gatsby/distributionMaps'); //use netlify cache for write directory
+        if(process.env.NETLIFY_BUILD_BASE) writeDir = path.join(process.env.NETLIFY_BUILD_BASE, 'cache/gatsby/distributionMaps'); //use netlify cache for write directory if in netlify build env
         const writePath = `${writeDir}/${scientificName}.jpg`;
         if(!fs.existsSync(writeDir)) await createDir(writeDir); //create write dirtectory if not exists
         if(!fs.existsSync(writePath)) { //map is does not cached
