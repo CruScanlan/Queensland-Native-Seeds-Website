@@ -23,7 +23,7 @@ const createDir = (dir) => {
 }
 
 exports.onCreateNode = async (onCreateNode) => {
-    if (onCreateNode.node.internal.owner === 'gatsby-source-contentful' && onCreateNode.node.internal.type === 'ContentfulPlantProfile') { //If node is contentful plant profile
+    if (onCreateNode.node.internal.owner === 'gatsby-source-contentful' && onCreateNode.node.internal.type === 'ContentfulPlantProfile' && !onCreateNode.doNotIncludeStaticMap) { //If node is contentful plant profile and needs static map
         return new Promise(async (resolve) => {
            if(!(await createDistMap(onCreateNode))) return resolve();
            await wait(2000);
