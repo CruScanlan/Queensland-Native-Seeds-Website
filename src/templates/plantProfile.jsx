@@ -142,6 +142,16 @@ class PlantProfile extends React.Component {
         )
     }
 
+    renderDistMap(data, classes) {
+        if(data.plantProfile.doNotIncludeStaticMap || !data.map) return <div className={classes.inLineImageContainer} style={{width: "100%"}}></div>
+        return (
+            <div className={classes.inLineImageContainer} style={{width: "100%"}}>
+                <Img fluid={data.map.childImageSharp.fluid} className={classes.inLineImage} alt={`Distribution Map | ${data.plantProfile.scientificName} | Queensland Native Seeds`} title={`Distribution Map | ${data.plantProfile.scientificName} | Queensland Native Seeds`}/>
+                <Img fluid={data.map.childImageSharp.fluid} className={classes.inLineImageShadow}/>
+            </div>
+        );
+    }
+
     removeDuplicateGenuses(array) {
         const namesArray = array.map(item => item.name);
         return array.filter((item, index) => {
@@ -237,10 +247,7 @@ class PlantProfile extends React.Component {
                                             </GridItem>
                                             <GridItem xs={12} sm={12} md={5} lg={4} xl={3}>
                                                 <div style={{display: "flex", alignItems: "center", justifyContent: "flex-end", width: "100%"}} >
-                                                    <div className={classes.inLineImageContainer} style={{width: "100%"}}>
-                                                        <Img fluid={data.map.childImageSharp.fluid} className={classes.inLineImage} alt={`Distribution Map | ${data.plantProfile.scientificName} | Queensland Native Seeds`} title={`Distribution Map | ${data.plantProfile.scientificName} | Queensland Native Seeds`}/>
-                                                        <Img fluid={data.map.childImageSharp.fluid} className={classes.inLineImageShadow}/>
-                                                    </div>
+                                                    {this.renderDistMap(data, classes)}
                                                 </div>
                                             </GridItem>
                                         </GridContainer>
@@ -339,7 +346,9 @@ export const query = graphql`
                 file {
                     url
                 }
-            }
+            },
+            doNotIncludeAvhMap,
+            doNotIncludeStaticMap
         }
     }
 `
