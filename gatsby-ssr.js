@@ -10,7 +10,7 @@ function replaceRenderer({ bodyComponent, replaceBodyHTMLString, setHeadComponen
   const muiPageContext = getPageContext();
 
   const bodyHTML = renderToString(
-    <JssProvider registry={muiPageContext.sheetsRegistry}>{bodyComponent}</JssProvider>,
+    <JssProvider registry={muiPageContext.sheetsRegistry}>{bodyComponent}</JssProvider>
   );
 
   replaceBodyHTMLString(bodyHTML);
