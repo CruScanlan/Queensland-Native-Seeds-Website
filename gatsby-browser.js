@@ -13,7 +13,8 @@
 
 exports.shouldUpdateScroll = ({prevRouterProps, routerProps, getSavedScrollPosition }) => {
     if(!prevRouterProps) return true;
-    if(routerProps.location.pathname === "/plant-profiles") {
+    const pathName = routerProps.location.pathname;
+    if(pathName === "/plant-profiles") {
         const savedPos = getSavedScrollPosition({ pathname: "/plant-profiles"});
         return savedPos;
     }

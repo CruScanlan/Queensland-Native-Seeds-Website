@@ -22,53 +22,71 @@ import {StaticQuery, graphql} from 'gatsby'
 
 class AboutPage extends React.Component {
     render() {
-        const {classes} = this.props;
+        const {classes, data} = this.props;
+        const section1Content = data.allContentfulAboutUs.nodes[0].childContentfulAboutUsSection1RichTextNode.childContentfulRichText.html.split('<p></p>').join('<p style="height:24px"></p>');
+        const section2Content = data.allContentfulAboutUs.nodes[0].childContentfulAboutUsSection2RichTextNode.childContentfulRichText.html.split('<p></p>').join('<p style="height:24px"></p>');
+        const section3Content = data.allContentfulAboutUs.nodes[0].childContentfulAboutUsSection3RichTextNode.childContentfulRichText.html.split('<p></p>').join('<p style="height:24px"></p>');
+
         return (
-            <StaticQuery
-                query={graphql`
-                    query {
-                        backgroundImage: file(relativePath: { eq: "bg10.jpg" }) {
-                            childImageSharp {
-                                fluid(maxWidth: 1920, quality: 95) {
-                                    ...GatsbyImageSharpFluid_withWebp
-                                }
-                            }
-                        },
-                        parallaxImage: file(relativePath: { eq: "paddock.jpg" }) {
-                            childImageSharp {
-                                fluid(maxWidth: 1920, quality: 70) {
-                                    ...GatsbyImageSharpFluid_withWebp
-                                }
-                            }
-                        }
-                    }
-                `}
-                render={data => (
-                    <>
-                        <Layout>
-                            <ParallaxHeader filter medium image={data.backgroundImage.childImageSharp.fluid}/>
-                            <ParallaxProvider>
-                                <div className={classNames(classes.main, classes.mainRaised)}>
-                                    <div className={classes.container}>
-                                        <AboutSection1/>
-                                    </div>
-                                    <ParallaxDivider height={350} image={data.parallaxImage.childImageSharp.fluid}/>
-                                    <div className={classes.container}>
-                                        <AboutSection2/>
-                                    </div>
-                                    <ParallaxDivider height={350} image={data.parallaxImage.childImageSharp.fluid}/>
-                                    <div className={classes.container}>
-                                        <AboutSection3/>
-                                    </div>
-                                </div>
-                            </ParallaxProvider>
-                        </Layout>
-                    </>
-                )}
-            />
+            <Layout>
+                <ParallaxHeader filter medium image={data.backgroundImage.childImageSharp.fluid}/>
+                <ParallaxProvider>
+                    <div className={classNames(classes.main, classes.mainRaised)}>
+                        <div className={classes.container}>
+                            <AboutSection1 content={section1Content}/>
+                        </div>
+                        <ParallaxDivider height={350} image={data.parallaxImage.childImageSharp.fluid}/>
+                        <div className={classes.container}>
+                            <AboutSection2 content={section2Content} />
+                        </div>
+                        <ParallaxDivider height={350} image={data.parallaxImage.childImageSharp.fluid}/>
+                        <div className={classes.container}>
+                            <AboutSection3 content={section3Content} />
+                        </div>
+                    </div>
+                </ParallaxProvider>
+            </Layout>
         );
     }
 }
+
+export const query = graphql`
+    query {
+        backgroundImage: file(relativePath: { eq: "bg10.jpg" }) {
+            childImageSharp {
+                fluid(maxWidth: 1920, quality: 95) {
+                    ...GatsbyImageSharpFluid_withWebp
+                }
+            }
+        },
+        parallaxImage: file(relativePath: { eq: "paddock.jpg" }) {
+            childImageSharp {
+                fluid(maxWidth: 1920, quality: 70) {
+                    ...GatsbyImageSharpFluid_withWebp
+                }
+            }
+        },
+        allContentfulAboutUs {
+            nodes {
+                childContentfulAboutUsSection1RichTextNode {
+                    childContentfulRichText {
+                        html
+                    }
+                },
+                childContentfulAboutUsSection2RichTextNode {
+                    childContentfulRichText {
+                        html
+                    }
+                },
+                childContentfulAboutUsSection3RichTextNode {
+                    childContentfulRichText {
+                        html
+                    }
+                }
+            }
+        }
+    }
+`
 
 AboutPage.propTypes = {
     classes: PropTypes.object.isRequired,
