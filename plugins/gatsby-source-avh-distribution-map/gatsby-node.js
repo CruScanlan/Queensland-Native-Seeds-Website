@@ -17,7 +17,7 @@ exports.onCreateNode = async ({node, actions, store, createNodeId}) => {
 
             const writePath = `${writeDir}${scientificName}.jpg`;
 
-            const randomWaitTime = Math.floor(Math.random() * 30);
+            const randomWaitTime = Math.floor(Math.random() * 45);
 
             console.log(`Getting AVH Dist Map for ${scientificName} ,Using Search Name: ${avhSearchName}`);
             if(process.env.NETLIFY_BUILD_BASE || !fs.existsSync(writePath)) {
