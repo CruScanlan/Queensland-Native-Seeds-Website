@@ -9,6 +9,7 @@ import { graphql, Link } from "gatsby";
 import Img from 'gatsby-image';
 import Lightbox from 'react-images';
 import Layout from 'components/Layout.jsx';
+import SEO from 'components/SEO/SEO.jsx';
 
 // core components
 import ParallaxHeader from "components/Parallax/ParallaxHeader.jsx";
@@ -185,86 +186,94 @@ class PlantProfile extends React.Component {
         const distributionNotesData = data.plantProfile.distributionNotes ? data.plantProfile.distributionNotes.childContentfulRichText.html : '';
         const referancesRelatedLinksData = data.plantProfile.referancesRelatedLinks ? data.plantProfile.referancesRelatedLinks.childContentfulRichText.html : '';
 
+        const seoPicture = data.plantProfile.pictures ? data.plantProfile.pictures[0].smallFluid.src : data.backgroundImage.childImageSharp.fluid.src;
+
         return (
-            <Layout>
-                <ParallaxHeader filter medium image={data.backgroundImage.childImageSharp.fluid}/>
-                <div className={classNames(classes.main, classes.mainRaised)}>
-                    <div className={classes.pageContainer}>
-                        <div className={classes.section}>
-                            <div className={classes.leftSection}>
-                                <Card className={classes.sideBar}>
-                                    <CardBody>
-                                        <h4 className={classes.cardTitle}>
-                                            Plant Profiles
-                                        </h4>
-                                        <hr />
-                                        <CollabsibleLinkList headerText="Plant Categories" minShown={10} links={allPlantCategoryLinks}/>
-                                        <hr />
-                                        <CollabsibleLinkList headerText="Genuses" minShown={10} links={allPlantGenusLinks}/>
-                                        <hr />
-                                        <div className={classes.alignCenter}>
-                                            <Link  to="/plant-profiles?search=&categories=&searchByCommonName=false&sortingColumn=scientificName&sortingAZ=true">
-                                                <Button color="info">View All</Button>
-                                            </ Link>
-                                        </div>
-                                    </CardBody>
-                                </Card>
-                            </div>
-                            <div className={classes.rightSection}>
-                                <h2 className={classes.pageTitle}>{data.plantProfile.scientificName}</h2>
-                                
-                                <GridContainer justify="center">
-                                    <GridItem xs={12} sm={12} md={12}>
-                                        <h4 className={classes.textBold}>Categories</h4>
-                                        {this.createBadges(data.plantProfile.categories, 'green')}
-                                    </GridItem>
-                                    <GridItem xs={12} sm={12} md={12}>
-                                        <h4 className={classes.textBold}>Common Names</h4>
-                                        <h5>{data.plantProfile.commonName ? data.plantProfile.commonName.join(', ') : ''}</h5>
-                                    </GridItem>
-                                    <GridItem xs={12} sm={12} md={12}>
-                                        <h4 className={classes.textBold}>Family</h4>
-                                        <h5>{data.plantProfile.family}</h5>
-                                    </GridItem>
-                                    <GridItem xs={12} sm={12} md={12}>
-                                        <h4 className={classes.textBold}>Description</h4>
-                                        <div className={classes.richTextContent} dangerouslySetInnerHTML={{ __html: descriptionData }} />
-                                    </GridItem>
-                                    <GridItem xs={12} sm={12} md={12}>
-                                        <h4 className={classes.textBold}>Notes</h4>
-                                        <div className={classes.richTextContent} dangerouslySetInnerHTML={{ __html: notesData }} />
-                                    </GridItem>
-                                    <GridItem xs={12} sm={12} md={12}>
-                                        <h4 className={classes.textBold}>Historical Notes</h4>
-                                        <div className={classes.richTextContent} dangerouslySetInnerHTML={{ __html: historicalNotesData }} />
-                                    </GridItem>
-                                    <GridItem xs={12} sm={12} md={12}>
-                                        <h4 className={classes.textBold}>Distribution</h4>
-                                        <GridContainer justify="center">
-                                            <GridItem xs={12} sm={12} md={7} lg={8} xl={9}>
-                                                {this.createBadges(data.plantProfile.regions, 'green')}
-                                                <div className={classes.richTextContent} dangerouslySetInnerHTML={{ __html: distributionNotesData }} />
-                                            </GridItem>
-                                            <GridItem xs={12} sm={12} md={5} lg={4} xl={3}>
-                                                <div style={{display: "flex", alignItems: "center", justifyContent: "flex-end", width: "100%"}} >
-                                                    {this.renderDistMap(data, classes)}
-                                                </div>
-                                            </GridItem>
-                                        </GridContainer>
-                                    </GridItem>
-                                    <GridItem xs={12} sm={12} md={12} style={{marginTop: "40px"}}>
-                                        {this.renderImageArea(data, classes)}
-                                    </GridItem>
-                                    <GridItem xs={12} sm={12} md={12}>
-                                        <h4 className={classes.textBold}>Referances and Related Links</h4>
-                                        <div className={classes.richTextContent} dangerouslySetInnerHTML={{ __html: referancesRelatedLinksData }} />
-                                    </GridItem>
-                                </GridContainer>
+            <>
+                <SEO 
+                    pathname={`/plant-profiles/${data.plantProfile.slug}`}
+                    title={`${data.plantProfile.scientificName} - Plant Profiles`}
+                    image={seoPicture}/>
+                <Layout>
+                    <ParallaxHeader filter medium image={data.backgroundImage.childImageSharp.fluid}/>
+                    <div className={classNames(classes.main, classes.mainRaised)}>
+                        <div className={classes.pageContainer}>
+                            <div className={classes.section}>
+                                <div className={classes.leftSection}>
+                                    <Card className={classes.sideBar}>
+                                        <CardBody>
+                                            <h4 className={classes.cardTitle}>
+                                                Plant Profiles
+                                            </h4>
+                                            <hr />
+                                            <CollabsibleLinkList headerText="Plant Categories" minShown={10} links={allPlantCategoryLinks}/>
+                                            <hr />
+                                            <CollabsibleLinkList headerText="Genuses" minShown={10} links={allPlantGenusLinks}/>
+                                            <hr />
+                                            <div className={classes.alignCenter}>
+                                                <Link  to="/plant-profiles?search=&categories=&searchByCommonName=false&sortingColumn=scientificName&sortingAZ=true">
+                                                    <Button color="info">View All</Button>
+                                                </ Link>
+                                            </div>
+                                        </CardBody>
+                                    </Card>
+                                </div>
+                                <div className={classes.rightSection}>
+                                    <h2 className={classes.pageTitle}>{data.plantProfile.scientificName}</h2>
+                                    
+                                    <GridContainer justify="center">
+                                        <GridItem xs={12} sm={12} md={12}>
+                                            <h4 className={classes.textBold}>Categories</h4>
+                                            {this.createBadges(data.plantProfile.categories, 'green')}
+                                        </GridItem>
+                                        <GridItem xs={12} sm={12} md={12}>
+                                            <h4 className={classes.textBold}>Common Names</h4>
+                                            <h5>{data.plantProfile.commonName ? data.plantProfile.commonName.join(', ') : ''}</h5>
+                                        </GridItem>
+                                        <GridItem xs={12} sm={12} md={12}>
+                                            <h4 className={classes.textBold}>Family</h4>
+                                            <h5>{data.plantProfile.family}</h5>
+                                        </GridItem>
+                                        <GridItem xs={12} sm={12} md={12}>
+                                            <h4 className={classes.textBold}>Description</h4>
+                                            <div className={classes.richTextContent} dangerouslySetInnerHTML={{ __html: descriptionData }} />
+                                        </GridItem>
+                                        <GridItem xs={12} sm={12} md={12}>
+                                            <h4 className={classes.textBold}>Notes</h4>
+                                            <div className={classes.richTextContent} dangerouslySetInnerHTML={{ __html: notesData }} />
+                                        </GridItem>
+                                        <GridItem xs={12} sm={12} md={12}>
+                                            <h4 className={classes.textBold}>Historical Notes</h4>
+                                            <div className={classes.richTextContent} dangerouslySetInnerHTML={{ __html: historicalNotesData }} />
+                                        </GridItem>
+                                        <GridItem xs={12} sm={12} md={12}>
+                                            <h4 className={classes.textBold}>Distribution</h4>
+                                            <GridContainer justify="center">
+                                                <GridItem xs={12} sm={12} md={7} lg={8} xl={9}>
+                                                    {this.createBadges(data.plantProfile.regions, 'green')}
+                                                    <div className={classes.richTextContent} dangerouslySetInnerHTML={{ __html: distributionNotesData }} />
+                                                </GridItem>
+                                                <GridItem xs={12} sm={12} md={5} lg={4} xl={3}>
+                                                    <div style={{display: "flex", alignItems: "center", justifyContent: "flex-end", width: "100%"}} >
+                                                        {this.renderDistMap(data, classes)}
+                                                    </div>
+                                                </GridItem>
+                                            </GridContainer>
+                                        </GridItem>
+                                        <GridItem xs={12} sm={12} md={12} style={{marginTop: "40px"}}>
+                                            {this.renderImageArea(data, classes)}
+                                        </GridItem>
+                                        <GridItem xs={12} sm={12} md={12}>
+                                            <h4 className={classes.textBold}>Referances and Related Links</h4>
+                                            <div className={classes.richTextContent} dangerouslySetInnerHTML={{ __html: referancesRelatedLinksData }} />
+                                        </GridItem>
+                                    </GridContainer>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </Layout>
+                </Layout>
+            </>
         );
     }
 }
@@ -301,6 +310,7 @@ export const query = graphql`
         },
         plantProfile: contentfulPlantProfile(slug: { eq: $slug } ) {
             scientificName,
+            slug,
             commonName,
             family,
             categories {
