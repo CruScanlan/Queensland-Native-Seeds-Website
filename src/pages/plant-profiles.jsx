@@ -4,6 +4,7 @@ import classNames from "classnames";
 import {withStyles} from '@material-ui/core/styles';
 import { graphql, Link, navigate } from "gatsby";
 import Layout from 'components/Layout.jsx';
+import SEO from 'components/SEO/SEO.jsx';
 import withRoot from '../withRoot';
 import queryString from 'query-string';
 
@@ -155,110 +156,116 @@ class PlantProfiles extends React.Component {
 
 
         return (
-            <Layout>
-                <ParallaxHeader filter medium image={data.backgroundImage.childImageSharp.fluid}/>
-                <div className={classNames(classes.main, classes.mainRaised)}>
-                    <div className={classes.pageContainer}>
-                        <div className={classes.section}>
-                            <GridContainer justify="center">
-                                <GridItem xs={12} sm={12} md={12}>
-                                    <h2 className={classes.pageTitle}>Plant Profiles</h2>
-                                </GridItem>
-                                <GridItem xs={12} sm={12} md={12} style={{marginTop: 30, marginLeft: '20px', marginRight: '20px'}}>
-                                    <GridContainer>
-                                        <GridItem xs={12} sm={6} md={6}>
-                                            <CustomInput
-                                                labelText="Search"
-                                                value={searchQuery}
-                                                onChange={this.handleSearchChange}
-                                                formControlProps={{
-                                                    fullWidth: true
-                                                }}
-                                                inputProps={{
-                                                    endAdornment: (
-                                                    <InputAdornment position="end">
-                                                        <IconSearch />
-                                                    </InputAdornment>
-                                                    )
-                                                }}
-                                            />
-                                        </GridItem>
-                                        <GridItem xs={12} sm={3} md={3}>
-                                            <CustomMultiSelect
-                                                labelText=" Show Categories"
-                                                value={this.state.categoriesSelected}
-                                                onChange={this.handleSelectorChange}
-                                                menuItems={this.sortAlphabetical(data.allPlantCategories.edges.map(plantCategory => plantCategory.node.name))}
-                                            />
-                                        </GridItem>
-                                        <GridItem xs={12} sm={3} md={3} style={{display: 'inline-flex'}}>
-                                            <FormControlLabel
-                                                control={
-                                                    <Checkbox
-                                                    checked={queryParams.searchByCommonName === "true" | false}
-                                                    onChange={this.handleSearchCommonNameCheckbox}
-                                                    classes={{
-                                                        root: classes.searchCommonNameCheckbox
-                                                      }}
-                                                    />
-                                                }
-                                                label="Search by Common Name"
-                                            />
-                                        </GridItem>
-                                    </GridContainer>
-                                </GridItem>
-                                <GridItem xs={12} sm={12} md={12} style={{marginLeft: '20px', marginRight: '20px'}}>
-                                    <p className={classes.results}>{plantProfileResultsCount} Results</p>
-                                </GridItem>
-                                <GridItem xs={12} sm={12} md={12} style={{marginTop: 20, marginLeft: '20px', marginRight: '20px'}}>
-                                    <table className={classes.table}>
-                                        <thead className={classes.tableHeader}>
-                                            <tr className={classes.tableHeaderRow}>
-                                                <th className={classes.tableHeaderColumn} onClick={() => this.handleSortChange('scientificName')}>
-                                                   Scientific Name 
-                                                   <div className={classes.tableArrowArea}>
-                                                        <IconArrowDropUp className={classNames(classes.tableArrowIcon, {
-                                                            [classes.tableArrowIconSelected]: queryParams.sortingColumn === 'scientificName' && queryParams.sortingAZ === 'true'
-                                                        })} viewBox="6 6 12 12"/>
-                                                        <IconArrowDropDown className={classNames(classes.tableArrowIcon, {
-                                                            [classes.tableArrowIconSelected]: queryParams.sortingColumn === 'scientificName' && queryParams.sortingAZ === 'false'
-                                                        })} viewBox="6 6 12 12"/>
-                                                   </div>
-                                                </th>
-                                                <th className={classes.tableHeaderColumn} onClick={() => this.handleSortChange('commonName')}>
-                                                    Common Name 
+            <>
+                <SEO 
+                        pathname="/plant-profiles"
+                        title="Plant Profiles"
+                        image={data.backgroundImage.childImageSharp.fluid.src}/>
+                <Layout>
+                    <ParallaxHeader filter medium image={data.backgroundImage.childImageSharp.fluid}/>
+                    <div className={classNames(classes.main, classes.mainRaised)}>
+                        <div className={classes.pageContainer}>
+                            <div className={classes.section}>
+                                <GridContainer justify="center">
+                                    <GridItem xs={12} sm={12} md={12}>
+                                        <h2 className={classes.pageTitle}>Plant Profiles</h2>
+                                    </GridItem>
+                                    <GridItem xs={12} sm={12} md={12} style={{marginTop: 30, marginLeft: '20px', marginRight: '20px'}}>
+                                        <GridContainer>
+                                            <GridItem xs={12} sm={6} md={6}>
+                                                <CustomInput
+                                                    labelText="Search"
+                                                    value={searchQuery}
+                                                    onChange={this.handleSearchChange}
+                                                    formControlProps={{
+                                                        fullWidth: true
+                                                    }}
+                                                    inputProps={{
+                                                        endAdornment: (
+                                                        <InputAdornment position="end">
+                                                            <IconSearch />
+                                                        </InputAdornment>
+                                                        )
+                                                    }}
+                                                />
+                                            </GridItem>
+                                            <GridItem xs={12} sm={3} md={3}>
+                                                <CustomMultiSelect
+                                                    labelText=" Show Categories"
+                                                    value={this.state.categoriesSelected}
+                                                    onChange={this.handleSelectorChange}
+                                                    menuItems={this.sortAlphabetical(data.allPlantCategories.edges.map(plantCategory => plantCategory.node.name))}
+                                                />
+                                            </GridItem>
+                                            <GridItem xs={12} sm={3} md={3} style={{display: 'inline-flex'}}>
+                                                <FormControlLabel
+                                                    control={
+                                                        <Checkbox
+                                                        checked={queryParams.searchByCommonName === "true" | false}
+                                                        onChange={this.handleSearchCommonNameCheckbox}
+                                                        classes={{
+                                                            root: classes.searchCommonNameCheckbox
+                                                        }}
+                                                        />
+                                                    }
+                                                    label="Search by Common Name"
+                                                />
+                                            </GridItem>
+                                        </GridContainer>
+                                    </GridItem>
+                                    <GridItem xs={12} sm={12} md={12} style={{marginLeft: '20px', marginRight: '20px'}}>
+                                        <p className={classes.results}>{plantProfileResultsCount} Results</p>
+                                    </GridItem>
+                                    <GridItem xs={12} sm={12} md={12} style={{marginTop: 20, marginLeft: '20px', marginRight: '20px'}}>
+                                        <table className={classes.table}>
+                                            <thead className={classes.tableHeader}>
+                                                <tr className={classes.tableHeaderRow}>
+                                                    <th className={classes.tableHeaderColumn} onClick={() => this.handleSortChange('scientificName')}>
+                                                    Scientific Name 
                                                     <div className={classes.tableArrowArea}>
-                                                        <IconArrowDropUp className={classNames(classes.tableArrowIcon, {
-                                                            [classes.tableArrowIconSelected]: queryParams.sortingColumn === 'commonName' && queryParams.sortingAZ === 'true'
-                                                        })} viewBox="6 6 12 12"/>
-                                                        <IconArrowDropDown className={classNames(classes.tableArrowIcon, {
-                                                            [classes.tableArrowIconSelected]: queryParams.sortingColumn === 'commonName' && queryParams.sortingAZ === 'false'
-                                                        })} viewBox="6 6 12 12"/>
-                                                   </div>
-                                                </th>
-                                                <th className={classes.tableHeaderColumn} onClick={() => this.handleSortChange('categories')}>
-                                                    Categories
-                                                    <div className={classes.tableArrowArea}>
-                                                        <IconArrowDropUp className={classNames(classes.tableArrowIcon, {
-                                                            [classes.tableArrowIconSelected]: queryParams.sortingColumn === 'categories' && queryParams.sortingAZ === 'true'
-                                                        })} viewBox="6 6 12 12"/>
-                                                        <IconArrowDropDown className={classNames(classes.tableArrowIcon, {
-                                                            [classes.tableArrowIconSelected]: queryParams.sortingColumn === 'categories' && queryParams.sortingAZ === 'false'
-                                                        })} viewBox="6 6 12 12"/>
-                                                   </div>
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody className={classes.tableBody}>
-                                            {plantProfileRows}
-                                        </tbody>
-                                    </table>
-                                </GridItem>
-                            </GridContainer>
+                                                            <IconArrowDropUp className={classNames(classes.tableArrowIcon, {
+                                                                [classes.tableArrowIconSelected]: queryParams.sortingColumn === 'scientificName' && queryParams.sortingAZ === 'true'
+                                                            })} viewBox="6 6 12 12"/>
+                                                            <IconArrowDropDown className={classNames(classes.tableArrowIcon, {
+                                                                [classes.tableArrowIconSelected]: queryParams.sortingColumn === 'scientificName' && queryParams.sortingAZ === 'false'
+                                                            })} viewBox="6 6 12 12"/>
+                                                    </div>
+                                                    </th>
+                                                    <th className={classes.tableHeaderColumn} onClick={() => this.handleSortChange('commonName')}>
+                                                        Common Name 
+                                                        <div className={classes.tableArrowArea}>
+                                                            <IconArrowDropUp className={classNames(classes.tableArrowIcon, {
+                                                                [classes.tableArrowIconSelected]: queryParams.sortingColumn === 'commonName' && queryParams.sortingAZ === 'true'
+                                                            })} viewBox="6 6 12 12"/>
+                                                            <IconArrowDropDown className={classNames(classes.tableArrowIcon, {
+                                                                [classes.tableArrowIconSelected]: queryParams.sortingColumn === 'commonName' && queryParams.sortingAZ === 'false'
+                                                            })} viewBox="6 6 12 12"/>
+                                                    </div>
+                                                    </th>
+                                                    <th className={classes.tableHeaderColumn} onClick={() => this.handleSortChange('categories')}>
+                                                        Categories
+                                                        <div className={classes.tableArrowArea}>
+                                                            <IconArrowDropUp className={classNames(classes.tableArrowIcon, {
+                                                                [classes.tableArrowIconSelected]: queryParams.sortingColumn === 'categories' && queryParams.sortingAZ === 'true'
+                                                            })} viewBox="6 6 12 12"/>
+                                                            <IconArrowDropDown className={classNames(classes.tableArrowIcon, {
+                                                                [classes.tableArrowIconSelected]: queryParams.sortingColumn === 'categories' && queryParams.sortingAZ === 'false'
+                                                            })} viewBox="6 6 12 12"/>
+                                                    </div>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody className={classes.tableBody}>
+                                                {plantProfileRows}
+                                            </tbody>
+                                        </table>
+                                    </GridItem>
+                                </GridContainer>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </Layout>
+                </Layout>
+            </>
         )
     }
 }

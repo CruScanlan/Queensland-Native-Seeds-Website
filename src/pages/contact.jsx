@@ -6,6 +6,7 @@ import classNames from "classnames";
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Layout from 'components/Layout.jsx';
+import SEO from 'components/SEO/SEO.jsx';
 
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
@@ -21,14 +22,19 @@ class Contact extends React.Component {
     render() {
         const { classes } = this.props;
         return (
-            <Layout whiteHeader>
-                <ParallaxHeader map medium />
-                <div className={classNames(classes.main, classes.mainRaised)}>
-                    <div className={classes.container}>
-                        <ContactSection />
+            <>
+                <SEO 
+                    pathname="/contact-us"
+                    title="Contact Us"/>
+                <Layout whiteHeader>
+                    <ParallaxHeader map medium />
+                    <div className={classNames(classes.main, classes.mainRaised)}>
+                        <div className={classes.container}>
+                            <ContactSection />
+                        </div>
                     </div>
-                </div>
-            </Layout>
+                </Layout>
+            </>
         );
     }
 }
