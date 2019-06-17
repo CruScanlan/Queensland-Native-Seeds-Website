@@ -4,8 +4,9 @@ require("dotenv").config({
 
 module.exports = {
     siteMetadata: {
-        title: 'Queensland Native Seeds',
         siteUrl: `https://qldnativeseeds.com.au`,
+        titleTemplate: "%s - Queensland Native Seeds",
+        homeTitle: "Queensland Native Seeds - Australian Native Seed Supplier"
     },
     plugins: [
         `gatsby-plugin-netlify-cache`,

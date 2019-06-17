@@ -6,6 +6,7 @@ import classNames from "classnames";
 import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
 import Layout from 'components/Layout.jsx';
+import SEO from 'components/SEO/SEO.jsx';
 
 // core components
 import ParallaxHeader from "components/Parallax/ParallaxHeader.jsx";
@@ -17,7 +18,7 @@ import AboutSection2 from 'sections/about/AboutSection2';
 import AboutSection3 from 'sections/about/AboutSection3';
 import landingPageStyle from "assets/views/landingPage.jsx";
 import withRoot from 'withRoot'
-import {StaticQuery, graphql} from 'gatsby'
+import {graphql} from 'gatsby'
 
 
 class AboutPage extends React.Component {
@@ -28,24 +29,30 @@ class AboutPage extends React.Component {
         const section3Content = data.allContentfulAboutUs.nodes[0].childContentfulAboutUsSection3RichTextNode.childContentfulRichText.html.split('<p></p>').join('<p style="height:24px"></p>');
 
         return (
-            <Layout>
-                <ParallaxHeader filter medium image={data.backgroundImage.childImageSharp.fluid}/>
-                <ParallaxProvider>
-                    <div className={classNames(classes.main, classes.mainRaised)}>
-                        <div className={classes.container}>
-                            <AboutSection1 content={section1Content}/>
+            <>
+                <SEO 
+                    pathname="/about-us"
+                    title="About Us"
+                    image={data.backgroundImage.childImageSharp.fluid.src}/>
+                <Layout>
+                    <ParallaxHeader filter medium image={data.backgroundImage.childImageSharp.fluid}/>
+                    <ParallaxProvider>
+                        <div className={classNames(classes.main, classes.mainRaised)}>
+                            <div className={classes.container}>
+                                <AboutSection1 content={section1Content}/>
+                            </div>
+                            <ParallaxDivider height={350} image={data.parallaxImage.childImageSharp.fluid}/>
+                            <div className={classes.container}>
+                                <AboutSection2 content={section2Content} />
+                            </div>
+                            <ParallaxDivider height={350} image={data.parallaxImage.childImageSharp.fluid}/>
+                            <div className={classes.container}>
+                                <AboutSection3 content={section3Content} />
+                            </div>
                         </div>
-                        <ParallaxDivider height={350} image={data.parallaxImage.childImageSharp.fluid}/>
-                        <div className={classes.container}>
-                            <AboutSection2 content={section2Content} />
-                        </div>
-                        <ParallaxDivider height={350} image={data.parallaxImage.childImageSharp.fluid}/>
-                        <div className={classes.container}>
-                            <AboutSection3 content={section3Content} />
-                        </div>
-                    </div>
-                </ParallaxProvider>
-            </Layout>
+                    </ParallaxProvider>
+                </Layout>
+            </>
         );
     }
 }
