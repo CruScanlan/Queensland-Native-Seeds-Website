@@ -11,8 +11,9 @@
     "core-js": "^2.5.7",
     "crypto": "^1.0.1",
     "dotenv": "^6.2.0",
-    "gatsby": "^2.2.30",
+    "gatsby": "^2.9.11",
     "gatsby-image": "^2.0.22",
+    "gatsby-image-sitemap": "^1.1.1",
     "gatsby-plugin-canonical-urls": "^2.0.8",
     "gatsby-plugin-manifest": "^2.0.10",
     "gatsby-plugin-netlify": "^2.0.6",
@@ -43,7 +44,8 @@
     "react-scroll-parallax": "^1.3.5",
     "react-slick": "0.23.1",
     "react-swipeable-views": "0.13.0",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "rich-text-react-renderer-material-ui": "git+https://github.com/Cruzercru/rich-text-react-renderer-material-ui.git"
   },
   "scripts": {
     "develop": "gatsby develop",
