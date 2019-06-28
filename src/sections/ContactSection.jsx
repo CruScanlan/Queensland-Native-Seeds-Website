@@ -16,7 +16,11 @@ class ContactSection extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            errorNotification: false,
+            error: {
+                errorNotification: false,
+                errorMessage: ''
+            },
+            submitted: false,
             form: {}
         };
 
@@ -25,11 +29,13 @@ class ContactSection extends React.Component {
         this.handleRecaptcha = this.handleRecaptcha.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleCloseErrorNotification = this.handleCloseErrorNotification.bind(this);
+        this.handleCloseSuccessNotification = this.handleCloseSuccessNotification.bind(this);
     }
 
     handleChange(e) {
         let form = Object.assign({}, this.state.form);
         form[e.target.name] = e.target.value;
+        console.log(e.target.name)
         this.setState({form});
     }
 
@@ -40,13 +46,17 @@ class ContactSection extends React.Component {
     }
 
     handleCloseErrorNotification() {
-        this.setState({errorNotification: false});
+        this.setState({error:{errorNotification: false}});
+    }
+
+    handleCloseSuccessNotification() {
+        this.setState({submitted:false});
     }
 
     handleSubmit(e) {
         e.preventDefault();
         const form = e.target;
-        if(!this.state.form['g-recaptcha-response']) return this.setState({errorNotification: true});
+        if(!this.state.form['g-recaptcha-response']) return this.setState({error:{errorNotification: true, errorMessage: 'Complete the Captcha to continue'}});
         fetch("/?no-cache=1", {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -55,7 +65,7 @@ class ContactSection extends React.Component {
             ...this.state.form
           })
         })
-          .then(() => {})
+          .then(() => {this.setState({submitted: true})})
           .catch(error => alert(error));
     };
 
@@ -71,9 +81,15 @@ class ContactSection extends React.Component {
             <div className={classes.section}>
                 <CustomSnackbar 
                     handleClose={this.handleCloseErrorNotification}
-                    message="Complete Captcha"
+                    message={this.state.error.errorMessage} 
                     type="error"
-                    open={this.state.errorNotification} 
+                    open={this.state.error.errorNotification} 
+                />
+                <CustomSnackbar 
+                    handleClose={this.handleCloseSuccessNotification}
+                    message="Your enquiry has been sucessfully submitted" 
+                    type="success"
+                    open={this.state.submitted} 
                 />
                 <GridContainer justify="center">
                     <GridItem xs={12} sm={12} md={12}>
@@ -98,6 +114,7 @@ class ContactSection extends React.Component {
                                         formControlProps={{
                                             fullWidth: true
                                         }}
+                                        value={this.state.form.name}
                                         required
                                         onChange={this.handleChange}
                                     />
@@ -105,10 +122,11 @@ class ContactSection extends React.Component {
                                 <GridItem xs={12} sm={12} md={12}>
                                     <CustomInput
                                         labelText="Company/Business Name"
-                                        name="cName"
+                                        name="Company Name"
                                         formControlProps={{
                                             fullWidth: true
                                         }}
+                                        value={this.state.form['Company Name']}
                                         onChange={this.handleChange}
                                     />
                                 </GridItem>
@@ -120,6 +138,7 @@ class ContactSection extends React.Component {
                                             fullWidth: true
                                         }}
                                         required
+                                        value={this.state.form.phone}
                                         onChange={this.handleChange}
                                     />
                                 </GridItem>
@@ -131,6 +150,7 @@ class ContactSection extends React.Component {
                                             fullWidth: true
                                         }}
                                         required
+                                        value={this.state.form.email}
                                         onChange={this.handleChange}
                                     />
                                 </GridItem>
@@ -139,6 +159,7 @@ class ContactSection extends React.Component {
                                         labelText="Your Message (required)"
                                         name="message"
                                         required
+                                        value={this.state.form.message}
                                         formControlProps={{
                                             fullWidth: true,
                                             className: classes.textArea

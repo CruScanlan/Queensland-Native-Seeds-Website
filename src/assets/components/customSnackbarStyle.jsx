@@ -2,6 +2,9 @@ const customSnackbarStyles = theme => ({
     content: {
         margin: theme.spacing.unit,
     },
+    success: {
+        backgroundColor: '#43A047',
+    },
     error: {
         backgroundColor: theme.palette.error.dark,
     },
