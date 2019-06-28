@@ -4,7 +4,7 @@ const request = require('request');
 const {createFileNode} = require('gatsby-source-filesystem/create-file-node');
 
 exports.onCreateNode = async ({node, actions, store, createNodeId}) => {
-    if (node.internal.owner === 'gatsby-source-contentful' && node.internal.type === 'ContentfulPlantProfile' && !node.doNotIncludeStaticMap) { //If node is contentful plant profile and needs static map
+    if (node.internal.owner === 'gatsby-source-contentful' && node.internal.type === 'ContentfulPlantProfile' && !node.doNotIncludeStaticMap && !process.env.ARTICLES_PREVIEW) { //If node is contentful plant profile and needs static map
         return new Promise(async (resolve) => {
             const program = store.getState().program;
             const {createNode} = actions;
