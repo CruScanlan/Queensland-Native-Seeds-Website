@@ -26,6 +26,7 @@ class Homepage extends React.Component {
                 <SEO 
                     pathname="/"
                     title="Home"
+                    description="Queensland Native Seeds produce bulk Australian native plant seed including native grass, Eucalyptus and Acacia, dry-rainforest and understory plant seeds primarily as seed mixtures for mining rehabilitation."
                     image={data.backgroundImage.childImageSharp.fluid.src}/>
                 <Layout>
                     <Parallax filter image={data.backgroundImage.childImageSharp.fluid}>
@@ -39,7 +40,7 @@ class Homepage extends React.Component {
                     </Parallax>
                     <div className={classNames(classes.main, classes.mainRaised)}>
                         <div className={classes.container}>
-                            <HomeSection />
+                            <HomeSection data={data}/>
                         </div>
                     </div>
                 </Layout>
@@ -58,6 +59,27 @@ export const query = graphql`
             childImageSharp {
                 fluid(maxWidth: 1920, quality: 95) {
                     ...GatsbyImageSharpFluid_withWebp
+                }
+            }
+        },
+        downerLogo: file(relativePath: { eq: "downer.png" }) {
+            childImageSharp {
+                fluid(maxWidth: 500) {
+                    ...GatsbyImageSharpFluid
+                }
+            }
+        },
+        glencoreLogo: file(relativePath: { eq: "glencore.png" }) {
+            childImageSharp {
+                fluid(maxWidth: 500) {
+                    ...GatsbyImageSharpFluid
+                }
+            }
+        },
+        stanwellLogo: file(relativePath: { eq: "stanwell.png" }) {
+            childImageSharp {
+                fluid(maxWidth: 500) {
+                    ...GatsbyImageSharpFluid
                 }
             }
         }
