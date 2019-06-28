@@ -154,7 +154,6 @@ class PlantProfiles extends React.Component {
             )
         })
 
-
         return (
             <>
                 <SEO 

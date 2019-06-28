@@ -17,7 +17,7 @@ class HomeSection extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <div className={classNames(classes.section,classes.centerText)}>
+      <div className={classNames(classes.section, classes.centerText)}>
         <h4 className={classes.heavyText}>Designers and suppliers of native seed mixtures. Servicing mine, government and private rehabilitation works in Queensland and neighbouring states where overlapping plant distributions occur.</h4>
         <GridContainer justify="center" style={{marginTop: "60px"}}>
           <GridItem xs={6} sm={4} md={3}>

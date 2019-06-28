@@ -10,12 +10,14 @@ import customSnackbarStyles from "assets/components/customSnackbarStyle.jsx";
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import ErrorIcon from '@material-ui/icons/Error';
+import SuccessIcon from '@material-ui/icons/CheckCircle';
 import Snackbar from '@material-ui/core/Snackbar';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
 
 
 const variantIcon = {
-    error: ErrorIcon
+    error: ErrorIcon,
+    success: SuccessIcon
 };
   
 
