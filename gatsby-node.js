@@ -7,6 +7,7 @@ exports.createPages = ({actions, graphql}) => {
 }
 
 const createPlantProfilePages = (createPage, graphql) => {
+    if(process.env.ARTICLES_PREVIEW) return Promise.resolve();
     return new Promise((resolve) => {
         graphql(`
             {
