@@ -40,7 +40,7 @@ class Homepage extends React.Component {
                     </Parallax>
                     <div className={classNames(classes.main, classes.mainRaised)}>
                         <div className={classes.container}>
-                            <HomeSection />
+                            <HomeSection data={data}/>
                         </div>
                     </div>
                 </Layout>
@@ -59,6 +59,27 @@ export const query = graphql`
             childImageSharp {
                 fluid(maxWidth: 1920, quality: 95) {
                     ...GatsbyImageSharpFluid_withWebp
+                }
+            }
+        },
+        downerLogo: file(relativePath: { eq: "downer.png" }) {
+            childImageSharp {
+                fluid(maxWidth: 500) {
+                    ...GatsbyImageSharpFluid
+                }
+            }
+        },
+        glencoreLogo: file(relativePath: { eq: "glencore.png" }) {
+            childImageSharp {
+                fluid(maxWidth: 500) {
+                    ...GatsbyImageSharpFluid
+                }
+            }
+        },
+        stanwellLogo: file(relativePath: { eq: "stanwell.png" }) {
+            childImageSharp {
+                fluid(maxWidth: 500) {
+                    ...GatsbyImageSharpFluid
                 }
             }
         }
