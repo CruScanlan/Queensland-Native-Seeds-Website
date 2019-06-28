@@ -2,11 +2,9 @@ const fs = require('fs');
 const path = require('path');
 const request = require('request');
 const {createFileNode} = require('gatsby-source-filesystem/create-file-node');
-let createdMap = false;
 
 exports.onCreateNode = async ({node, actions, store, createNodeId}) => {
     if (node.internal.owner === 'gatsby-source-contentful' && node.internal.type === 'ContentfulPlantProfile' && !node.doNotIncludeStaticMap) { //If node is contentful plant profile and needs static map
-        if(!process.env.ARTICLES_PREVIEW && createdMap) return;
         return new Promise(async (resolve) => {
             const program = store.getState().program;
             const {createNode} = actions;
@@ -35,7 +33,6 @@ exports.onCreateNode = async ({node, actions, store, createNodeId}) => {
             fileNode.internal.type = 'distMap'; //grapql schema name
             fileNode.parent = node.id; //set as child of contentful plant profile node
             createNode(fileNode, { name: `gatsby-source-avh-distribution-map`}); //create final image node
-            createdMap = true;
             resolve();
         })
     }
