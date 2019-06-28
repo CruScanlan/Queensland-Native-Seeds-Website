@@ -8,6 +8,7 @@ import { withStyles } from '@material-ui/core/styles';
 import ArticlesRichText from '../articlesRichTextParser.jsx';
 import articleRichTextStyle from 'assets/articleRichTextStyle.jsx';
 import Layout from 'components/Layout.jsx';
+import SEO from 'components/SEO/SEO.jsx';
 
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
@@ -85,24 +86,32 @@ class ArticlePage extends React.Component {
         const articleContent = this.getArticleContent();
 
         return (
-            <Layout>
-                <Parallax filter image={data.article.headerImage ? data.article.headerImage.fluid : data.backgroundImage.childImageSharp.fluid}>
-                    <div className={classes.container}>
-                        <GridContainer>
-                            <GridItem xs={12} sm={12} md={12} style={{textAlign: "center"}}>
-                                <h1 className={classes.title}>{data.article.title}</h1>
-                                <h3 className={classes.title} style={{marginTop: "5px", fontWeight: 400, width: '100%'}}>{data.article.subTitle}</h3>
-                            </GridItem>
-                        </GridContainer>
+            <>
+                <SEO 
+                    pathname={`/articles/${data.article.slug}`}
+                    title={`${data.article.title} - Article`}
+                    description={data.article.description.description}
+                    article
+                    image={data.article.headerImage ? data.article.headerImage.fluid.src : data.backgroundImage.childImageSharp.fluid.src}/>
+                <Layout>
+                    <Parallax filter image={data.article.headerImage ? data.article.headerImage.fluid : data.backgroundImage.childImageSharp.fluid}>
+                        <div className={classes.container}>
+                            <GridContainer>
+                                <GridItem xs={12} sm={12} md={12} style={{textAlign: "center"}}>
+                                    <h1 className={classes.title}>{data.article.title}</h1>
+                                    <h3 className={classes.title} style={{marginTop: "5px", fontWeight: 400, width: '100%'}}>{data.article.subTitle}</h3>
+                                </GridItem>
+                            </GridContainer>
+                        </div>
+                    </Parallax>
+                    <div className={classNames(classes.main, classes.mainRaised)}>
+                        <div className={classes.pageContainer}>
+                            <ArticlesRichText richText={articleContent} />
+                        </div>
                     </div>
-                </Parallax>
-                <div className={classNames(classes.main, classes.mainRaised)}>
-                    <div className={classes.pageContainer}>
-                        <ArticlesRichText richText={articleContent} />
-                    </div>
-                </div>
-               {data.article.otherArticles ? this.renderOtherArticles(data.article.otherArticles, data, classes) : <div />}
-            </Layout>
+                {data.article.otherArticles ? this.renderOtherArticles(data.article.otherArticles, data, classes) : <div />}
+                </Layout>
+            </>
         );
     }
 
