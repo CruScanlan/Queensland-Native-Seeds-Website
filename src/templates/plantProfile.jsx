@@ -264,7 +264,7 @@ class PlantProfile extends React.Component {
                                             {this.renderImageArea(data, classes)}
                                         </GridItem>
                                         <GridItem xs={12} sm={12} md={12}>
-                                            <h4 className={classes.textBold}>Referances and Related Links</h4>
+                                            <h4 className={classes.textBold}>References and Related Links</h4>
                                             <div className={classes.richTextContent} dangerouslySetInnerHTML={{ __html: referancesRelatedLinksData }} />
                                         </GridItem>
                                     </GridContainer>
