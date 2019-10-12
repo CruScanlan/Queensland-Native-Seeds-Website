@@ -115,7 +115,7 @@ class ArticlePage extends React.Component {
                     title={'Articles'}
                     image={data.backgroundImage.childImageSharp.fluid.src}/>
                 <Layout>
-                    <ParallaxHeader filter image={data.backgroundImage.childImageSharp.fluid} />
+                    <ParallaxHeader filter medium image={data.backgroundImage.childImageSharp.fluid} />
                     <div className={classNames(classes.main, classes.mainRaised)}>
                         <div className={classes.container}>
                             <div className={classes.section}>
@@ -142,7 +142,7 @@ ArticlePage.propTypes = {
 
 export const query = graphql`
     query {
-        backgroundImage: file(relativePath: { eq: "bg10.jpg" }) {
+        backgroundImage: file(relativePath: { eq: "bg25.jpg" }) {
             childImageSharp {
                 fluid(maxWidth: 1920, quality: 95) {
                     ...GatsbyImageSharpFluid_withWebp

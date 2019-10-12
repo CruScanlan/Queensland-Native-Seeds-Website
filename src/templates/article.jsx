@@ -94,7 +94,7 @@ class ArticlePage extends React.Component {
                     article
                     image={data.article.headerImage ? data.article.headerImage.fluid.src : data.backgroundImage.childImageSharp.fluid.src}/>
                 <Layout>
-                    <Parallax filter image={data.article.headerImage ? data.article.headerImage.fluid : data.backgroundImage.childImageSharp.fluid}>
+                    <Parallax filter medium image={data.article.headerImage ? data.article.headerImage.fluid : data.backgroundImage.childImageSharp.fluid}>
                         <div className={classes.container}>
                             <GridContainer>
                                 <GridItem xs={12} sm={12} md={12} style={{textAlign: "center"}}>

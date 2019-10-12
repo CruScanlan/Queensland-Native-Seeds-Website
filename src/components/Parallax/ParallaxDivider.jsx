@@ -23,11 +23,14 @@ class ParallaxDivider extends React.Component {
             height
         } = this.props;
         const styles = {height: "100%", width: "100%"};
+
+        const offset = window.innerWidth > 1500 ? 100 : 70;
+
         return (
             <div className={classes.parallax} style={{height: height+"px"}}>
                 <Parallax
-                    offsetYMax={-90}
-                    offsetYMin={90}
+                    offsetYMax={-offset}
+                    offsetYMin={offset}
                     tag="div"
                     styleOuter={styles}
                     styleInner={styles}

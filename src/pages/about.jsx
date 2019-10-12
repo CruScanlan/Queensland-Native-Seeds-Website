@@ -41,11 +41,11 @@ class AboutPage extends React.Component {
                             <div className={classes.container}>
                                 <AboutSection1 content={section1Content}/>
                             </div>
-                            <ParallaxDivider height={350} image={data.parallaxImage.childImageSharp.fluid}/>
+                            <ParallaxDivider height={350} image={data.parallaxImage1.childImageSharp.fluid}/>
                             <div className={classes.container}>
                                 <AboutSection2 content={section2Content} />
                             </div>
-                            <ParallaxDivider height={350} image={data.parallaxImage.childImageSharp.fluid}/>
+                            <ParallaxDivider height={350} image={data.parallaxImage2.childImageSharp.fluid}/>
                             <div className={classes.container}>
                                 <AboutSection3 content={section3Content} />
                             </div>
@@ -59,14 +59,21 @@ class AboutPage extends React.Component {
 
 export const query = graphql`
     query {
-        backgroundImage: file(relativePath: { eq: "bg10.jpg" }) {
+        backgroundImage: file(relativePath: { eq: "bg25.jpg" }) {
             childImageSharp {
                 fluid(maxWidth: 1920, quality: 95) {
                     ...GatsbyImageSharpFluid_withWebp
                 }
             }
         },
-        parallaxImage: file(relativePath: { eq: "paddock.jpg" }) {
+        parallaxImage1: file(relativePath: { eq: "bg44.jpg" }) {
+            childImageSharp {
+                fluid(maxWidth: 1920, quality: 70) {
+                    ...GatsbyImageSharpFluid_withWebp
+                }
+            }
+        },
+        parallaxImage2: file(relativePath: { eq: "bg41.jpg" }) {
             childImageSharp {
                 fluid(maxWidth: 1920, quality: 70) {
                     ...GatsbyImageSharpFluid_withWebp
