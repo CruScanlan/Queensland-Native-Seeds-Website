@@ -55,9 +55,9 @@ Homepage.propTypes = {
 
 export const query = graphql`
     query {
-        backgroundImage: file(relativePath: { eq: "bg10.jpg" }) {
+        backgroundImage: file(relativePath: { eq: "bg30.jpg" }) {
             childImageSharp {
-                fluid(maxWidth: 1920, quality: 95) {
+                fluid(maxWidth: 2000, quality: 95) {
                     ...GatsbyImageSharpFluid_withWebp
                 }
             }

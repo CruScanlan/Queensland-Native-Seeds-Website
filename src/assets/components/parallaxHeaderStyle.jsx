@@ -33,6 +33,15 @@ const parallaxHeaderStyle = {
     },
     medium: {
         height: "580px"
+    },
+    gatsbyImage: {
+        height: "100%"
+    },
+    gatsbyImageMedium: {
+        height: "auto",
+        "@media (max-width: 992px)": {
+            height: "100%"
+        }
     }
 };
 

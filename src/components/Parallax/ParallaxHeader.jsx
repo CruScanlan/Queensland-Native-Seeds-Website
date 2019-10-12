@@ -75,6 +75,11 @@ class ParallaxHeader extends React.Component {
             [className]: className !== undefined
         });
 
+        const gatsbyImageClasses = classNames({
+            [classes.gatsbyImage]: true,
+            [classes.gatsbyImageMedium]: medium
+        })
+
         if(map && !image) {
             return (
                 <div className={parallaxClasses} style={{...style, ...this.state}}>
@@ -89,14 +94,14 @@ class ParallaxHeader extends React.Component {
         }
         return (
             <div className={parallaxClasses} style={{...style, ...this.state}}>
-                <Img fluid={image}
-                     critical
+                <Img className={gatsbyImageClasses}
+                     fluid={image}
+                     loading="eager"
                      style={{
                          position: "absolute",
                          left: 0,
                          top: 0,
-                         width: "100%",
-                         height: "100%",
+                         width: "100%"
                      }}/>
                 {children}
             </div>

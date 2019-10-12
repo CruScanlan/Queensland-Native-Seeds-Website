@@ -271,9 +271,9 @@ class PlantProfiles extends React.Component {
 
 export const query = graphql`
     query PlantProfileIndexQuery {
-        backgroundImage: file(relativePath: { eq: "bg1.jpg" }) {
+        backgroundImage: file(relativePath: { eq: "bg25.jpg" }) {
             childImageSharp {
-                fluid(maxWidth: 1920, quality: 45) {
+                fluid(maxWidth: 2000, quality: 45) {
                     ...GatsbyImageSharpFluid_withWebp
                 }
             }

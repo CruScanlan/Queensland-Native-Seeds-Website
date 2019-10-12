@@ -23,7 +23,7 @@ class AboutSection2 extends React.Component {
             <StaticQuery
                 query={graphql`
                     query {
-                        image: file(relativePath: { eq: "bg2.jpg" }) {
+                        image: file(relativePath: { eq: "bg40.jpg" }) {
                             childImageSharp {
                                 fluid(maxWidth: 500) {
                                     ...GatsbyImageSharpFluid
