@@ -36,7 +36,7 @@ class ParallaxDivider extends React.Component {
                     styleInner={styles}
                     //slowerScrollRate
                 >
-                    <Img fluid={image} className={classes.image}/>
+                    <Img fluid={image} className={classes.image} alt="Queensland Native Seeds" title="Queensland Native Seeds"/>
                 </Parallax>
             </div>
         )

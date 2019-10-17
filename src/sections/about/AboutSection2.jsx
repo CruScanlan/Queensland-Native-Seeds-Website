@@ -39,7 +39,7 @@ class AboutSection2 extends React.Component {
                                 <GridItem xs={12} sm={12} md={8} className={classes.content} dangerouslySetInnerHTML={{ __html: content }} />
                                 <GridItem xs={12} sm={12} md={4}>
                                     <div className={classes.inLineImageContainer}>
-                                        <Img fluid={data.image.childImageSharp.fluid} className={classes.inLineImage} />
+                                        <Img fluid={data.image.childImageSharp.fluid} className={classes.inLineImage} alt="Queensland Native Seeds" title="Queensland Native Seeds"/>
                                         <Img fluid={data.image.childImageSharp.fluid} className={classes.inLineImageShadow} />
                                     </div>
                                 </GridItem>

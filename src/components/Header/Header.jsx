@@ -75,7 +75,7 @@ class Header extends React.Component {
         });
         const brandComponent = (
             <Link to="/">
-                <img src={brand} className={classes.brandImage}/>
+                <img src={brand} className={classes.brandImage} alt="Queensland Native Seeds Logo" title="Queensland Native Seeds Logo"/>
             </Link>
         );
         return (

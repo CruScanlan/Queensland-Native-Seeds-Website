@@ -102,7 +102,9 @@ class ParallaxHeader extends React.Component {
                          left: 0,
                          top: 0,
                          width: "100%"
-                     }}/>
+                     }}
+                     alt="Queensland Native Seeds" title="Queensland Native Seeds"
+                     />
                 {children}
             </div>
         )
