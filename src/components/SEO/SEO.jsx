@@ -10,11 +10,14 @@ const SEO = ({ title, description, image, pathname, article }) => (
       site: {
         siteMetadata: {
           homeTitle,
-          titleTemplate,
           siteUrl
         },
       },
     }) => {
+
+        if(pathname === "/") title = homeTitle;
+      else title = `${title} - Queensland Native Seeds`;
+
       let seo = {
         title: title,
         description: description,
@@ -22,22 +25,18 @@ const SEO = ({ title, description, image, pathname, article }) => (
         url: `${siteUrl}${pathname || "/"}`,
       }
 
-      if(pathname === "/") titleTemplate = homeTitle;
-
       return (
         <>
-          <Helmet title={seo.title} titleTemplate={titleTemplate}>
+          <Helmet title={seo.title} >
             {seo.description && <meta name="description" content={seo.description} />}
             <meta name="image" content={seo.image} />
             {seo.url && <meta property="og:url" content={seo.url} />}
-            {(article ? true : null) && (
-              <meta property="og:type" content="article" />
-            )}
-            {seo.title && <meta property="og:title" content={seo.title} />}
+            <meta property="og:type" content={seo.article ? 'article' : 'website'} />
+            {seo.title && <meta property="og:title" content={title} />}
             {seo.description && (
               <meta property="og:description" content={seo.description} />
             )}
-            {seo.image && <meta property="og:image" content={seo.image} />}
+            {seo.image && <meta property="og:image" content={seo.image.startsWith('/static') ? `https://qldnativeseeds.com.au/${seo.image}` : seo.image} />}
             <meta name="twitter:card" content="summary_large_image" />
             {seo.title && <meta name="twitter:title" content={seo.title} />}
             {seo.description && (

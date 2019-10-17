@@ -25,7 +25,7 @@ class Homepage extends React.Component {
             <>
                 <SEO 
                     pathname="/"
-                    title="Home"
+                    title="Queensland Native Seeds - Australian Native Seed Supplier"
                     description="Queensland Native Seeds produce bulk Australian native plant seed including native grass, Eucalyptus and Acacia, dry-rainforest and understory plant seeds primarily as seed mixtures for mining rehabilitation."
                     image={data.backgroundImage.childImageSharp.fluid.src}/>
                 <Layout>

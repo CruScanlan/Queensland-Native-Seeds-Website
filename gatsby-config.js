@@ -5,7 +5,6 @@ require("dotenv").config({
 module.exports = {
     siteMetadata: {
         siteUrl: `https://qldnativeseeds.com.au`,
-        titleTemplate: "%s - Queensland Native Seeds",
         homeTitle: "Queensland Native Seeds - Australian Native Seed Supplier"
     },
     plugins: [
