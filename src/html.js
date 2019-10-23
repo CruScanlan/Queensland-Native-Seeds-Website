@@ -8,7 +8,7 @@ export default class HTML extends React.Component {
         <head>
           <meta name="robots" content="noindex,nofollow" />
           <meta charSet="utf-8" />
-          <meta http-equiv="content-language" content="en-us" />
+          <meta httpEquiv="content-language" content="en-us" />
           <meta httpEquiv="x-ua-compatible" content="ie=edge" />
           <meta
             name="viewport"

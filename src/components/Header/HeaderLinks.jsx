@@ -12,6 +12,7 @@ import ListItem from "@material-ui/core/ListItem";
 
 // core components
 import Button from "components/CustomButtons/Button.jsx";
+import CustomDropdown from "components/CustomDropdown/CustomDropdown.jsx";
 import headerLinksStyle from "assets/components/headerLinksStyle.jsx";
 
 function HeaderLinks({ ...props }) {
@@ -39,14 +40,26 @@ function HeaderLinks({ ...props }) {
                 </Link>
             </ListItem>
             <ListItem className={classes.listItem}>
-                <Link  to="/plant-profiles?search=&categories=&searchByCommonName=false&sortingColumn=scientificName&sortingAZ=true" className={classes.navLink} activeClassName={classes.navLinkActive}>
-                    <Button
-                        color="transparent"
-                        target="_blank"
-                    >
-                        Plant Profiles
-                    </Button>
-                </Link>
+                <CustomDropdown
+                      left
+                      hoverColor="primary"
+                      buttonText="Plant Profiles"
+                      buttonProps={{
+                        className: classes.navLink,
+                        color: "transparent"
+                      }}
+                      dropdownList={[
+                        {
+                            name: "Plant Profiles",
+                            link: "/plant-profiles"
+                        },
+                        {
+                            name:  "Plant Profiles Introduction",
+                            link: "/plant-profiles-introduction"
+                        }
+                      ]}
+                    />
+
             </ListItem>
             <ListItem className={classes.listItem}>
                 <Link  to="/contact-us" className={classes.navLink} activeClassName={classes.navLinkActive}>
