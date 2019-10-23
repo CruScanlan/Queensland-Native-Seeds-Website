@@ -3,6 +3,7 @@ import React from "react";
 import classNames from "classnames";
 // nodejs library to set properties for components
 import PropTypes from "prop-types";
+import { Link } from "gatsby";
 
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -28,6 +29,15 @@ class CustomDropdown extends React.Component {
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleClose = this.handleClose.bind(this);
+    this.handleMouseEnter = this.handleMouseEnter.bind(this);
+    this.handleMouseLeave = this.handleMouseLeave.bind(this);
+    
+  }
+  handleMouseEnter() {
+    this.setState(state => ({ open: !state.open }));
+  }
+  handleMouseLeave() {
+    this.setState(state => ({ open: !state.open }));
   }
   handleClick() {
     this.setState(state => ({ open: !state.open }));
@@ -85,10 +95,12 @@ class CustomDropdown extends React.Component {
         icon = null;
         break;
     }
+
     return (
-      <div>
-        <div>
-          <Button
+      <div
+        onMouseEnter={this.handleMouseEnter}
+        onMouseLeave={this.handleMouseLeave}>
+        <Button
             aria-label="Notifications"
             aria-owns={open ? "menu-list" : null}
             aria-haspopup="true"
@@ -96,13 +108,14 @@ class CustomDropdown extends React.Component {
             buttonRef={node => {
               this.anchorEl = node;
             }}
+            
             onClick={this.handleClick}
+            className={classes.button}
           >
             {icon}
             {buttonText !== undefined ? buttonText : null}
             {caret ? <b className={caretClasses} /> : null}
           </Button>
-        </div>
         <Popper
           open={open}
           anchorEl={this.anchorEl}
@@ -149,14 +162,16 @@ class CustomDropdown extends React.Component {
                           />
                         );
                       }
+
                       return (
-                        <MenuItem
-                          key={key}
-                          onClick={this.handleClose}
-                          className={dropdownItem}
-                        >
-                          {prop}
-                        </MenuItem>
+                        <Link key={key} to={prop.link} className={classes.navLink} activeClassName={classes.navLinkActive}>
+                            <MenuItem
+                            onClick={this.handleClose}
+                            className={dropdownItem}
+                            >
+                                {prop.name}
+                            </MenuItem>
+                        </Link>
                       );
                     })}
                   </MenuList>

@@ -18,6 +18,10 @@ const customDropdownStyle = theme => ({
   popperClose: {
     pointerEvents: "none"
   },
+  button: {
+    margin: "8px 1px",
+    color: "#000"
+  },
   dropdown: {
     borderRadius: "3px",
     border: "0",
@@ -52,7 +56,7 @@ const customDropdownStyle = theme => ({
   },
   dropdownItem: {
     ...defaultFont,
-    fontSize: "13px",
+    fontSize: "14px",
     padding: "10px 20px",
     margin: "0 5px",
     borderRadius: "2px",
@@ -129,7 +133,7 @@ const customDropdownStyle = theme => ({
     height: "20px"
   },
   caret: {
-    transition: "all 150ms ease-in",
+    transition: "transform 150ms ease-in",
     display: "inline-block",
     width: "0",
     height: "0",
@@ -161,7 +165,43 @@ const customDropdownStyle = theme => ({
   },
   noLiPadding: {
     padding: "0"
-  }
+  },
+  navLink: {
+    color: "#000",
+    "& button": {
+        color: "#000",
+        position: "relative",
+        padding: "0.9375rem",
+        fontWeight: "400",
+        fontSize: "14px",
+        textTransform: "uppercase",
+        borderRadius: "3px",
+        lineHeight: "20px",
+        textDecoration: "none",
+        margin: "5px",
+        display: "inline-flex",
+        "&:hover,&:focus": {
+            color: "#fff",
+            background: "rgba(200, 200, 200, 0.3)"
+        },
+        [theme.breakpoints.down("sm")]: {
+            width: "calc(100% - 30px)",
+            marginLeft: "15px",
+            marginBottom: "8px",
+            marginTop: "8px",
+            textAlign: "left",
+            "& > span:first-child": {
+                justifyContent: "flex-start"
+            }
+        }
+    }
+    },
+    navLinkActive: {
+        "& button": {
+            //color: "#fff",
+            backgroundColor: "rgba(200, 200, 200, 0.3)"
+        }
+    }
 });
 
 export default customDropdownStyle;

@@ -37,6 +37,7 @@ const headerLinksStyle = theme => ({
         padding: "0 !important"
     },
     navLink: {
+        color: "#000",
         "& button": {
             color: "#000",
             position: "relative",
