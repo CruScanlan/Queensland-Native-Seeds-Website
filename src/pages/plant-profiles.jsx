@@ -273,7 +273,7 @@ export const query = graphql`
     query PlantProfileIndexQuery {
         backgroundImage: file(relativePath: { eq: "bg25.jpg" }) {
             childImageSharp {
-                fluid(maxWidth: 2000, quality: 45) {
+                fluid(maxWidth: 2000, quality: 95) {
                     ...GatsbyImageSharpFluid_withWebp
                 }
             }

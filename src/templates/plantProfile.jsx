@@ -282,7 +282,7 @@ export const query = graphql`
     query PlantProfileQuery($slug: String!, $scientificName: String!) {
         backgroundImage: file(relativePath: { eq: "bg25.jpg" }) {
             childImageSharp {
-                fluid(maxWidth: 2000, quality: 45) {
+                fluid(maxWidth: 2000, quality: 95) {
                     ...GatsbyImageSharpFluid_withWebp
                 }
             }
