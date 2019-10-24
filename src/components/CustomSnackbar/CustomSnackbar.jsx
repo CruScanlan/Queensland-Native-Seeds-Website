@@ -39,7 +39,7 @@ function CustomSnackbar({ ...props }) {
             horizontal: 'left',
           }}
           open={open}
-          autoHideDuration={3000}
+          autoHideDuration={9000}
           onClose={handleClose}
         >
           <SnackbarContent

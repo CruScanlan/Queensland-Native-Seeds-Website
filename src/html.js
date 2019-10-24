@@ -6,7 +6,6 @@ export default class HTML extends React.Component {
     return (
       <html {...this.props.htmlAttributes}>
         <head>
-          <meta name="robots" content="noindex,nofollow" />
           <meta charSet="utf-8" />
           <meta httpEquiv="content-language" content="en-us" />
           <meta httpEquiv="x-ua-compatible" content="ie=edge" />
