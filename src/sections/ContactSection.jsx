@@ -65,7 +65,7 @@ class ContactSection extends React.Component {
             ...this.state.form
           })
         })
-          .then(() => {this.setState({submitted: true})})
+          .then(() => {this.setState({submitted: true, form: {name: '', 'Company Name': '', phone: '', email: '', message: ''}})})
           .catch(error => alert(error));
     };
 
