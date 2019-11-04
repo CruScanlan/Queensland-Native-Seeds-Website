@@ -92,6 +92,7 @@ class ArticlePage extends React.Component {
                     title={`${data.article.title} - Article`}
                     description={data.article.description.description}
                     article
+                    breadCrumbs={[{name: 'Articles', url: '/articles'}, {name: `${data.article.title} - Article`, url: `/articles/${data.article.slug}`}]}
                     image={data.article.headerImage ? data.article.headerImage.fluid.src : data.backgroundImage.childImageSharp.fluid.src}/>
                 <Layout>
                     <Parallax filter medium image={data.article.headerImage ? data.article.headerImage.fluid : data.backgroundImage.childImageSharp.fluid}>

@@ -27,6 +27,7 @@ class Homepage extends React.Component {
                     pathname="/"
                     title="Queensland Native Seeds - Australian Native Seed Supplier"
                     description="Queensland Native Seeds produce bulk Australian native plant seed including native grass, Eucalyptus and Acacia, dry-rainforest and understory plant seeds primarily as seed mixtures for mining rehabilitation."
+                    breadCrumbs={[{name: 'Home', url: '/'}]}
                     image={data.backgroundImage.childImageSharp.fluid.src}/>
                 <Layout>
                     <Parallax filter image={data.backgroundImage.childImageSharp.fluid}>

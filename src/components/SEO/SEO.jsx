@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet"
 import PropTypes from "prop-types"
 import { StaticQuery, graphql } from "gatsby"
 
-const SEO = ({ title, description, image, pathname, article }) => (
+const SEO = ({ title, description, image, pathname, article, breadCrumbs }) => (
   <StaticQuery
     query={query}
     render={({
@@ -15,7 +15,7 @@ const SEO = ({ title, description, image, pathname, article }) => (
       },
     }) => {
 
-        if(pathname === "/") title = homeTitle;
+      if(pathname === "/") title = homeTitle;
       else title = `${title} - Queensland Native Seeds`;
 
       let seo = {
@@ -23,6 +23,18 @@ const SEO = ({ title, description, image, pathname, article }) => (
         description: description,
         image: image,
         url: `${siteUrl}${pathname || "/"}`,
+        breadCrumbs: {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [breadCrumbs.map((breadCrumb, index) => {
+            return {
+              "@type": "ListItem",
+              "position": index+1,
+              "name": breadCrumb.name,
+              "item": `https://qldnativeseeds.com.au/${breadCrumb.url}`
+            }
+          })]
+        }
       }
 
       return (
@@ -36,12 +48,15 @@ const SEO = ({ title, description, image, pathname, article }) => (
             {seo.description && (
               <meta property="og:description" content={seo.description} />
             )}
-            {seo.image && <meta property="og:image" content={seo.image.startsWith('/static') ? `https://qldnativeseeds.com.au/${seo.image}` : seo.image} />}
+            {seo.image && <meta property="og:image" content={seo.image.startsWith('/static') ? `https://qldnativeseeds.com.au${seo.image}` : seo.image} />}
             <meta name="twitter:card" content="summary_large_image" />
             {seo.title && <meta name="twitter:title" content={seo.title} />}
             {seo.description && (
               <meta name="twitter:description" content={seo.description} />
             )}
+            <script type="application/ld+json">
+              {JSON.stringify(seo.breadCrumbs)}
+            </script>
           </Helmet>
         </>
       )

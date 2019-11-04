@@ -33,6 +33,7 @@ class AboutPage extends React.Component {
                 <SEO 
                     pathname="/about-us"
                     title="About Us"
+                    breadCrumbs={[{name: 'About Us', url: '/about-us'}]}
                     image={data.backgroundImage.childImageSharp.fluid.src}/>
                 <Layout>
                     <ParallaxHeader filter medium image={data.backgroundImage.childImageSharp.fluid}/>

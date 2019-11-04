@@ -25,7 +25,9 @@ class Contact extends React.Component {
             <>
                 <SEO 
                     pathname="/contact-us"
-                    title="Contact Us"/>
+                    title="Contact Us"
+                    breadCrumbs={[{name: 'Contact Us', url: '/contact-us'}]}
+                    />
                 <Layout whiteHeader>
                     <ParallaxHeader map medium />
                     <div className={classNames(classes.main, classes.mainRaised)}>

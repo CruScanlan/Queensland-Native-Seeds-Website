@@ -113,6 +113,7 @@ class ArticlePage extends React.Component {
                 <SEO 
                     pathname={`/articles`}
                     title={'Articles'}
+                    breadCrumbs={[{name: 'Articles', url: '/articles'}]}
                     image={data.backgroundImage.childImageSharp.fluid.src}/>
                 <Layout>
                     <ParallaxHeader filter medium image={data.backgroundImage.childImageSharp.fluid} />
