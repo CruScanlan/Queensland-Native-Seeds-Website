@@ -88,6 +88,27 @@ const plantProfileStyle = {
         width: "100%",
         height: "100%",
         zIndex: "-1"
+    },
+    infoTable: {
+        width: '100%',
+        paddingLeft: '15px',
+        paddingRight: '15px'
+    },
+    infoTableElement: {
+        display: 'block',
+        padding: 0,
+        marginTop: '10px',
+        marginBottom: '10px'
+    },
+    infoTableElementHeading: {
+        color: "#000",
+        fontWeight: 700,
+        fontSize: '1.125rem',
+        lineHeight: '1.5em'
+    },
+    infoTableElementTextContent: {
+        fontSize: '1.0625rem',
+        lineHeight: '1.55em'
     }
 };
 

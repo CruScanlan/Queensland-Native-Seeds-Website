@@ -98,8 +98,9 @@ class PlantProfile extends React.Component {
         if(!images) return <div />;
         return images.map((image, index) => (
             <GridItem xs={12} sm={6} md={4} key={image.id}>
-                <div className={classes.inLineImageContainer} style={{marginTop: "30px", cursor: "pointer"}} onClick={() => this.openLightbox(index)} onContextMenu={(e)=>  {e.preventDefault(); return false;}}>
-                    <Img fluid={image.smallFluid} className={classes.inLineImage} alt={this.photoCreateCaption(image)} title={this.photoCreateCaption(image)}/>
+                <div className={classes.inLineImageContainer} style={{marginTop: "30px", cursor: "pointer"}} onClick={() => this.openLightbox(index)} onContextMenu={(e)=>  {e.preventDefault(); return false;}} itemScope itemType="http://schema.org/ImageObject">
+                    <meta itemprop="name" content={this.photoCreateCaption(image)} />
+                    <Img fluid={image.smallFluid} className={classes.inLineImage} itemProp="contentUrl" alt={this.photoCreateCaption(image)} title={this.photoCreateCaption(image)}/>
                     <Img fluid={image.smallFluid} className={classes.inLineImageShadow}/>
                 </div>
             </GridItem>
@@ -145,9 +146,11 @@ class PlantProfile extends React.Component {
 
     renderDistMap(data, classes) {
         if(data.plantProfile.doNotIncludeStaticMap || !data.map) return <div className={classes.inLineImageContainer} style={{width: "100%"}}></div>
+        const name = `Distribution Map | ${data.plantProfile.scientificName} | Queensland Native Seeds`;
         return (
-            <div className={classes.inLineImageContainer} style={{width: "100%"}}>
-                <Img fluid={data.map.childImageSharp.fluid} className={classes.inLineImage} alt={`Distribution Map | ${data.plantProfile.scientificName} | Queensland Native Seeds`} title={`Distribution Map | ${data.plantProfile.scientificName} | Queensland Native Seeds`}/>
+            <div className={classes.inLineImageContainer} style={{width: "100%"}} itemScope itemType="http://schema.org/ImageObject">
+                <meta itemprop="name" content={name} />
+                <Img fluid={data.map.childImageSharp.fluid} itemProp="contentUrl" className={classes.inLineImage} alt={name} title={name}/>
                 <Img fluid={data.map.childImageSharp.fluid} className={classes.inLineImageShadow}/>
             </div>
         );
@@ -193,6 +196,7 @@ class PlantProfile extends React.Component {
                 <SEO 
                     pathname={`/plant-profiles/${data.plantProfile.slug}`}
                     title={`${data.plantProfile.scientificName} - Plant Profiles`}
+                    breadCrumbs={[{name: 'Plant Profiles', url: '/plant-profiles'}, {name: data.plantProfile.scientificName, url: `/plant-profiles/${data.plantProfile.slug}`}]}
                     image={seoPicture}/>
                 <Layout>
                     <ParallaxHeader filter medium image={data.backgroundImage.childImageSharp.fluid}/>
@@ -222,29 +226,53 @@ class PlantProfile extends React.Component {
                                     <h2 className={classes.pageTitle}>{data.plantProfile.scientificName}</h2>
                                     
                                     <GridContainer justify="center">
-                                        <GridItem xs={12} sm={12} md={12}>
-                                            <h4 className={classes.textBold}>Categories</h4>
-                                            {this.createBadges(data.plantProfile.categories, 'green')}
+                                        <GridItem xs={12} sm={12} md={12} style={{paddingLeft: '13px'}} itemScope itemType="http://schema.org/Table">
+                                            <table>
+                                                <tr style={{display: 'none'}}>
+                                                    <td>
+                                                        Scientific Name
+                                                    </td>
+                                                    <td>
+                                                        {data.plantProfile.scientificName}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td className={classNames(classes.infoTableElement, classes.infoTableElementHeading)}>
+                                                        Categories
+                                                    </td>
+                                                    <td className={classes.infoTableElement} style={{margin: 0}}>
+                                                        {this.createBadges(data.plantProfile.categories, 'green')}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td className={classNames(classes.infoTableElement, classes.infoTableElementHeading)}>
+                                                        Common Name(s)
+                                                    </td>
+                                                    <td className={classNames(classes.infoTableElement, classes.infoTableElementTextContent)}>
+                                                        {data.plantProfile.commonName ? data.plantProfile.commonName.join(', ') : ''}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td className={classNames(classes.infoTableElement, classes.infoTableElementHeading)}>
+                                                        Family
+                                                    </td>
+                                                    <td className={classNames(classes.infoTableElement, classes.infoTableElementTextContent)}>
+                                                        {data.plantProfile.family}
+                                                    </td>
+                                                </tr>
+                                            </table>
                                         </GridItem>
                                         <GridItem xs={12} sm={12} md={12}>
-                                            <h4 className={classes.textBold}>Common Names</h4>
-                                            <h5>{data.plantProfile.commonName ? data.plantProfile.commonName.join(', ') : ''}</h5>
+                                          <h4 className={classes.textBold}>Description</h4>
+                                          <div className={classes.richTextContent} dangerouslySetInnerHTML={{ __html: descriptionData }} />
                                         </GridItem>
                                         <GridItem xs={12} sm={12} md={12}>
-                                            <h4 className={classes.textBold}>Family</h4>
-                                            <h5>{data.plantProfile.family}</h5>
+                                          <h4 className={classes.textBold}>Notes</h4>
+                                          <div className={classes.richTextContent} dangerouslySetInnerHTML={{ __html: notesData }} />
                                         </GridItem>
                                         <GridItem xs={12} sm={12} md={12}>
-                                            <h4 className={classes.textBold}>Description</h4>
-                                            <div className={classes.richTextContent} dangerouslySetInnerHTML={{ __html: descriptionData }} />
-                                        </GridItem>
-                                        <GridItem xs={12} sm={12} md={12}>
-                                            <h4 className={classes.textBold}>Notes</h4>
-                                            <div className={classes.richTextContent} dangerouslySetInnerHTML={{ __html: notesData }} />
-                                        </GridItem>
-                                        <GridItem xs={12} sm={12} md={12}>
-                                            <h4 className={classes.textBold}>Historical Notes</h4>
-                                            <div className={classes.richTextContent} dangerouslySetInnerHTML={{ __html: historicalNotesData }} />
+                                          <h4 className={classes.textBold}>Historical Notes</h4>
+                                          <div className={classes.richTextContent} dangerouslySetInnerHTML={{ __html: historicalNotesData }} />
                                         </GridItem>
                                         <GridItem xs={12} sm={12} md={12}>
                                             <h4 className={classes.textBold}>Distribution</h4>
@@ -277,6 +305,22 @@ class PlantProfile extends React.Component {
         );
     }
 }
+
+/*
+<GridItem xs={12} sm={12} md={12}>
+  <h4 className={classes.textBold}>Categories</h4>
+  {this.createBadges(data.plantProfile.categories, 'green')}
+</GridItem>
+<GridItem xs={12} sm={12} md={12}>
+  <h4 className={classes.textBold}>Common Names</h4>
+  <h5>{data.plantProfile.commonName ? data.plantProfile.commonName.join(', ') : ''}</h5>
+</GridItem>
+<GridItem xs={12} sm={12} md={12}>
+  <h4 className={classes.textBold}>Family</h4>
+  <h5>{data.plantProfile.family}</h5>
+</GridItem>
+
+*/
 
 export const query = graphql`
     query PlantProfileQuery($slug: String!, $scientificName: String!) {

@@ -33,8 +33,9 @@ class PlantProfileIntro extends React.Component {
         return (
             <>
                 <SEO 
-                    pathname="/"
+                    pathname="/plant-profiles-introduction"
                     title="Plant Profiles Introduction"
+                    breadCrumbs={[{name: 'Plant Profiles Introduction', url: '/plant-profiles-introduction'}]}
                     image={data.backgroundImage.childImageSharp.fluid.src}/>
                 <Layout>
                     <Parallax filter image={data.backgroundImage.childImageSharp.fluid} medium />

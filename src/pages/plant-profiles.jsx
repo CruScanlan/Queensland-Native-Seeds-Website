@@ -133,7 +133,7 @@ class PlantProfiles extends React.Component {
     render() {
         const {classes, data, location} = this.props;
         const queryParams = queryString.parse(location.search);
-        const searchQuery = queryParams.search;
+        const searchQuery = queryParams.search || '';
         
         const plantProfilesFiltered = this.sortPlantProfiles(this.filteredPlantProfiles(data, queryParams), queryParams);
         const plantProfileResultsCount = plantProfilesFiltered.length;
@@ -154,6 +154,7 @@ class PlantProfiles extends React.Component {
             )
         });
 
+        console.log(searchQuery)
         const title = searchQuery === '' ? "Plant Profiles" : `${searchQuery} - Plant Profiles`;
 
         return (
@@ -161,6 +162,7 @@ class PlantProfiles extends React.Component {
                 <SEO 
                         pathname="/plant-profiles"
                         title={title}
+                        breadCrumbs={[{name: 'Plant Profiles', url: '/plant-profiles'}]}
                         image={data.backgroundImage.childImageSharp.fluid.src}/>
                 <Layout>
                     <ParallaxHeader filter medium image={data.backgroundImage.childImageSharp.fluid}/>
