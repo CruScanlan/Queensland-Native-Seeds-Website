@@ -45,6 +45,7 @@ module.exports = {
         },
         `gatsby-plugin-remove-serviceworker`,
         `gatsby-plugin-sitemap`,
+        `gatsby-image-sitemap`,
         {
             resolve: 'gatsby-plugin-robots-txt',
             options: {
@@ -64,7 +65,7 @@ module.exports = {
             options: {
               trackingId: "UA-150841714-1",
               head: true
-            },
+            }
         },
     ]
 };
