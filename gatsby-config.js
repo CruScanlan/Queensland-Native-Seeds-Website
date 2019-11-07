@@ -50,7 +50,10 @@ module.exports = {
             resolve: 'gatsby-plugin-robots-txt',
             options: {
                 host: 'https://qldnativeseeds.com.au',
-                sitemap: 'https://qldnativeseeds.com.au/sitemap.xml',
+                sitemap: [
+                    'https://qldnativeseeds.com.au/sitemap.xml',
+                    'https://qldnativeseeds.com.au/image-sitemap.xml'
+                ],
                 policy: [{ userAgent: '*', allow: '/' }]
             }
         },
