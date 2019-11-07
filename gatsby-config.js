@@ -20,6 +20,7 @@ module.exports = {
             }
         },
         `@contentful/gatsby-transformer-contentful-richtext`,
+        `gatsby-contentful-image-domain-change`,
         `gatsby-source-avh-distribution-map`,
         'gatsby-plugin-react-helmet',
         {
