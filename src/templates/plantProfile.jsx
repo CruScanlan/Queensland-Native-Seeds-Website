@@ -191,16 +191,18 @@ class PlantProfile extends React.Component {
 
         console.log(data.map.childImageSharp.fluid.src)
 
-        const schema = [
-            ...data.plantProfile.pictures.map(picture => {
+        let schema = []
+
+        if(data.plantProfile.pictures) {
+            schema.push(...data.plantProfile.pictures.map(picture => {
                 return {
                     "@context": "http://schema.org",
                     "@type": "ImageObject",
                     "contentUrl": picture.file.url,
                     "name": this.photoCreateCaption(picture)
                 }
-            })
-        ]
+            }))
+        }
 
         if(!data.plantProfile.doNotIncludeStaticMap && data.map) {
             schema.push({
