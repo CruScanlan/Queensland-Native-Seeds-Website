@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet"
 import PropTypes from "prop-types"
 import { StaticQuery, graphql } from "gatsby"
 
-const SEO = ({ title, description, image, pathname, article, breadCrumbs }) => (
+const SEO = ({ title, description, image, pathname, article, breadCrumbs, extraSchema=[] }) => (
   <StaticQuery
     query={query}
     render={({
@@ -23,17 +23,23 @@ const SEO = ({ title, description, image, pathname, article, breadCrumbs }) => (
         description: description,
         image: image,
         url: `${siteUrl}${pathname || "/"}`,
-        breadCrumbs: {
-          "@context": "https://schema.org",
-          "@type": "BreadcrumbList",
-          "itemListElement": [breadCrumbs.map((breadCrumb, index) => {
-            return {
-              "@type": "ListItem",
-              "position": index+1,
-              "name": breadCrumb.name,
-              "item": `https://qldnativeseeds.com.au/${breadCrumb.url}`
-            }
-          })]
+        schema: {
+            "@context": "https://schema.org",
+            "@graph": [
+                {
+                    "@context": "https://schema.org",
+                    "@type": "BreadcrumbList",
+                    "itemListElement": [breadCrumbs.map((breadCrumb, index) => {
+                        return {
+                        "@type": "ListItem",
+                        "position": index+1,
+                        "name": breadCrumb.name,
+                        "item": `https://qldnativeseeds.com.au/${breadCrumb.url}`
+                        }
+                    })]
+                },
+                ...extraSchema
+            ]
         }
       }
 
@@ -55,7 +61,7 @@ const SEO = ({ title, description, image, pathname, article, breadCrumbs }) => (
               <meta name="twitter:description" content={seo.description} />
             )}
             <script type="application/ld+json">
-              {JSON.stringify(seo.breadCrumbs)}
+              {JSON.stringify(seo.schema)}
             </script>
           </Helmet>
         </>
@@ -72,6 +78,7 @@ SEO.propTypes = {
   image: PropTypes.string,
   pathname: PropTypes.string,
   article: PropTypes.bool,
+  extraSchema: PropTypes.array
 }
 
 SEO.defaultProps = {

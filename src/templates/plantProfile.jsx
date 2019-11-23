@@ -98,9 +98,8 @@ class PlantProfile extends React.Component {
         if(!images) return <div />;
         return images.map((image, index) => (
             <GridItem xs={12} sm={6} md={4} key={image.id}>
-                <div className={classes.inLineImageContainer} style={{marginTop: "30px", cursor: "pointer"}} onClick={() => this.openLightbox(index)} onContextMenu={(e)=>  {e.preventDefault(); return false;}} itemScope itemType="http://schema.org/ImageObject">
-                    <meta itemprop="name" content={this.photoCreateCaption(image)} />
-                    <Img fluid={image.smallFluid} className={classes.inLineImage} itemProp="contentUrl" alt={this.photoCreateCaption(image)} title={this.photoCreateCaption(image)}/>
+                <div className={classes.inLineImageContainer} style={{marginTop: "30px", cursor: "pointer"}} onClick={() => this.openLightbox(index)} onContextMenu={(e)=>  {e.preventDefault(); return false;}}>
+                    <Img fluid={image.smallFluid} className={classes.inLineImage} alt={this.photoCreateCaption(image)} title={this.photoCreateCaption(image)}/>
                     <Img fluid={image.smallFluid} className={classes.inLineImageShadow}/>
                 </div>
             </GridItem>
@@ -148,9 +147,8 @@ class PlantProfile extends React.Component {
         if(data.plantProfile.doNotIncludeStaticMap || !data.map) return <div className={classes.inLineImageContainer} style={{width: "100%"}}></div>
         const name = `Distribution Map | ${data.plantProfile.scientificName} | Queensland Native Seeds`;
         return (
-            <div className={classes.inLineImageContainer} style={{width: "100%"}} itemScope itemType="http://schema.org/ImageObject">
-                <meta itemprop="name" content={name} />
-                <Img fluid={data.map.childImageSharp.fluid} itemProp="contentUrl" className={classes.inLineImage} alt={name} title={name}/>
+            <div className={classes.inLineImageContainer} style={{width: "100%"}}>
+                <Img fluid={data.map.childImageSharp.fluid} className={classes.inLineImage} alt={name} title={name}/>
                 <Img fluid={data.map.childImageSharp.fluid} className={classes.inLineImageShadow}/>
             </div>
         );
@@ -191,12 +189,35 @@ class PlantProfile extends React.Component {
 
         const seoPicture = data.plantProfile.pictures ? data.plantProfile.pictures[0].smallFluid.src : data.backgroundImage.childImageSharp.fluid.src;
 
+        console.log(data.map.childImageSharp.fluid.src)
+
+        const schema = [
+            ...data.plantProfile.pictures.map(picture => {
+                return {
+                    "@context": "http://schema.org",
+                    "@type": "ImageObject",
+                    "contentUrl": picture.file.url,
+                    "name": this.photoCreateCaption(picture)
+                }
+            })
+        ]
+
+        if(!data.plantProfile.doNotIncludeStaticMap && data.map) {
+            schema.push({
+                "@context": "http://schema.org",
+                "@type": "ImageObject",
+                "contentUrl": "https://qldnativeseeds.com.au"+data.map.childImageSharp.fluid.src,
+                "name": `Distribution Map | ${data.plantProfile.scientificName} | Queensland Native Seeds`
+            })
+        }
+
         return (
             <>
                 <SEO 
                     pathname={`/plant-profiles/${data.plantProfile.slug}`}
                     title={`${data.plantProfile.scientificName} - Plant Profiles`}
                     breadCrumbs={[{name: 'Plant Profiles', url: '/plant-profiles'}, {name: data.plantProfile.scientificName, url: `/plant-profiles/${data.plantProfile.slug}`}]}
+                    extraSchema={schema}
                     image={seoPicture}/>
                 <Layout>
                     <ParallaxHeader filter medium image={data.backgroundImage.childImageSharp.fluid}/>
