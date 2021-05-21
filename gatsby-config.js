@@ -45,7 +45,6 @@ module.exports = {
         },
         `gatsby-plugin-remove-serviceworker`,
         `gatsby-plugin-sitemap`,
-        `gatsby-image-sitemap`,
         {
             resolve: 'gatsby-plugin-robots-txt',
             options: {
