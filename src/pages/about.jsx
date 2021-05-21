@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
 import Layout from 'components/Layout.jsx';
 import SEO from 'components/SEO/SEO.jsx';
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 
 // core components
 import ParallaxHeader from "components/Parallax/ParallaxHeader.jsx";
@@ -24,9 +25,9 @@ import {graphql} from 'gatsby'
 class AboutPage extends React.Component {
     render() {
         const {classes, data} = this.props;
-        const section1Content = data.allContentfulAboutUs.nodes[0].childContentfulAboutUsSection1RichTextNode.childContentfulRichText.html.split('<p></p>').join('<p style="height:24px"></p>');
-        const section2Content = data.allContentfulAboutUs.nodes[0].childContentfulAboutUsSection2RichTextNode.childContentfulRichText.html.split('<p></p>').join('<p style="height:24px"></p>');
-        const section3Content = data.allContentfulAboutUs.nodes[0].childContentfulAboutUsSection3RichTextNode.childContentfulRichText.html.split('<p></p>').join('<p style="height:24px"></p>');
+        const section1Content = documentToHtmlString(JSON.parse(data.contentfulAboutUs.section1.raw)).split('<p></p>').join('<p style="height:24px"></p>');
+        const section2Content = documentToHtmlString(JSON.parse(data.contentfulAboutUs.section2.raw)).split('<p></p>').join('<p style="height:24px"></p>');
+        const section3Content = documentToHtmlString(JSON.parse(data.contentfulAboutUs.section3.raw)).split('<p></p>').join('<p style="height:24px"></p>');
 
         return (
             <>
@@ -81,23 +82,15 @@ export const query = graphql`
                 }
             }
         },
-        allContentfulAboutUs {
-            nodes {
-                childContentfulAboutUsSection1RichTextNode {
-                    childContentfulRichText {
-                        html
-                    }
-                },
-                childContentfulAboutUsSection2RichTextNode {
-                    childContentfulRichText {
-                        html
-                    }
-                },
-                childContentfulAboutUsSection3RichTextNode {
-                    childContentfulRichText {
-                        html
-                    }
-                }
+        contentfulAboutUs {
+            section1 {
+                raw
+            },
+            section2 {
+                raw
+            },
+            section3 {
+                raw
             }
         }
     }

@@ -164,11 +164,6 @@ export const query = graphql`
                 description {
                     description
                 },
-                childContentfulArticlesContentRichTextNode {
-                  childContentfulRichText {
-                    html
-                  }
-                },
                 createdAt
               }
             }

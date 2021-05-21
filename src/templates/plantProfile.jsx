@@ -8,10 +8,11 @@ import {withStyles} from '@material-ui/core/styles';
 import { graphql, Link } from "gatsby";
 import Img from 'gatsby-image';
 import Lightbox from 'react-images';
-import Layout from 'components/Layout.jsx';
-import SEO from 'components/SEO/SEO.jsx';
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 
 // core components
+import Layout from 'components/Layout.jsx';
+import SEO from 'components/SEO/SEO.jsx';
 import ParallaxHeader from "components/Parallax/ParallaxHeader.jsx";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
@@ -181,15 +182,13 @@ class PlantProfile extends React.Component {
                 }
             })
         ), 'name')
-        const descriptionData = data.plantProfile.description ? data.plantProfile.description.childContentfulRichText.html : '';
-        const notesData = data.plantProfile.notes ? data.plantProfile.notes.childContentfulRichText.html : '';
-        const historicalNotesData = data.plantProfile.historicalNotes ? data.plantProfile.historicalNotes.childContentfulRichText.html : '';
-        const distributionNotesData = data.plantProfile.distributionNotes ? data.plantProfile.distributionNotes.childContentfulRichText.html : '';
-        const referancesRelatedLinksData = data.plantProfile.referancesRelatedLinks ? data.plantProfile.referancesRelatedLinks.childContentfulRichText.html : '';
+        const descriptionData = data.plantProfile.description ? documentToHtmlString(JSON.parse(data.plantProfile.description.raw)) : '';
+        const notesData = data.plantProfile.notes ? documentToHtmlString(JSON.parse(data.plantProfile.notes.raw)) : '';
+        const historicalNotesData = data.plantProfile.historicalNotes ? documentToHtmlString(JSON.parse(data.plantProfile.historicalNotes.raw)) : '';
+        const distributionNotesData = data.plantProfile.distributionNotes ? documentToHtmlString(JSON.parse(data.plantProfile.distributionNotes.raw)) : '';
+        const referancesRelatedLinksData = data.plantProfile.referancesRelatedLinks ? documentToHtmlString(JSON.parse(data.plantProfile.referancesRelatedLinks.raw)) : '';
 
         const seoPicture = data.plantProfile.pictures ? data.plantProfile.pictures[0].smallFluid.src : data.backgroundImage.childImageSharp.fluid.src;
-
-        console.log(data.map.childImageSharp.fluid.src)
 
         let schema = []
 
@@ -329,34 +328,11 @@ class PlantProfile extends React.Component {
     }
 }
 
-/*
-<GridItem xs={12} sm={12} md={12}>
-  <h4 className={classes.textBold}>Categories</h4>
-  {this.createBadges(data.plantProfile.categories, 'green')}
-</GridItem>
-<GridItem xs={12} sm={12} md={12}>
-  <h4 className={classes.textBold}>Common Names</h4>
-  <h5>{data.plantProfile.commonName ? data.plantProfile.commonName.join(', ') : ''}</h5>
-</GridItem>
-<GridItem xs={12} sm={12} md={12}>
-  <h4 className={classes.textBold}>Family</h4>
-  <h5>{data.plantProfile.family}</h5>
-</GridItem>
-
-*/
-
 export const query = graphql`
-    query PlantProfileQuery($slug: String!, $scientificName: String!) {
+    query PlantProfileQuery($slug: String!) {
         backgroundImage: file(relativePath: { eq: "bg25.jpg" }) {
             childImageSharp {
                 fluid(maxWidth: 2000, quality: 95) {
-                    ...GatsbyImageSharpFluid_withWebp
-                }
-            }
-        },
-        map: distMap(name: { eq: $scientificName }) {
-            childImageSharp {
-                fluid(maxWidth: 1200) {
                     ...GatsbyImageSharpFluid_withWebp
                 }
             }
@@ -387,28 +363,25 @@ export const query = graphql`
                 name    
             },
             description {
-                childContentfulRichText {
-                    html
-                }
+                raw
             },
             notes {
-                childContentfulRichText {
-                    html
-                }
+                raw
             },
             historicalNotes {
-                childContentfulRichText {
-                    html
-                }
+                raw
             },
             distributionNotes {
-                childContentfulRichText {
-                    html
-                }
+                raw
             },
             referancesRelatedLinks {
-                childContentfulRichText {
-                    html
+                raw
+            },
+            distMap {
+                childImageSharp {
+                    fluid(maxWidth: 800) {
+                        ...GatsbyImageSharpFluid_withWebp
+                    }
                 }
             },
             pictures {

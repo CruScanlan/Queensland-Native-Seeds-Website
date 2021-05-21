@@ -5,6 +5,7 @@ import React from 'react';
 import classNames from "classnames";
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import Layout from 'components/Layout.jsx';
 import SEO from 'components/SEO/SEO.jsx';
 
@@ -46,7 +47,7 @@ class PlantProfileIntro extends React.Component {
                                     <GridItem xs={12} sm={12} md={12}>
                                         <h2 className={classes.title}>Plant Profiles Introduction</h2>
                                     </GridItem>
-                                    <GridItem xs={12} sm={12} md={12} className={classes.content} dangerouslySetInnerHTML={{ __html: data.content.childContentfulRichText.html }}>
+                                    <GridItem xs={12} sm={12} md={12} className={classes.content} dangerouslySetInnerHTML={{ __html: documentToHtmlString(JSON.parse(data.contentfulPlantProfileIntroduction.content.raw)) }}>
                                     </GridItem>
                                     <GridItem xs={12} sm={12} md={12} className={classes.centerText}>
                                         <Link to="/plant-profiles">
@@ -76,9 +77,9 @@ export const query = graphql`
                 }
             }
         },
-        content: contentfulPlantProfileIntroductionContentRichTextNode {
-            childContentfulRichText {
-              html
+        contentfulPlantProfileIntroduction {
+            content {
+              raw
             }
         }
     }
