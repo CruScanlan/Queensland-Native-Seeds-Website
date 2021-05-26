@@ -27,8 +27,8 @@ class ParallaxDivider extends React.Component {
 
         let offset = 20;
         if(typeof window !== 'undefined') {
-            if(window.innerWidth > 1300)  offset = 40;
-            if(window.innerWidth > 1600)  offset = 60;
+            if(window.innerWidth > 1300)  offset = 30;
+            if(window.innerWidth > 1600)  offset = 50;
         }
 
         return (
