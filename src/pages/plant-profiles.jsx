@@ -154,7 +154,6 @@ class PlantProfiles extends React.Component {
             )
         });
 
-        console.log(searchQuery)
         const title = searchQuery === '' ? "Plant Profiles" : `${searchQuery} - Plant Profiles`;
 
         return (

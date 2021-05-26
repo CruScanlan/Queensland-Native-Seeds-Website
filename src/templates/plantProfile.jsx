@@ -212,11 +212,13 @@ class PlantProfile extends React.Component {
             })
         }
 
+        const title = data.plantProfile.commonName ? `${data.plantProfile.scientificName} "${data.plantProfile.commonName[0]}" - Plant Profiles` : `${data.plantProfile.scientificName} - Plant Profiles`;
+
         return (
             <>
                 <SEO 
                     pathname={`/plant-profiles/${data.plantProfile.slug}`}
-                    title={`${data.plantProfile.scientificName} - Plant Profiles`}
+                    title={title}
                     breadCrumbs={[{name: 'Plant Profiles', url: '/plant-profiles'}, {name: data.plantProfile.scientificName, url: `/plant-profiles/${data.plantProfile.slug}`}]}
                     extraSchema={schema}
                     image={seoPicture}/>

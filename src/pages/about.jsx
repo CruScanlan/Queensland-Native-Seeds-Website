@@ -68,16 +68,16 @@ export const query = graphql`
                 }
             }
         },
-        parallaxImage1: file(relativePath: { eq: "bg44.jpg" }) {
+        parallaxImage1: file(relativePath: { eq: "bg44-2.jpg" }) {
             childImageSharp {
-                fluid(maxWidth: 1920, quality: 70) {
+                fluid(maxWidth: 1920, quality: 80) {
                     ...GatsbyImageSharpFluid_withWebp
                 }
             }
         },
-        parallaxImage2: file(relativePath: { eq: "bg41.jpg" }) {
+        parallaxImage2: file(relativePath: { eq: "bg41-2.jpg" }) {
             childImageSharp {
-                fluid(maxWidth: 1920, quality: 70) {
+                fluid(maxWidth: 1920, quality: 80) {
                     ...GatsbyImageSharpFluid_withWebp
                 }
             }
