@@ -6474,8 +6474,8 @@ gatsby-graphiql-explorer@^1.5.0:
     "@babel/runtime" "^7.12.5"
 
 "gatsby-image-sitemap@git+https://github.com/Cruzercru/gatsby-image-sitemap.git":
-  version "1.1.1"
-  resolved "git+https://github.com/Cruzercru/gatsby-image-sitemap.git#c181e7a045ecae8d90fac5c93ee985e6d0d8c9ed"
+  version "1.2.1"
+  resolved "git+https://github.com/Cruzercru/gatsby-image-sitemap.git#fb3be713ce183c29b4b0f09882b0c18c5c250d92"
   dependencies:
     cheerio "^1.0.0-rc.2"
     sitemap "^2.1.0"
