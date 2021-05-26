@@ -163,9 +163,9 @@ class PlantProfile extends React.Component {
     }
 
     render() {
-        const {classes, data} = this.props;
+        const {classes, data, pageContext} = this.props;
 
-        const allPlantCategoryLinks = data.allPlantCategories.edges.map(category => {
+        const allPlantCategoryLinks = pageContext.allPlantCategories.edges.map(category => {
             return {
                 name: category.node.name,
                 url: `/plant-profiles?search=&categories=${category.node.name}&searchByCommonName=false&sortingColumn=scientificName&sortingAZ=true`
@@ -173,7 +173,7 @@ class PlantProfile extends React.Component {
         });
 
         const allPlantGenusLinks = this.sortAlphabetical(
-            this.removeDuplicateGenuses(data.allPlantProfileSciNames.edges.map(plantProfile => {
+            this.removeDuplicateGenuses(pageContext.allPlantProfileSciNames.edges.map(plantProfile => {
                 let name = plantProfile.node.scientificName;
                 let genusName = name.indexOf(' ') !== -1 ? name.substring(0, name.indexOf(' ')) : name;
                 return {
@@ -336,20 +336,6 @@ export const query = graphql`
             childImageSharp {
                 fluid(maxWidth: 2000, quality: 95) {
                     ...GatsbyImageSharpFluid_withWebp
-                }
-            }
-        },
-        allPlantCategories: allContentfulPlantCategory {
-            edges {
-                node {
-                    name
-                }
-            }
-        },
-        allPlantProfileSciNames: allContentfulPlantProfile {
-            edges {
-                node {
-                    scientificName
                 }
             }
         },
