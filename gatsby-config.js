@@ -82,8 +82,7 @@ module.exports = {
               //   injectFirst: true,
               // },
             },
-        },
-        `gatsby-image-sitemap`
+        }
     ]
 };
 

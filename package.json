@@ -13,7 +13,6 @@
     "dotenv": "^9.0.2",
     "gatsby": "^3.5.0",
     "gatsby-image": "^3.5.0",
-    "gatsby-image-sitemap": "git+https://github.com/Cruzercru/gatsby-image-sitemap.git",
     "gatsby-plugin-canonical-urls": "^3.5.0",
     "gatsby-plugin-google-analytics": "^3.5.0",
     "gatsby-plugin-image": "^1.5.0",
