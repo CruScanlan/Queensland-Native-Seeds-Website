@@ -7,6 +7,10 @@ module.exports = {
         siteUrl: `https://qldnativeseeds.com.au`,
         homeTitle: "Queensland Native Seeds - Australian Native Seed Supplier"
     },
+    flags: {
+        PRESERVE_WEBPACK_CACHE: true,
+        PRESERVE_FILE_DOWNLOAD_CACHE: false,
+    },
     plugins: [
         `gatsby-plugin-netlify-cache`,
         `gatsby-plugin-netlify`,

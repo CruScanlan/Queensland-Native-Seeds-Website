@@ -96,6 +96,7 @@ class ParallaxHeader extends React.Component {
             <div className={parallaxClasses} style={{...style, ...this.state}}>
                 <Img className={gatsbyImageClasses}
                      fluid={image}
+                     critical={true}
                      loading="eager"
                      style={{
                          position: "absolute",
