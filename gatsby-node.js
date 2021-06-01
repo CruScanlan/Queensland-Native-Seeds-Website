@@ -11,14 +11,28 @@ const createPlantProfilePages = (createPage, graphql) => {
     return new Promise((resolve) => {
         graphql(`
             {
-              allContentfulPlantProfile {
-                edges {
-                  node {
-                    scientificName,
-                    slug
-                  }
+                allPlantCategories: allContentfulPlantCategory {
+                    edges {
+                        node {
+                            name
+                        }
+                    }
+                },
+                allPlantProfileSciNames: allContentfulPlantProfile {
+                    edges {
+                        node {
+                            scientificName
+                        }
+                    }
+                },
+                allContentfulPlantProfile {
+                    edges {
+                    node {
+                        scientificName,
+                        slug
+                    }
+                    }
                 }
-              }
             }
           `).then(async (result) => {
             if (result.errors) {
@@ -31,8 +45,10 @@ const createPlantProfilePages = (createPage, graphql) => {
                 path: `plant-profiles/${edge.node.slug}`,
                 component: plantProfileTemplate,
                 context: {
-                  scientificName: edge.node.scientificName,
-                  slug: edge.node.slug
+                    allPlantCategories: result.data.allPlantCategories,
+                    allPlantProfileSciNames: result.data.allPlantProfileSciNames,
+                    scientificName: edge.node.scientificName,
+                    slug: edge.node.slug
                 }
               })
             })

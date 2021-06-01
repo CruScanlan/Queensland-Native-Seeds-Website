@@ -117,7 +117,7 @@ class ArticlePage extends React.Component {
     }
 
     getArticleContent() {
-        return JSON.parse(this.props.data.article.content.internal.content)
+        return JSON.parse(this.props.data.article.content.raw)
     }
 
 }
@@ -148,9 +148,7 @@ export const query = graphql`
                 description
             },
             content {
-                internal {
-                    content
-                }
+                raw
             },
             otherArticles {
                 title,

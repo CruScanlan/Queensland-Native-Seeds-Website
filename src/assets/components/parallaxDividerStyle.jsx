@@ -15,8 +15,7 @@ const ParallaxDividerStyle = {
     },
     image: {
         display: "block",
-        width: "100vw",
-        height: "120vh",
+        minWidth: "100vw",
         objectFit: "cover",
         zIndex: -1,
     }

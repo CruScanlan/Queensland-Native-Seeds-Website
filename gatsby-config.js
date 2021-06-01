@@ -7,6 +7,10 @@ module.exports = {
         siteUrl: `https://qldnativeseeds.com.au`,
         homeTitle: "Queensland Native Seeds - Australian Native Seed Supplier"
     },
+    flags: {
+        PRESERVE_WEBPACK_CACHE: true,
+        PRESERVE_FILE_DOWNLOAD_CACHE: false,
+    },
     plugins: [
         `gatsby-plugin-netlify-cache`,
         `gatsby-plugin-netlify`,
@@ -19,7 +23,6 @@ module.exports = {
               host: process.env.CONTENTFUL_HOST_URL
             }
         },
-        `@contentful/gatsby-transformer-contentful-richtext`,
         //`gatsby-contentful-image-domain-change`,
         `gatsby-source-avh-distribution-map`,
         'gatsby-plugin-react-helmet',
@@ -46,7 +49,6 @@ module.exports = {
         },
         `gatsby-plugin-remove-serviceworker`,
         `gatsby-plugin-sitemap`,
-        `gatsby-image-sitemap`,
         {
             resolve: 'gatsby-plugin-robots-txt',
             options: {
@@ -71,6 +73,16 @@ module.exports = {
               head: true
             }
         },
+        `gatsby-plugin-image`,
+        {
+            resolve: 'gatsby-plugin-material-ui',
+            // If you want to use styled components you should change the injection order.
+            options: {
+              // stylesProvider: {
+              //   injectFirst: true,
+              // },
+            },
+        }
     ]
 };
 

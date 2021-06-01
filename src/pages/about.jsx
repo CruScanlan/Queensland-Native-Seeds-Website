@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
 import Layout from 'components/Layout.jsx';
 import SEO from 'components/SEO/SEO.jsx';
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 
 // core components
 import ParallaxHeader from "components/Parallax/ParallaxHeader.jsx";
@@ -24,9 +25,9 @@ import {graphql} from 'gatsby'
 class AboutPage extends React.Component {
     render() {
         const {classes, data} = this.props;
-        const section1Content = data.allContentfulAboutUs.nodes[0].childContentfulAboutUsSection1RichTextNode.childContentfulRichText.html.split('<p></p>').join('<p style="height:24px"></p>');
-        const section2Content = data.allContentfulAboutUs.nodes[0].childContentfulAboutUsSection2RichTextNode.childContentfulRichText.html.split('<p></p>').join('<p style="height:24px"></p>');
-        const section3Content = data.allContentfulAboutUs.nodes[0].childContentfulAboutUsSection3RichTextNode.childContentfulRichText.html.split('<p></p>').join('<p style="height:24px"></p>');
+        const section1Content = documentToHtmlString(JSON.parse(data.contentfulAboutUs.section1.raw)).split('<p></p>').join('<p style="height:24px"></p>');
+        const section2Content = documentToHtmlString(JSON.parse(data.contentfulAboutUs.section2.raw)).split('<p></p>').join('<p style="height:24px"></p>');
+        const section3Content = documentToHtmlString(JSON.parse(data.contentfulAboutUs.section3.raw)).split('<p></p>').join('<p style="height:24px"></p>');
 
         return (
             <>
@@ -67,37 +68,29 @@ export const query = graphql`
                 }
             }
         },
-        parallaxImage1: file(relativePath: { eq: "bg44.jpg" }) {
+        parallaxImage1: file(relativePath: { eq: "bg44-2.jpg" }) {
             childImageSharp {
-                fluid(maxWidth: 1920, quality: 70) {
+                fluid(maxWidth: 1920, quality: 80) {
                     ...GatsbyImageSharpFluid_withWebp
                 }
             }
         },
-        parallaxImage2: file(relativePath: { eq: "bg41.jpg" }) {
+        parallaxImage2: file(relativePath: { eq: "bg41-2.jpg" }) {
             childImageSharp {
-                fluid(maxWidth: 1920, quality: 70) {
+                fluid(maxWidth: 1920, quality: 80) {
                     ...GatsbyImageSharpFluid_withWebp
                 }
             }
         },
-        allContentfulAboutUs {
-            nodes {
-                childContentfulAboutUsSection1RichTextNode {
-                    childContentfulRichText {
-                        html
-                    }
-                },
-                childContentfulAboutUsSection2RichTextNode {
-                    childContentfulRichText {
-                        html
-                    }
-                },
-                childContentfulAboutUsSection3RichTextNode {
-                    childContentfulRichText {
-                        html
-                    }
-                }
+        contentfulAboutUs {
+            section1 {
+                raw
+            },
+            section2 {
+                raw
+            },
+            section3 {
+                raw
             }
         }
     }

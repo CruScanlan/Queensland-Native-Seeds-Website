@@ -29,10 +29,11 @@ exports.onCreateNode = async ({node, actions, store, createNodeId}) => {
             } 
             
             let fileNode = await createFileNode(writePath, createNodeId, {}) //create file node for downloaded map
-            fileNode.internal.description = `distMap "${scientificName}"`;
-            fileNode.internal.type = 'distMap'; //grapql schema name
+            fileNode.internal.description = `File "${scientificName}"`;
+            fileNode.internal.type = 'File'; //grapql schema name
             fileNode.parent = node.id; //set as child of contentful plant profile node
-            createNode(fileNode, { name: `gatsby-source-avh-distribution-map`}); //create final image node
+            createNode(fileNode, { name: `gatsby-source-filesystem`}); //create final image node
+            if(fileNode) node.distMap___NODE = fileNode.id;
             resolve();
         })
     }

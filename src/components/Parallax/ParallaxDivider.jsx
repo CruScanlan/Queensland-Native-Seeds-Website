@@ -24,19 +24,23 @@ class ParallaxDivider extends React.Component {
         } = this.props;
         const styles = {height: "100%", width: "100%"};
 
-        const offset = typeof window !== 'undefined' && window.innerWidth > 1500 ? 100 : 70;
+
+        let offset = 20;
+        if(typeof window !== 'undefined') {
+            if(window.innerWidth > 1300)  offset = 30;
+            if(window.innerWidth > 1600)  offset = 50;
+        }
 
         return (
             <div className={classes.parallax} style={{height: height+"px"}}>
                 <Parallax
-                    offsetYMax={-offset}
-                    offsetYMin={offset}
+                    y={[offset, -offset]}
                     tag="div"
                     styleOuter={styles}
                     styleInner={styles}
                     //slowerScrollRate
                 >
-                    <Img fluid={image} className={classes.image} alt="Queensland Native Seeds" title="Queensland Native Seeds"/>
+                    <Img fluid={image} style={{top: `-${height/2}px`, height: `${height*2.2}px`}} className={classes.image} alt="Queensland Native Seeds" title="Queensland Native Seeds"/>
                 </Parallax>
             </div>
         )
