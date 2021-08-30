@@ -145,12 +145,12 @@ class PlantProfile extends React.Component {
     }
 
     renderDistMap(data, classes) {
-        if(data.plantProfile.doNotIncludeStaticMap || !data.map) return <div className={classes.inLineImageContainer} style={{width: "100%"}}></div>
+        if(data.plantProfile.doNotIncludeStaticMap === true || !data.plantProfile.distMap) return <div className={classes.inLineImageContainer} style={{width: "100%"}}></div>
         const name = `Distribution Map | ${data.plantProfile.scientificName} | Queensland Native Seeds`;
         return (
             <div className={classes.inLineImageContainer} style={{width: "100%"}}>
-                <Img fluid={data.map.childImageSharp.fluid} className={classes.inLineImage} alt={name} title={name}/>
-                <Img fluid={data.map.childImageSharp.fluid} className={classes.inLineImageShadow}/>
+                <Img fluid={data.plantProfile.distMap.childImageSharp.fluid} className={classes.inLineImage} alt={name} title={name}/>
+                <Img fluid={data.plantProfile.distMap.childImageSharp.fluid} className={classes.inLineImageShadow}/>
             </div>
         );
     }
