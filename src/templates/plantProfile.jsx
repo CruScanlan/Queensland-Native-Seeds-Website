@@ -236,7 +236,7 @@ class PlantProfile extends React.Component {
                                             <hr />
                                             <CollabsibleLinkList headerText="Plant Categories" minShown={10} links={allPlantCategoryLinks}/>
                                             <hr />
-                                            <CollabsibleLinkList headerText="Genuses" minShown={10} links={allPlantGenusLinks}/>
+                                            <CollabsibleLinkList headerText="Genera" minShown={10} links={allPlantGenusLinks}/>
                                             <hr />
                                             <div className={classes.alignCenter}>
                                                 <Link  to="/plant-profiles?search=&categories=&searchByCommonName=false&sortingColumn=scientificName&sortingAZ=true">
