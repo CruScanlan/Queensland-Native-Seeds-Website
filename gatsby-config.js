@@ -12,7 +12,6 @@ module.exports = {
         PRESERVE_FILE_DOWNLOAD_CACHE: false,
     },
     plugins: [
-        `gatsby-plugin-netlify-cache`,
         `gatsby-plugin-netlify`,
         'gatsby-plugin-resolve-src',
         {
