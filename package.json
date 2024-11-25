@@ -11,7 +11,7 @@
     "core-js": "^3.12.1",
     "crypto": "^1.0.1",
     "dotenv": "^9.0.2",
-    "gatsby": "^3.5.0",
+    "gatsby": "^5.5.0",
     "gatsby-image": "^3.5.0",
     "gatsby-plugin-canonical-urls": "^3.5.0",
     "gatsby-plugin-google-analytics": "^3.5.0",
