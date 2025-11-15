@@ -32,7 +32,16 @@ class Contact extends React.Component {
                     <ParallaxHeader map medium />
                     <div className={classNames(classes.main, classes.mainRaised)}>
                         <div className={classes.container}>
-                            <ContactSection />
+                            {/* <ContactSection /> */}
+                            Queensland Native Seeds is not currently taking new business enquiries. Sorry for any inconvenience this may cause.
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
                         </div>
                     </div>
                 </Layout>
