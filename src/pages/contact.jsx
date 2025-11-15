@@ -33,7 +33,9 @@ class Contact extends React.Component {
                     <div className={classNames(classes.main, classes.mainRaised)}>
                         <div className={classes.container}>
                             {/* <ContactSection /> */}
-                            Queensland Native Seeds is not currently taking new business enquiries. Sorry for any inconvenience this may cause.
+                            <br />
+                            <br />
+                            <h4>Queensland Native Seeds is not currently taking new business enquiries. Sorry for any inconvenience this may cause.</h4>
                             <br />
                             <br />
                             <br />
